@@ -1,0 +1,30 @@
+{
+  "name": "coins",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "d3-dsv": "^1.0.8",
+    "d3-format": "^1.2.2",
+    "d3-scale": "^2.0.0",
+    "d3-time-format": "^2.1.1",
+    "match-sorter": "^2.2.1",
+    "material-design-icons": "^3.0.1",
+    "npm": "^5.7.1",
+    "react": "^16.3.1",
+    "react-addons-css-transition-group": "^15.6.2",
+    "react-collapse": "^4.0.3",
+    "react-dom": "^16.3.1",
+    "react-motion": "^0.5.2",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.0",
+    "react-stockcharts": "^0.7.4",
+    "react-table": "^6.8.0",
+    "socket.io": "^2.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

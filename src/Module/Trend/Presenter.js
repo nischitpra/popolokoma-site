@@ -1,0 +1,41 @@
+import Interactor from './Interactor'
+import {string,id} from '../../Values/Constants'
+import { timeFormat } from "d3-time-format" 
+
+class Presenter{
+    interactor=new Interactor(this)
+    constructor(script){
+        this.script=script
+        this.format=timeFormat("%_d %b, %_I:%M %p")
+    }
+    getTrendData(){
+        this.interactor.getTrend(1)
+        this.interactor.getTrend(0)
+        this.interactor.getTrend(-1)
+    }
+    setTrendData(data){
+        for(var i in data){
+            const arr=data[i]['_key'].split("_")
+            data[i]['from']=arr[0]
+            data[i]['to']=arr[1]
+            data[i]['start_time']=this.format(new Date(parseInt(data[i]['start_time'])))
+            data[i]['end_time']=this.format(new Date(parseInt(data[i]['end_time'])))
+            data[i]['velocity']=data[i]['velocity']
+        }
+        
+        this.script.setState({
+            data:this.script.state.data.concat(data)
+        })
+    }
+    startLoading(){
+        this.script.setState({
+            isLoading:true,
+        })
+    }
+    stopLoading(){
+        this.script.setState({
+            isLoading:false,
+        })
+    }
+}
+export default Presenter

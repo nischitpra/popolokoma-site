@@ -1,0 +1,106 @@
+:root{
+    --transition:100ms;
+    
+    --primaryColorDarkOverlay: #90A4AE;    
+    --primaryColorDark: #455A64;
+    --primaryColor: #607D8B;
+    --primaryColorLight: #ECEFF1;
+    --accentColor: #ff8888;
+    --lightGray: #eeeeee;
+    --green: #51e064;
+    --red: #d66b6b;
+    --orange: #d6a46b;
+    --blue: #6ba2d6;
+    --bollingerBandEdge: #61030b33;
+    --veryLightBlue: #8abae7;
+    --transparent:#00000000;
+    --black:#000000;
+
+    --brightRed: #ff0000;
+    --brightGreen: #00ff00;
+    --brightBlue: #0000ff;
+
+    --darkRed:#880000;
+    --darkGreen:#006300;
+    --darkBlue:#000088;
+
+    --textGray:#2e2e2e;
+    --textLightGray: #b9b9b9;
+    --lightGray: #8a8a8a;
+    --veryLightGray: #f0f0f0;
+
+    --title-text-primary-color:#37474F;
+
+    --loader-color-1:#F4511E;
+    --loader-color-2:#FFB300;
+    --loader-color-3:#6D4C41;
+    --loader-color-4:#7CB342;
+    --loader-color-1-background:#FF8A65;
+    --loader-color-2-background:#FFD54F;
+    --loader-color-3-background:#A1887F;
+    --loader-color-4-background:#AED581;
+
+
+
+    /* font size, text size */
+    --big-1x-text:1.5em;
+    --big-x-text:1.4em;
+
+    --normal-1x-text:1.14em;
+    --normal-text:1em;
+
+    --small-text:0.8em;
+    --small-4x-text:0.7em;
+    --small-3x-text:0.65em;
+    --small-2x-text:0.6em;
+
+    /* shadow for containers */
+    --box-shadow: 0 1px 2px rgba(0,0,0,0.19), 0 2px 2px rgba(0,0,0,0.23);
+    --box-shadow-hover: 0 2px 4px rgba(0,0,0,0.25), 0 4px 4px rgba(0,0,0,0.22);
+
+    --navbar-height:42px;
+
+    /* padding, spacing */
+    --big-8x-spacing:64px;
+    --big-7_5x-spacing:60px;
+    --big-7x-spacing:54px;
+    --big-6x-spacing:52px;
+    --big-5x-spacing:48px;
+    --big-4x-spacing:42px;
+    --big-3x-spacing:36px;
+    --big-2x-spacing:32px;
+    --big-1x-spacing:28px;
+    --big-x-spacing:26px;
+    --big-spacing:24px;
+
+    --medium-5x-spacing:20px;
+    --medium-4x-spacing:16px;
+    --medium-3x-spacing:15px;
+    --medium-2x-spacing:14px;
+    --medium-1x-spacing:12px;
+    --medium-x-spacing:10px;
+    --medium-spacing:8px;
+
+    --small-medium-spacing:6px;
+
+    --small-spacing:4px;
+    --small-x-spacing:3px;
+    --small-1x-spacing:2.5px;
+    --small-2x-spacing:2px;
+    --small-3x-spacing:1px;
+    --small-4x-spacing:0.5px;
+
+
+
+    
+}
+
+/* :export{
+    primaryColor: var(--primaryColor);
+    accentColor: var(--accentColor);
+    lightGray: var(--lightGray);
+    green:var(--green);
+    red:var(--red);
+    orange:var(--orange);
+    blue:var(--blue);
+} */
