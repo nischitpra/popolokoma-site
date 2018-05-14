@@ -2,7 +2,7 @@ import React from 'react'
 export const value={
     ipAddress:'localhost:3001',
     ipAddressSocket:'localhost:3002',
-    base_api:false?`http://localhost:3001`:`https://poposerver.herokuapp.com/`,
+    base_api:false?`http://localhost:3001`:`https://poposerver.herokuapp.com`,
     newsApiKey:'d2a968870c6c41e0b2f172bad1c2ef10',
     subscriptionRefreshRate:0,
     // buffer interval used to update current trade price in coin detail in milliseconds
