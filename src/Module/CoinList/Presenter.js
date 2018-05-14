@@ -18,7 +18,6 @@ class Presenter{
     }
     getSnapshot(){
         var fav=this.getFavouritesDetailList()
-        console.log(JSON.stringify(fav))
         for(var i in fav){
             console.log(`${fav[i][id.coinList.from]},${fav[i][id.coinList.to]}`)
             this.interactor.getSnapshot(fav[i][id.coinList.from],fav[i][id.coinList.to])
