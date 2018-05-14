@@ -37,13 +37,13 @@ class Trend extends Component{
     
     const data=this.state.data
     const column=[
-        {Header: 'F', accessor:'from', width: 45, filterMethod: (filter, rows) =>matchSorter(rows, filter.value, { keys: ["from"] }),filterAll: true},
-        {Header: 'T', accessor:'to', width: 45, filterMethod: (filter, rows) =>matchSorter(rows, filter.value, { keys: ["to"] }),filterAll: true},
+        {Header: 'F', accessor:'from', filterMethod: (filter, rows) =>matchSorter(rows, filter.value, { keys: ["from"] }),filterAll: true},
+        {Header: 'T', accessor:'to', filterMethod: (filter, rows) =>matchSorter(rows, filter.value, { keys: ["to"] }),filterAll: true},
         {Header: 'Trend', accessor:'trend', Cell:row=>(<span>{row.value>0?string.rising:row.value<0?string.falling:string.consolidating}</span>)},
-        {Header: 'C', accessor:'confidence', width: 50},
+        {Header: 'C', accessor:'confidence', },
         // {Header: 'Velocity', accessor:'velocity'},
-        {Header: 'ST', accessor:'start_time',width: 75},
-        {Header: 'ET', accessor:'end_time',width: 75},
+        {Header: 'ST', accessor:'start_time',},
+        {Header: 'ET', accessor:'end_time',},
     ]
     return (
         <div style={{overflowX: "auto"}}>

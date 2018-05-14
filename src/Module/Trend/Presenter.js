@@ -19,6 +19,7 @@ class Presenter{
             const arr=data[i]['_key'].split("_")
             data[i]['from']=arr[0]
             data[i]['to']=arr[1]
+            data[i]['confidence']=data[i]['confidence'].toFixed(2)
             data[i]['start_time']=this.format(new Date(parseInt(data[i]['start_time'])))
             data[i]['end_time']=this.format(new Date(parseInt(data[i]['end_time'])))
             data[i]['velocity']=data[i]['velocity']

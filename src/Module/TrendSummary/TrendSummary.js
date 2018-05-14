@@ -48,7 +48,7 @@ class TrendSummary extends Component{
     if(data.length==0 || trend.length==0 || vola.length==0){
         return (<Loading isLoading={this.state.isLoading}/>)
     }
-
+    const height=this.props.chartWidth*value.chartHeightRatio
     const xAccessor = (d) => { return new Date(parseInt(d[id.binance.id])) }
     const xExtents = [ xAccessor(last(data)), xAccessor(data[data.length-20]) ]
     
@@ -57,7 +57,7 @@ class TrendSummary extends Component{
         trendList.push({
             start: [trend[i][id.trendSummary.startTime], (this.state.min+this.state.max)/2], 
             end: [trend[i][id.trendSummary.endTime], (this.state.min+this.state.max)/2], 
-            appearance: { stroke: trend[i][id.trendSummary.trend]>0 ? color.green : trend[i][id.trendSummary.trend]<0 ? color.red : color.yellow, strokeWidth:350, strokeOpacity:0.15 }, 
+            appearance: { stroke: trend[i][id.trendSummary.trend]>0 ? color.green : trend[i][id.trendSummary.trend]<0 ? color.red : color.yellow, strokeWidth:height, strokeOpacity:0.15 }, 
             type: "LINE" 
         })
     }
@@ -78,7 +78,7 @@ class TrendSummary extends Component{
         })
     }
 
-    const height=this.props.chartWidth*value.chartHeightRatio
+    
     const width=this.props.chartWidth
     return (
         <div className={'chart'}>
@@ -95,7 +95,7 @@ class TrendSummary extends Component{
                 displayXAccessor={xAccessor}
                 xExtents={xExtents}
                 panEvent={true}
-                zoomEvent={true}
+                zoomEvent={value.isMobile?false:true}
                 >
                 <Chart id={1} yExtents={d => [this.state.min,this.state.max]} height={height-50}>
                     <YAxis axisAt="right" orient="right" ticks={5} displayFormat={format(".2f")} />

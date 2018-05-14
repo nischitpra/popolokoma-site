@@ -35,7 +35,7 @@ class SentimentTrend extends Component{
             const xAccessor = (d) => {
                 return new Date(parseInt(d.time))
             }
-            const xExtents = [ xAccessor(last(data)), xAccessor(data[0]) ]
+            const xExtents = [ xAccessor(last(data)), xAccessor(data[data.length-96]) ]
             const height=this.props.chartWidth*value.chartHeightRatio
             const width=this.props.chartWidth
             return(
@@ -51,7 +51,9 @@ class SentimentTrend extends Component{
                         xAccessor={xAccessor}
                         xScale={scaleTime()}
                         displayXAccessor={xAccessor}
-                        xExtents={xExtents}>
+                        xExtents={xExtents}
+                        zoomEvent={value.isMobile?false:true}
+                        >
                         <Chart id={1} yExtents={yExtent} height={height-50}>
                             <YAxis axisAt="right" orient="right" ticks={5} displayFormat={format(".0f")} />
                             <MouseCoordinateY at="right" orient="right" displayFormat={format(".0f")} />

@@ -262,22 +262,18 @@ class CandleStickChart extends Component{
             const xExtents = [ xAccessor(last(data)), xAccessor(data[data.length - Math.min(100,Math.round(data.length*0.7))]) ]
 
             /**
-             * this is for the area chart/ candle stick chart
+             * this is for the area chart candle stick chart
              */
             if(this.presenter.getToolbar().areaChart){
                 yExtent.push(d => [parseFloat(d.close)])
-                var areaChart=(<Chart id={0} yExtents={yExtent} height={this.props.chartWidth*value.chartHeightRatio}>
-                    {
-                        value.isMobile?(""):(<div>
-                        <YAxis axisAt="right" orient="right" ticks={5} displayFormat={format(`.${decimalPlaces}f`)} />
-                        <MouseCoordinateY at="right" orient="right" displayFormat={format(`.${decimalPlaces}f`)} />
-                        <OHLCTooltip origin={[0, -5]} ohlcFormat={format(".9f")} accessor= {d => {
-                            const acc={date: parseInt(d._id), open: parseFloat(d.open),high: parseFloat(d.high),low: parseFloat(d.low),close: parseFloat(d.close),volume: parseFloat(d.volume) }
-                            return acc}}
-                            xDisplayFormat={timeFormat("%_d %b %y, %I:%M %p")}
-                            />
-                        </div>
-                    )}
+                var areaChart=(<Chart id={0} yExtents={yExtent} height={this.props.chartWidth*0.75*value.chartHeightRatio}>
+                    {value.isMobile?(""):<YAxis axisAt="right" orient="right" ticks={5} displayFormat={format(`.${decimalPlaces}f`)} />}
+                    {value.isMobile?(""):<MouseCoordinateY at="right" orient="right" displayFormat={format(`.${decimalPlaces}f`)} />}
+                    {value.isMobile?(""):<OHLCTooltip origin={[0, -5]} ohlcFormat={format(".9f")} accessor= {d => {
+                        const acc={date: parseInt(d._id), open: parseFloat(d.open),high: parseFloat(d.high),low: parseFloat(d.low),close: parseFloat(d.close),volume: parseFloat(d.volume) }
+                        return acc}}
+                        xDisplayFormat={timeFormat("%_d %b %y, %I:%M %p")}
+                        />}
                      <EdgeIndicator 
                         itemType="last" 
                         orient={value.isMobile?"left":"right"}
@@ -293,23 +289,18 @@ class CandleStickChart extends Component{
                     
                     </Chart>)
                 pipelineRender.push(areaChart)
-                pipelineHeight.push(this.props.chartWidth*value.chartHeightRatio-100)
+                pipelineHeight.push(this.props.chartWidth*0.75*value.chartHeightRatio-100)
             }else{
                 yExtent.push(d => [d.high, d.low])
                 var timeRange= historyType===id.binance.candle_interval._1m?utcMinute:historyType===id.binance.candle_interval._1h?utcHour:utcDay
-                areaChart=(<Chart id={1} yExtents={yExtent} height={this.props.chartWidth*value.chartHeightRatio}>
-                    {
-                        value.isMobile?(""):(<div>
-                        <YAxis axisAt="right" orient="right" ticks={5} displayFormat={format(`.${decimalPlaces}f`)} />
-                        <MouseCoordinateY at="right" orient="right" displayFormat={format(`.${decimalPlaces}f`)} />
-                        <OHLCTooltip origin={[0, -5]} ohlcFormat={format(".9f")} accessor= {d => {
-                            const acc={date: parseInt(d._id), open: parseFloat(d.open),high: parseFloat(d.high),low: parseFloat(d.low),close: parseFloat(d.close),volume: parseFloat(d.volume) }
-                            return acc}}
-                            xDisplayFormat={timeFormat("%_d %b %y, %I:%M %p")}
-                            />
-                        </div>)
-                    }
-                    
+                areaChart=(<Chart id={1} yExtents={yExtent} height={this.props.chartWidth*0.75*value.chartHeightRatio}>
+                    {value.isMobile?(""):<YAxis axisAt="right" orient="right" ticks={5} displayFormat={format(`.${decimalPlaces}f`)} />}
+                    {value.isMobile?(""):<MouseCoordinateY at="right" orient="right" displayFormat={format(`.${decimalPlaces}f`)} />}
+                    {value.isMobile?(""):<OHLCTooltip origin={[0, -5]} ohlcFormat={format(".9f")} accessor= {d => {
+                        const acc={date: parseInt(d._id), open: parseFloat(d.open),high: parseFloat(d.high),low: parseFloat(d.low),close: parseFloat(d.close),volume: parseFloat(d.volume) }
+                        return acc}}
+                        xDisplayFormat={timeFormat("%_d %b %y, %I:%M %p")}
+                        />}
                     <EdgeIndicator 
                         itemType="last" 
                         orient={value.isMobile?"left":"right"}
@@ -333,7 +324,7 @@ class CandleStickChart extends Component{
                    
                 </Chart>)
                 pipelineRender.push(areaChart)
-                pipelineHeight.push(this.props.chartWidth*value.chartHeightRatio-100)
+                pipelineHeight.push(this.props.chartWidth*0.75*value.chartHeightRatio-100)
             }
 
             /**
@@ -422,7 +413,7 @@ class CandleStickChart extends Component{
                         height={height}
                         width={this.props.chartWidth}
                         ratio={3}
-                        margin={{ left: 0, right: value.isMobile?20:(105-extraSpace*3), top: value.isMobile?0:10, bottom: 30 }}
+                        margin={{ left: 0, right: value.isMobile?0:(105-extraSpace*3), top: value.isMobile?0:10, bottom: 30 }}
                         type={'hybrid'}
                         seriesName="MSFT"
                         data={data}
@@ -432,7 +423,7 @@ class CandleStickChart extends Component{
                         displayXAccessor={xAccessor}
                         xExtents={xExtents}
                         onLoadMore={this.downloadMoreHistory}
-                        zoomEvent={true}
+                        zoomEvent={value.isMobile?false:true}
 					    clamp={false}
                         >
                     

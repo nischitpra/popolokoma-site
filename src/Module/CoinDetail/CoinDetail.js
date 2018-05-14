@@ -38,7 +38,7 @@ class CoinDetail extends Component{
       var candleWid=(this.candleContainer.clientWidth)
       var forecastWidth=(this.forecastContainer.clientWidth)
       this.setState({
-            candle_chartWidth:candleWid-18,
+            candle_chartWidth:candleWid-25,
             sentiment_chartWidth:sentiWidth,
             forecast_chartWidth:forecastWidth,
       })

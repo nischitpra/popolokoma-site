@@ -58,14 +58,11 @@
   height: var(--big-spacing);
 }
 .navbar-container{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap-reverse;
-  justify-content: flex-end;
+  display: block;
 }
 
 .mainnav{
-  display: flex;
+  display: block;
   list-style:none;
   cursor: pointer;
   align-items: center;
@@ -78,10 +75,7 @@
   transition:var(--transition);
 }
 .title-toolbar{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: block;
   color: var(--primaryColor);
   font-size: 0.9em;
   font-weight: bold;
@@ -89,10 +83,7 @@
   padding-bottom: 4px;
 }
 .title-toolbar-tab{
-  display: flex;  
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-end;
+  display: block;  
 }
 .toolbar{
   color: var(--primaryColor);
@@ -102,8 +93,9 @@
 .nav-tool{
   display: inline-flex;
   list-style:none;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin:8px;
   cursor: pointer;
   align-items: center;
   justify-content: center;
@@ -200,7 +192,7 @@ option{
 }
 .label-subToolbar{
   font-size: 0.8em;
-  padding: var(--small-spacing);
+  padding: 8px;
 }
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
@@ -223,13 +215,7 @@ input[type=number]::-webkit-outer-spin-button {
   padding: var(--small-spacing);
 }
 .subToolbarContainer{
-  display: flex;
-  height: 100%;
-  padding: 0px;
-  margin: 0px;
-  flex-direction: row;
-  justify-content: flex-end;
-  flex-wrap: wrap;
+  display: block;
   padding-right: 2px;
   padding-left: 2px;
 }
@@ -267,7 +253,7 @@ Link{
 .none{
   text-decoration: none;
   margin:none;
-  padding:none;
+  padding:0px;
 }
 .red,.red:hover{
   background: var(--red);
@@ -285,14 +271,10 @@ Link{
   border: var(--small-2x-spacing) solid var(--black);
 }
 .flex-container-reverse{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: block;
 }
 .flex-container{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap-reverse;
+  display: block;
 }
 .left-panel{
   flex:1;
@@ -301,13 +283,13 @@ Link{
   flex:1;
 }
 .home-left-panel{
-  flex:1;
+  /* flex:1; */
 }
 .home-central-panel{
-  flex:2.6;
+  /* flex:2.6; */
 }
 .home-right-panel{
-  flex:1;
+  /* flex:1; */
 }
 .news-card{
   display: inline-block;
@@ -343,7 +325,7 @@ Link{
   background: white;
   margin: var(--small-spacing);
   transition: var(--transition);
-  padding:var(--medium-spacing);
+  padding:0px;
 }
 .newsStripCard:hover{
   background: var(--primaryColorDarkOverlay);
@@ -402,11 +384,12 @@ Link{
   padding-bottom: var(--small-spacing);
 }
 .tweet-container{
-  flex: 1;
+  /* flex: 1; */
   display: block;
   min-width: 240px;
   transition: var(--transition);
-  padding-bottom: 12px;
+  margin-top: 16px;
+  margin-bottom: 16px;
   border-color: var(--transparent);
   border-style: solid;
 }
@@ -450,10 +433,10 @@ Link{
   color: --var(textLightGray);
 }
 .padding-medium{
-  padding: var(--small-medium-spacing);
+  padding: 0px;
 }
 .padding-small{
-  padding: var(--small-spacing);
+  padding:0px;
 }
 .green-text{
   color: var(--green);
@@ -479,10 +462,10 @@ Link{
   font-weight: bold;
 }
 .small-padding{
-  padding:8px;
+  padding:0px;
 }
 .very-small-padding{
-  padding:4px;
+  padding:0px;
 }
 .no-content{
   color: var(--primaryColorDarkOverlay);
@@ -521,8 +504,6 @@ Link{
   cursor: pointer;
 }
 .small-left-right-padding{
-  padding-left: 2px;
-  padding-right: 2px;
 }
 .chart{
   border-width: 1px;
@@ -541,11 +522,9 @@ Link{
   cursor: pointer;
 }
 .padding-horizontal-container{
-  padding-left: 4px;
-  padding-right: 4px;
 }
 .padding-container{
-  padding:12px;
+  padding:0px;
 }
 
 

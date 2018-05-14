@@ -86,9 +86,9 @@ export const string={
     day:'D',
 
     // for home trend indicator
-    rising:'Rising',
-    falling:'Falling',
-    consolidating:'Consolidating',
+    rising:'U',
+    falling:'D',
+    consolidating:'C',
     
     // for chart indicators
     areaChart:'Area',
