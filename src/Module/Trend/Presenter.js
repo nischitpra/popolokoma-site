@@ -6,7 +6,8 @@ class Presenter{
     interactor=new Interactor(this)
     constructor(script){
         this.script=script
-        this.format=timeFormat("%_d %b, %_I:%M %p")
+        // this.format=timeFormat("%_I:%M %p, %_d %b")
+        this.format=timeFormat("%_I:%M %p")
     }
     getTrendData(){
         this.interactor.getTrend(1)

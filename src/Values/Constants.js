@@ -7,6 +7,8 @@ export const value={
     subscriptionRefreshRate:0,
     // buffer interval used to update current trade price in coin detail in milliseconds
     bufferInterval:1.5*1000,
+    chartHeightRatio:0.75,
+    isMobile:window.innerWidth<=800,
     cryptoCompare:{
         unsubscribe:'1'
     },

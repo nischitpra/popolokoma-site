@@ -37,18 +37,18 @@ class Trend extends Component{
     
     const data=this.state.data
     const column=[
-        {Header: 'From', accessor:'from', filterMethod: (filter, rows) =>matchSorter(rows, filter.value, { keys: ["from"] }),filterAll: true},
-        {Header: 'To', accessor:'to', filterMethod: (filter, rows) =>matchSorter(rows, filter.value, { keys: ["to"] }),filterAll: true},
+        {Header: 'F', accessor:'from', width: 45, filterMethod: (filter, rows) =>matchSorter(rows, filter.value, { keys: ["from"] }),filterAll: true},
+        {Header: 'T', accessor:'to', width: 45, filterMethod: (filter, rows) =>matchSorter(rows, filter.value, { keys: ["to"] }),filterAll: true},
         {Header: 'Trend', accessor:'trend', Cell:row=>(<span>{row.value>0?string.rising:row.value<0?string.falling:string.consolidating}</span>)},
-        {Header: 'Confidence', accessor:'confidence'},
+        {Header: 'C', accessor:'confidence', width: 50},
         // {Header: 'Velocity', accessor:'velocity'},
-        {Header: 'Start Time', accessor:'start_time'},
-        {Header: 'End Time', accessor:'end_time'},
+        {Header: 'ST', accessor:'start_time',width: 75},
+        {Header: 'ET', accessor:'end_time',width: 75},
     ]
     return (
-        <div>
+        <div style={{overflowX: "auto"}}>
             <Loading isLoading={this.state.isLoading}/>
-            <ReactTable data={data} columns={column} pageSize={data.length>100?100:data.length} className="-striped -highlight" 
+            <ReactTable data={data} columns={column} pageSize={data.length>20?20:data.length} className="-striped -highlight" 
                 showPageSizeOptions={false}
                 getTrProps={(state, rowInfo, column) => {
                     if(rowInfo==null) return{}

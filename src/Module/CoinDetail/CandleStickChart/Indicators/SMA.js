@@ -5,6 +5,7 @@ import { CurrentCoordinate } from "react-stockcharts/lib/coordinates"
 import { MovingAverageTooltip } from "react-stockcharts/lib/tooltip"
 import { format } from "d3-format"
 import Presenter from './Presenter'
+import {value} from "../../../../Values/Constants"
 
 const color =require("../../../../Values/Color").Color
 
@@ -17,24 +18,24 @@ class SMA{
         this.init()   
     }
     init(){
-        const value= this.presenter.getSMAToolbar()
+        const val= this.presenter.getSMAToolbar()
         const sma13 = sma()
         .id(0)
-        .options({ windowSize: parseInt(value.fast) })
+        .options({ windowSize: parseInt(val.fast) })
         .merge((d, c) => { d.sma13 = c })
         .accessor(d => d.sma13)
         .stroke(color.red)
 
         const sma22 = sma()
         .id(0)
-        .options({ windowSize: parseInt(value.medium) })
+        .options({ windowSize: parseInt(val.medium) })
         .merge((d, c) => { d.sma22 = c })
         .accessor(d => d.sma22)
         .stroke(color.green)
 
         const sma40 = sma()
         .id(0)
-        .options({ windowSize: parseInt(value.slow) })
+        .options({ windowSize: parseInt(val.slow) })
         .merge((d, c) => { d.sma40 = c })
         .accessor(d => d.sma40)
         .stroke(color.blue)
@@ -48,7 +49,7 @@ class SMA{
         this.formulaList.push(sma40)
 
         this.renderList=([
-            <MovingAverageTooltip origin={[0, 5]} displayFormat={format("0.8f")}
+            <MovingAverageTooltip origin={[0, value.isMobile?0:5]} displayFormat={format("0.8f")}
                 options={[
                     {
                         yAccessor: this.accessorList[0],

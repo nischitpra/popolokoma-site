@@ -266,46 +266,58 @@ class CandleStickChart extends Component{
              */
             if(this.presenter.getToolbar().areaChart){
                 yExtent.push(d => [parseFloat(d.close)])
-                var areaChart=(<Chart id={0} yExtents={yExtent} height={400}>
-                    <YAxis axisAt="right" orient="right" ticks={5} displayFormat={format(`.${decimalPlaces}f`)} />
-                    <MouseCoordinateY at="right" orient="right" displayFormat={format(`.${decimalPlaces}f`)} />
-                    <EdgeIndicator 
+                var areaChart=(<Chart id={0} yExtents={yExtent} height={this.props.chartWidth*value.chartHeightRatio}>
+                    {
+                        value.isMobile?(""):(<div>
+                        <YAxis axisAt="right" orient="right" ticks={5} displayFormat={format(`.${decimalPlaces}f`)} />
+                        <MouseCoordinateY at="right" orient="right" displayFormat={format(`.${decimalPlaces}f`)} />
+                        <OHLCTooltip origin={[0, -5]} ohlcFormat={format(".9f")} accessor= {d => {
+                            const acc={date: parseInt(d._id), open: parseFloat(d.open),high: parseFloat(d.high),low: parseFloat(d.low),close: parseFloat(d.close),volume: parseFloat(d.volume) }
+                            return acc}}
+                            xDisplayFormat={timeFormat("%_d %b %y, %I:%M %p")}
+                            />
+                        </div>
+                    )}
+                     <EdgeIndicator 
                         itemType="last" 
-                        orient="right" 
+                        orient={value.isMobile?"left":"right"}
                         edgeAt="right" 
                         yAccessor={d => parseFloat(d.close)} 
                         displayFormat={format(`.${decimalPlaces}f`)}
                         fill={d => parseFloat(d.close) > d.open ? color.green : color.red }/>
+                   
                     <AreaSeries yAccessor={d => parseFloat(d.close)}/>
 
                     {pipelineOverlayCandleStick}
 
-                    <OHLCTooltip origin={[0, -5]} ohlcFormat={format(".9f")} accessor= {d => {
-                        const acc={date: parseInt(d._id), open: parseFloat(d.open),high: parseFloat(d.high),low: parseFloat(d.low),close: parseFloat(d.close),volume: parseFloat(d.volume) }
-                        return acc}}
-                        xDisplayFormat={timeFormat("%_d %b %y, %I:%M %p")}
-                        />
+                    
                     </Chart>)
                 pipelineRender.push(areaChart)
-                pipelineHeight.push(400)
+                pipelineHeight.push(this.props.chartWidth*value.chartHeightRatio-100)
             }else{
-                const candlesAppearance = {
-                    
-                  }
-
                 yExtent.push(d => [d.high, d.low])
                 var timeRange= historyType===id.binance.candle_interval._1m?utcMinute:historyType===id.binance.candle_interval._1h?utcHour:utcDay
-                areaChart=(<Chart id={1} yExtents={yExtent} height={400}>
-                    <YAxis axisAt="right" orient="right" ticks={5} displayFormat={format(`.${decimalPlaces}f`)} />
-                    <MouseCoordinateY at="right" orient="right" displayFormat={format(`.${decimalPlaces}f`)} />
-                   
+                areaChart=(<Chart id={1} yExtents={yExtent} height={this.props.chartWidth*value.chartHeightRatio}>
+                    {
+                        value.isMobile?(""):(<div>
+                        <YAxis axisAt="right" orient="right" ticks={5} displayFormat={format(`.${decimalPlaces}f`)} />
+                        <MouseCoordinateY at="right" orient="right" displayFormat={format(`.${decimalPlaces}f`)} />
+                        <OHLCTooltip origin={[0, -5]} ohlcFormat={format(".9f")} accessor= {d => {
+                            const acc={date: parseInt(d._id), open: parseFloat(d.open),high: parseFloat(d.high),low: parseFloat(d.low),close: parseFloat(d.close),volume: parseFloat(d.volume) }
+                            return acc}}
+                            xDisplayFormat={timeFormat("%_d %b %y, %I:%M %p")}
+                            />
+                        </div>)
+                    }
+                    
                     <EdgeIndicator 
                         itemType="last" 
-                        orient="right" 
+                        orient={value.isMobile?"left":"right"}
                         edgeAt="right" 
                         yAccessor={d => parseFloat(d.close)} 
                         displayFormat={format(`.${decimalPlaces}f`)}
                         fill={d => parseFloat(d.close) > parseFloat(d.open) ? color.green : color.red }/>
+
                     <CandlestickSeries width={timeIntervalBarWidth(timeRange)}
                        wickStroke={(d)=>d.close > d.open ? color.green : color.brightRed}
                        fill={(d)=>d.close > d.open ? color.green : color.brightRed}
@@ -318,14 +330,10 @@ class CandleStickChart extends Component{
                     
                     {pipelineOverlayCandleStick}
                    
-                    <OHLCTooltip origin={[0, -5]} ohlcFormat={format(".9f")} accessor= {d => {
-                        const acc={date: parseInt(d._id), open: parseFloat(d.open),high: parseFloat(d.high),low: parseFloat(d.low),close: parseFloat(d.close),volume: parseFloat(d.volume) }
-                        return acc}}
-                        xDisplayFormat={timeFormat("%_d %b %y, %I:%M %p")}
-                        />
+                   
                 </Chart>)
                 pipelineRender.push(areaChart)
-                pipelineHeight.push(300)
+                pipelineHeight.push(this.props.chartWidth*value.chartHeightRatio-100)
             }
 
             /**
@@ -346,10 +354,8 @@ class CandleStickChart extends Component{
                         />
                     </Chart>)
                 pipelineRender.push(volumeChart)
-                pipelineHeight.push(100)
-            }else{
-                pipelineHeight.push(100)
             }
+            pipelineHeight.push(100)
 
              /**
              * This is for the Moving Average Convergence Divergence (MACD)
@@ -416,7 +422,7 @@ class CandleStickChart extends Component{
                         height={height}
                         width={this.props.chartWidth}
                         ratio={3}
-                        margin={{ left: 0, right: (105-extraSpace*3), top: 10, bottom: 30 }}
+                        margin={{ left: 0, right: value.isMobile?20:(105-extraSpace*3), top: value.isMobile?0:10, bottom: 30 }}
                         type={'hybrid'}
                         seriesName="MSFT"
                         data={data}

@@ -11,6 +11,7 @@ import { XAxis, YAxis } from "react-stockcharts/lib/axes"
 import { last, timeIntervalBarWidth } from "react-stockcharts/lib/utils"
 import { OHLCTooltip } from "react-stockcharts/lib/tooltip"
 import { CrossHairCursor, EdgeIndicator, MouseCoordinateX, MouseCoordinateY,} from "react-stockcharts/lib/coordinates"
+import {value} from "../../Values/Constants"
 const color =require("../../Values/Color").Color
 
 class SentimentTrend extends Component{
@@ -35,11 +36,13 @@ class SentimentTrend extends Component{
                 return new Date(parseInt(d.time))
             }
             const xExtents = [ xAccessor(last(data)), xAccessor(data[0]) ]
+            const height=this.props.chartWidth*value.chartHeightRatio
+            const width=this.props.chartWidth
             return(
                 <div className={'chart'}>
                     <ChartCanvas 
-                        height={350}
-                        width={this.props.chartWidth}
+                        height={height}
+                        width={width}
                         ratio={3}
                         margin={{ left: 0, right: 45, top: 10, bottom: 30 }}
                         type={'hybrid'}
@@ -49,7 +52,7 @@ class SentimentTrend extends Component{
                         xScale={scaleTime()}
                         displayXAccessor={xAccessor}
                         xExtents={xExtents}>
-                        <Chart id={1} yExtents={yExtent} height={300}>
+                        <Chart id={1} yExtents={yExtent} height={height-50}>
                             <YAxis axisAt="right" orient="right" ticks={5} displayFormat={format(".0f")} />
                             <MouseCoordinateY at="right" orient="right" displayFormat={format(".0f")} />
                             <EdgeIndicator 
@@ -73,9 +76,7 @@ class SentimentTrend extends Component{
                                 return acc}}
                                 xDisplayFormat={timeFormat("%_d %b %y, %I:%M %p")}
                                 />
-                        </Chart>
-                        <Chart id={10} yExtents={d => [d.high, d.low]}>
-                            <XAxis axisAt="bottom" orient="bottom" ticks={8}/>
+                            <XAxis axisAt="bottom" orient="bottom" ticks={4}/>
                             <MouseCoordinateX at="bottom" orient="bottom" displayFormat={timeFormat("%_d %b %y, %I:%M %p")} />
                         </Chart>
                         <CrossHairCursor />

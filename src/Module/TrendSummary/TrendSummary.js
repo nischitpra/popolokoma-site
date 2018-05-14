@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {id,string} from '../../Values/Constants'
+import {id,string, value} from '../../Values/Constants'
 import Presenter from './Presenter';
 import Loading from '../Loading/Loading';
 import matchSorter from 'match-sorter'
@@ -50,7 +50,7 @@ class TrendSummary extends Component{
     }
 
     const xAccessor = (d) => { return new Date(parseInt(d[id.binance.id])) }
-    const xExtents = [ xAccessor(last(data)), xAccessor(data[0]) ]
+    const xExtents = [ xAccessor(last(data)), xAccessor(data[data.length-20]) ]
     
     var trendList=[]
     for(var i in trend){
@@ -77,13 +77,16 @@ class TrendSummary extends Component{
             type: "LINE" 
         })
     }
+
+    const height=this.props.chartWidth*value.chartHeightRatio
+    const width=this.props.chartWidth
     return (
-        <div>
+        <div className={'chart'}>
             <ChartCanvas 
-                height={350}
-                width={this.props.chartWidth}
+                height={height}
+                width={width}
                 ratio={3}
-                margin={{ left: 0, right: 45, top: 10, bottom: 30 }}
+                margin={{ left: 0, right: 45, top: 0, bottom: 30 }}
                 type={'hybrid'}
                 seriesName="MSFT"
                 data={data}
@@ -94,7 +97,7 @@ class TrendSummary extends Component{
                 panEvent={true}
                 zoomEvent={true}
                 >
-                <Chart id={1} yExtents={d => [this.state.min,this.state.max]} height={300}>
+                <Chart id={1} yExtents={d => [this.state.min,this.state.max]} height={height-50}>
                     <YAxis axisAt="right" orient="right" ticks={5} displayFormat={format(".2f")} />
                     <MouseCoordinateY at="right" orient="right" displayFormat={format(".2f")} />
                     <TrendLine

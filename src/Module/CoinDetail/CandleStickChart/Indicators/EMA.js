@@ -5,6 +5,7 @@ import { CurrentCoordinate } from "react-stockcharts/lib/coordinates"
 import { MovingAverageTooltip } from "react-stockcharts/lib/tooltip"
 import { format } from "d3-format"
 import Presenter from './Presenter'
+import {value} from "../../../../Values/Constants"
 
 const color =require("../../../../Values/Color").Color
 
@@ -17,24 +18,24 @@ class EMA{
         this.init()   
     }
     init(){
-        const value=this.presenter.getEMAToolbar()
+        const val=this.presenter.getEMAToolbar()
         const ema1 = ema()
         .id(0)
-        .options({ windowSize: parseInt(value.fast) })
+        .options({ windowSize: parseInt(val.fast) })
         .merge((d, c) => { d.ema1 = c })
         .accessor(d => d.ema1)
         .stroke(color.red)
 
         const ema2 = ema()
         .id(0)
-        .options({ windowSize: parseInt(value.medium) })
+        .options({ windowSize: parseInt(val.medium) })
         .merge((d, c) => { d.ema2 = c })
         .accessor(d => d.ema2)
         .stroke(color.green)
 
         const ema3 = ema()
         .id(0)
-        .options({ windowSize: parseInt(value.slow) })
+        .options({ windowSize: parseInt(val.slow) })
         .merge((d, c) => { d.ema3 = c })
         .accessor(d => d.ema3)
         .stroke(color.blue)
@@ -48,7 +49,7 @@ class EMA{
         this.formulaList.push(ema3)
 
         this.renderList=([
-            <MovingAverageTooltip origin={[0, 5]} displayFormat={format("0.8f")}
+            <MovingAverageTooltip origin={[0, value.isMobile?0:5]} displayFormat={format("0.8f")}
                 options={[
                     {
                         yAccessor: this.accessorList[0],
