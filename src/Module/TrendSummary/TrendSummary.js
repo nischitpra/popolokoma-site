@@ -86,7 +86,7 @@ class TrendSummary extends Component{
                 height={height}
                 width={width}
                 ratio={3}
-                margin={{ left: 0, right: 45, top: 0, bottom: 30 }}
+                margin={{ left: 0, right: 45, top: 0, bottom: 0 }}
                 type={'hybrid'}
                 seriesName="MSFT"
                 data={data}
@@ -97,8 +97,8 @@ class TrendSummary extends Component{
                 panEvent={true}
                 zoomEvent={value.isMobile?false:true}
                 >
-                <Chart id={1} yExtents={d => [this.state.min,this.state.max]} height={height-50}>
-                    <YAxis axisAt="right" orient="right" ticks={5} displayFormat={format(".2f")} />
+                <Chart id={1} yExtents={d => [this.state.min,this.state.max*1.005]} height={height-25}>
+                    <YAxis axisAt="right" orient="right" ticks={4} displayFormat={format(".2f")} />
                     <MouseCoordinateY at="right" orient="right" displayFormat={format(".2f")} />
                     <TrendLine
                         enabled={true}

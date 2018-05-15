@@ -304,7 +304,7 @@ class CandleStickChart extends Component{
                     <EdgeIndicator 
                         itemType="last" 
                         orient={value.isMobile?"left":"right"}
-                        edgeAt="right" 
+                        edgeAt="right"
                         yAccessor={d => parseFloat(d.close)} 
                         displayFormat={format(`.${decimalPlaces}f`)}
                         fill={d => parseFloat(d.close) > parseFloat(d.open) ? color.green : color.red }/>
@@ -405,7 +405,7 @@ class CandleStickChart extends Component{
             }
 
             var height=pipelineHeight.reduce(this.sum)+40// this 40 is from the margin  10 from upper padding
-            const snapshot=<div className={'snapshot'}>{string.snapshot(this.state.snapshot[id.snapshot.priceChange],this.state.snapshot[id.snapshot.openPrice],this.state.snapshot[id.snapshot.highPrice],this.state.snapshot[id.snapshot.lowPrice],this.state.snapshot[id.snapshot.volume],this.state.snapshot[id.snapshot.priceChangePercent])}</div>
+            const snapshot = value.isMobile?<div className={'snapshot'}>{string.snapshot_mobile(this.state.snapshot[id.snapshot.priceChange],this.state.snapshot[id.snapshot.openPrice],this.state.snapshot[id.snapshot.highPrice],this.state.snapshot[id.snapshot.lowPrice],this.state.snapshot[id.snapshot.volume],this.state.snapshot[id.snapshot.priceChangePercent])}</div> : <div className={'snapshot'}>{string.snapshot(this.state.snapshot[id.snapshot.priceChange],this.state.snapshot[id.snapshot.openPrice],this.state.snapshot[id.snapshot.highPrice],this.state.snapshot[id.snapshot.lowPrice],this.state.snapshot[id.snapshot.volume],this.state.snapshot[id.snapshot.priceChangePercent])}</div>
             return(<div >
                     {snapshot}
                     <div className={'chart'}>
@@ -413,7 +413,7 @@ class CandleStickChart extends Component{
                         height={height}
                         width={this.props.chartWidth}
                         ratio={3}
-                        margin={{ left: 0, right: value.isMobile?0:(105-extraSpace*3), top: value.isMobile?0:10, bottom: 30 }}
+                        margin={{ left: 0, right: value.isMobile?8:(105-extraSpace*3), top: value.isMobile?0:10, bottom: 30 }}
                         type={'hybrid'}
                         seriesName="MSFT"
                         data={data}

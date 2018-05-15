@@ -41,6 +41,7 @@ export const string={
     projectName:'Popolokoma',
     dataEmpty:'Nothing to show',
     sentimentTrend:'Sentiment Trend',
+    trendSummary:'4 Day Trend Summary',
     forecastTrend:'Forecast Trend',
     favourites:{
         isEmpty:'Your favourites list is empty. Please add currency from Add-Remove Coin section',
@@ -143,7 +144,8 @@ export const string={
 
     // for snapshot used in coin details to show today summary
     // snapshot:(price,open,high,low,volume)=>`Price:${price} | Open:${open} | High:${high} | Low:${low} | Volume:${volume}`,
-    snapshot:(priceChange,open,high,low,volume,percentageChange)=><span>Change: <b><span className={parseFloat(priceChange)>0?'snapshot-green-text':parseFloat(priceChange)<0?'snapshot-red-text':''}>{priceChange}</span></b>, <b><span className={parseFloat(priceChange)>0?'snapshot-green-text':parseFloat(priceChange)<0?'snapshot-red-text':''}>{percentageChange}%</span></b> | Open: <b>{open}</b> | High: <b>{high}</b> | Low: <b>{low}</b> | Volume: <b>{volume}</b></span>,
+    snapshot:(priceChange,open,high,low,volume,percentageChange)=><span>Change: <b><span className={parseFloat(priceChange)>0?'snapshot-green-text':parseFloat(priceChange)<0?'snapshot-red-text':''}>{priceChange}</span></b> (<b><span className={parseFloat(priceChange)>0?'snapshot-green-text':parseFloat(priceChange)<0?'snapshot-red-text':''}>{percentageChange}%</span></b>)| Open: <b>{open}</b> | High: <b>{high}</b> | Low: <b>{low}</b> | Volume: <b>{volume}</b></span>,
+    snapshot_mobile:(priceChange,open,high,low,volume,percentageChange)=><span>Change: <b><span className={parseFloat(priceChange)>0?'snapshot-green-text':parseFloat(priceChange)<0?'snapshot-red-text':''}>{priceChange}</span></b> (<b><span className={parseFloat(priceChange)>0?'snapshot-green-text':parseFloat(priceChange)<0?'snapshot-red-text':''}>{percentageChange}%</span></b>)| Open: <b>{open}</b> <br/> High: <b>{high}</b> | Low: <b>{low}</b> <br/> Volume: <b>{volume}</b></span>,
 
     // strings used for api call
     api:{
