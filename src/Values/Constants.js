@@ -132,6 +132,13 @@ export const string={
     other:'Other',
     news:'News',
     twitter:'Twitter',
+    
+    trend:{
+        rise:'Rising',
+        fall:'Falling',
+        consolidate:'Consolidating',
+        all:'All',
+    },
 
 
     // for snapshot used in coin details to show today summary
@@ -389,6 +396,12 @@ export const id={
         volatility:'volatility',
         startTime:'start_time',
         endTime:'end_time',
+    },
+    trend:{
+        rise:'1',
+        consolidate:'0',
+        fall:'-1',
+        all:'2',
     },
 
 

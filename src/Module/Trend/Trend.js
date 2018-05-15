@@ -18,21 +18,30 @@ class Trend extends Component{
             isLoading:true,
             data:[],
             redirect:null,
+            tab:id.trend.all,
         }
+        this.switchTab=this.switchTab.bind(this)
     }
   
-  componentDidMount(){
-      this.presenter.getTrendData()
-  }
-  componentWillUnmount(){
-  }
-  loadPage(from,to){
-    this.setState({
-        redirect:<Redirect to={`/${string.navbar.url.favourites}&f=${from}&t=${to}`}/>
-    })
-}
+    componentDidMount(){
+        this.presenter.getTrendData(this.state.tab)
+    }
+    componentWillUnmount(){
+    }
+    loadPage(from,to){
+        this.setState({
+            redirect:<Redirect to={`/${string.navbar.url.favourites}&f=${from}&t=${to}`}/>
+        })
+    }
+    switchTab(_id){
+        this.setState({
+            data:[],
+            tab:_id,
+        },this.presenter.getTrendData(_id))
+        console.log(`switchtab: ${_id}`)
+    }
 
-  render() {
+    render() {
     if(this.state.redirect!=null) return(this.state.redirect)
     
     const data=this.state.data
@@ -47,6 +56,10 @@ class Trend extends Component{
     ]
     return (
         <div style={{overflowX: "auto"}}>
+            <span className={this.state.tab===id.trend.all?'nav-tool active':'nav-tool'} onClick={()=>this.switchTab(id.trend.all)}>{string.trend.all}</span>
+            <span className={this.state.tab===id.trend.rise?'nav-tool active':'nav-tool'} onClick={()=>this.switchTab(id.trend.rise)}>{string.trend.rise}</span>
+            <span className={this.state.tab===id.trend.consolidate?'nav-tool active':'nav-tool'} onClick={()=>this.switchTab(id.trend.consolidate)}>{string.trend.consolidate}</span>
+            <span className={this.state.tab===id.trend.fall?'nav-tool active':'nav-tool'} onClick={()=>this.switchTab(id.trend.fall)}>{string.trend.fall}</span>
             <Loading isLoading={this.state.isLoading}/>
             <ReactTable data={data} columns={column} pageSize={data.length>20?20:data.length} className="-striped -highlight" 
                 showPageSizeOptions={false}

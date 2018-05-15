@@ -9,10 +9,23 @@ class Presenter{
         // this.format=timeFormat("%_I:%M %p, %_d %b")
         this.format=timeFormat("%_I:%M %p")
     }
-    getTrendData(){
-        this.interactor.getTrend(1)
-        this.interactor.getTrend(0)
-        this.interactor.getTrend(-1)
+    getTrendData(_id){
+        switch(_id){
+            case id.trend.all:
+                this.interactor.getTrend(1)
+                this.interactor.getTrend(0)
+                this.interactor.getTrend(-1)
+                break
+            case id.trend.rise:
+                this.interactor.getTrend(1)
+                break
+            case id.trend.fall:
+                this.interactor.getTrend(-1)
+                break
+            case id.trend.consolidate:
+                this.interactor.getTrend(0)
+                break
+        }
     }
     setTrendData(data){
         for(var i in data){
