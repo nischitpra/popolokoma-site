@@ -14,6 +14,7 @@
   font-size: 1.025em;
   font-weight: bold;
   color: white;
+  padding-left:16px;
 }
 
 .App-intro {
@@ -52,6 +53,8 @@
   100%   {background-color:var(--loader-color-1-background);}
 }
 .main-body{
+  padding-left: 16px;
+  padding-right: 16px;
 }
 .icon{
   width: var(--big-spacing);
@@ -93,8 +96,8 @@
 .nav-tool{
   display: inline-flex;
   list-style:none;
-  padding-left: 8px;
-  padding-right: 8px;
+  padding-left: 4px;
+  padding-right: 4px;
   margin:8px;
   cursor: pointer;
   align-items: center;
@@ -304,6 +307,7 @@ Link{
   cursor: pointer;
 }
 .card-body{
+  margin-bottom: 28px;
 }
 .card-title{
   font-size: 0.85em;
@@ -315,8 +319,6 @@ Link{
   font-size: var(--small-2x-text);
   color: var(--textGray);
   font-style: italic;
-  margin-top: var(--medium-spacing);
-  margin-bottom: var(--medium-spacing);
 }
 .newsStripCard{
   display: flex;
@@ -551,41 +553,11 @@ Link{
 .snapshot-green-text:hover{
   color:var(--black);
 }
+
 .snapshot-red-text:hover{
   color:var(--black);
 }
 
-.portfolio-tab{
-  display: inline-flex;
-  list-style:none;
-  padding-left: 4px;
-  padding-right: 4px;
-  margin-right:4px;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  font-size: 1em;
-  transition:var(--transition);
-  color: var(--red);
-  background: none;
-
-  padding-top:4px;
-  padding-bottom:4px;
-  border-color: var(--transparent);
-  border-style: solid;
-  border-width: 0px 0px 2px 0px;
-}
-.portfolio-tab.active{
-  border-bottom-color: var(--red);
-  border-bottom-width: 2px;
-  font-size: 1em;
-  transition:var(--transition);
-  color: var(--primaryColorDark);
-  background: none;
-  border-color: var(--primaryColorDark);
-  border-style: solid;
-  border-width: 0px 0px 2px 0px;
-}
 .margin-top{
   margin-top: 8px;
   margin-bottom: 8px;

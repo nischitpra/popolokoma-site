@@ -86,7 +86,7 @@ class CoinList extends Component{
         ]
         const showEmptyMessage=this.presenter.getFavouritesList().length==0?string.favourites.isEmpty:''
         const exchageFromList=array.ExchangeFromList.map(
-			(item,index)=><span key={index} className={this.state.currentTab===item?'active portfolio-tab':'portfolio-tab'} onClick={()=>this.changeTab(item)}>{item}</span>
+			(item,index)=><span key={index} className={this.state.currentTab===item?'active nav-tool':'nav-tool'} onClick={()=>this.changeTab(item)}>{item}</span>
 		)
         var data=this.state.coinList[this.state.currentTab]
         if(data==undefined){ data=[]}

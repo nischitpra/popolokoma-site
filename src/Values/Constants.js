@@ -139,6 +139,13 @@ export const string={
         fall:'Falling',
         consolidate:'Consolidating',
         all:'All',
+        trend:'Trend',
+        from:'F',
+        to:'T',
+        confidence:'Confidence',
+        startTime:'ST',
+        endTime:'ET',
+        velocity:'Velocity',
     },
 
 

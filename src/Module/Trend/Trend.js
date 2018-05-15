@@ -46,13 +46,13 @@ class Trend extends Component{
     
     const data=this.state.data
     const column=[
-        {Header: 'F', accessor:'from', filterMethod: (filter, rows) =>matchSorter(rows, filter.value, { keys: ["from"] }),filterAll: true},
-        {Header: 'T', accessor:'to', filterMethod: (filter, rows) =>matchSorter(rows, filter.value, { keys: ["to"] }),filterAll: true},
-        {Header: 'Trend', accessor:'trend', Cell:row=>(<span>{row.value>0?string.rising:row.value<0?string.falling:string.consolidating}</span>)},
-        {Header: 'C', accessor:'confidence', },
+        {Header: string.trend.from, accessor:'from', filterMethod: (filter, rows) =>matchSorter(rows, filter.value, { keys: ["from"] }),filterAll: true},
+        {Header: string.trend.to, accessor:'to', filterMethod: (filter, rows) =>matchSorter(rows, filter.value, { keys: ["to"] }),filterAll: true},
+        {Header: string.trend.trend, accessor:'trend', Cell:row=>(<span>{row.value>0?string.rising:row.value<0?string.falling:string.consolidating}</span>)},
+        {Header: string.trend.confidence, accessor:'confidence', },
         // {Header: 'Velocity', accessor:'velocity'},
-        {Header: 'ST', accessor:'start_time',},
-        {Header: 'ET', accessor:'end_time',},
+        {Header: string.trend.startTime, accessor:'start_time',},
+        {Header: string.trend.endTime, accessor:'end_time',},
     ]
     return (
         <div style={{overflowX: "auto"}}>

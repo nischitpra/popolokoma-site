@@ -587,37 +587,6 @@ Link{
   color:var(--black);
 }
 
-.portfolio-tab{
-  display: inline-flex;
-  list-style:none;
-  padding-left: 16px;
-  padding-right: 16px;
-  margin-right:16px;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  font-size: 1em;
-  transition:var(--transition);
-  color: var(--red);
-  background: none;
-
-  padding-top:4px;
-  padding-bottom:4px;
-  border-color: var(--transparent);
-  border-style: solid;
-  border-width: 0px 0px 2px 0px;
-}
-.portfolio-tab.active{
-  border-bottom-color: var(--red);
-  border-bottom-width: 2px;
-  font-size: 1em;
-  transition:var(--transition);
-  color: var(--primaryColorDark);
-  background: none;
-  border-color: var(--primaryColorDark);
-  border-style: solid;
-  border-width: 0px 0px 2px 0px;
-}
 .margin-top{
   margin-top: 8px;
   margin-bottom: 8px;
