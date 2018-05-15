@@ -269,19 +269,21 @@ class CandleStickChart extends Component{
                 var areaChart=(<Chart id={0} yExtents={yExtent} height={this.props.chartWidth*0.75*value.chartHeightRatio}>
                     {value.isMobile?(""):<YAxis axisAt="right" orient="right" ticks={5} displayFormat={format(`.${decimalPlaces}f`)} />}
                     {value.isMobile?(""):<MouseCoordinateY at="right" orient="right" displayFormat={format(`.${decimalPlaces}f`)} />}
-                    {value.isMobile?(""):<OHLCTooltip origin={[0, -5]} ohlcFormat={format(".9f")} accessor= {d => {
-                        const acc={date: parseInt(d._id), open: parseFloat(d.open),high: parseFloat(d.high),low: parseFloat(d.low),close: parseFloat(d.close),volume: parseFloat(d.volume) }
-                        return acc}}
-                        xDisplayFormat={timeFormat("%_d %b %y, %I:%M %p")}
-                        />}
-                     <EdgeIndicator 
+                    {value.isMobile?(""):<EdgeIndicator 
                         itemType="last" 
                         orient={value.isMobile?"left":"right"}
-                        edgeAt="right" 
+                        edgeAt="right"
                         yAccessor={d => parseFloat(d.close)} 
                         displayFormat={format(`.${decimalPlaces}f`)}
-                        fill={d => parseFloat(d.close) > d.open ? color.green : color.red }/>
-                   
+                        fill={d => parseFloat(d.close) > parseFloat(d.open) ? color.green : color.red }/>}
+                    
+                    <OHLCTooltip origin={(w, h) => [0, value.isMobile?h-10:-5]} ohlcFormat={value.isMobile?format(".4s"):format(".9f")} accessor= {d => {
+                        const acc={date: parseInt(d._id), open: parseFloat(d.open),high: parseFloat(d.high),low: parseFloat(d.low),close: parseFloat(d.close),volume: parseFloat(d.volume) }
+                        return acc}}
+                        xDisplayFormat={value.isMobile?timeFormat("%_d.%m.%y %H:%M"):timeFormat("%_d %b %y, %I:%M %p")}
+                        />}
+                     
+
                     <AreaSeries yAccessor={d => parseFloat(d.close)}/>
 
                     {pipelineOverlayCandleStick}
@@ -296,18 +298,20 @@ class CandleStickChart extends Component{
                 areaChart=(<Chart id={1} yExtents={yExtent} height={this.props.chartWidth*0.75*value.chartHeightRatio}>
                     {value.isMobile?(""):<YAxis axisAt="right" orient="right" ticks={5} displayFormat={format(`.${decimalPlaces}f`)} />}
                     {value.isMobile?(""):<MouseCoordinateY at="right" orient="right" displayFormat={format(`.${decimalPlaces}f`)} />}
-                    {value.isMobile?(""):<OHLCTooltip origin={[0, -5]} ohlcFormat={format(".9f")} accessor= {d => {
-                        const acc={date: parseInt(d._id), open: parseFloat(d.open),high: parseFloat(d.high),low: parseFloat(d.low),close: parseFloat(d.close),volume: parseFloat(d.volume) }
-                        return acc}}
-                        xDisplayFormat={timeFormat("%_d %b %y, %I:%M %p")}
-                        />}
-                    <EdgeIndicator 
+                    {value.isMobile?(""):<EdgeIndicator 
                         itemType="last" 
                         orient={value.isMobile?"left":"right"}
                         edgeAt="right"
                         yAccessor={d => parseFloat(d.close)} 
                         displayFormat={format(`.${decimalPlaces}f`)}
-                        fill={d => parseFloat(d.close) > parseFloat(d.open) ? color.green : color.red }/>
+                        fill={d => parseFloat(d.close) > parseFloat(d.open) ? color.green : color.red }/>}
+                    
+                    <OHLCTooltip origin={(w, h) => [0, value.isMobile?h-10:-5]} ohlcFormat={value.isMobile?format(".4s"):format(".9f")} accessor= {d => {
+                        const acc={date: parseInt(d._id), open: parseFloat(d.open),high: parseFloat(d.high),low: parseFloat(d.low),close: parseFloat(d.close),volume: parseFloat(d.volume) }
+                        return acc}}
+                        xDisplayFormat={value.isMobile?timeFormat("%_d.%m.%y %H:%M"):timeFormat("%_d %b %y, %I:%M %p")}
+                        />}
+                    
 
                     <CandlestickSeries width={timeIntervalBarWidth(timeRange)}
                        wickStroke={(d)=>d.close > d.open ? color.green : color.brightRed}
@@ -404,7 +408,7 @@ class CandleStickChart extends Component{
                 pipelineHeight.push(_er.chartSize+padding)
             }
 
-            var height=pipelineHeight.reduce(this.sum)+40// this 40 is from the margin  10 from upper padding
+            var height=value.isMobile?(pipelineHeight.reduce(this.sum)+20):(pipelineHeight.reduce(this.sum)+40)// this 40 is from the margin  10 from upper padding
             const snapshot = value.isMobile?<div className={'snapshot'}>{string.snapshot_mobile(this.state.snapshot[id.snapshot.priceChange],this.state.snapshot[id.snapshot.openPrice],this.state.snapshot[id.snapshot.highPrice],this.state.snapshot[id.snapshot.lowPrice],this.state.snapshot[id.snapshot.volume],this.state.snapshot[id.snapshot.priceChangePercent])}</div> : <div className={'snapshot'}>{string.snapshot(this.state.snapshot[id.snapshot.priceChange],this.state.snapshot[id.snapshot.openPrice],this.state.snapshot[id.snapshot.highPrice],this.state.snapshot[id.snapshot.lowPrice],this.state.snapshot[id.snapshot.volume],this.state.snapshot[id.snapshot.priceChangePercent])}</div>
             return(<div >
                     {snapshot}
@@ -413,7 +417,7 @@ class CandleStickChart extends Component{
                         height={height}
                         width={this.props.chartWidth}
                         ratio={3}
-                        margin={{ left: 0, right: value.isMobile?8:(105-extraSpace*3), top: value.isMobile?0:10, bottom: 30 }}
+                        margin={value.isMobile?{ left: 0, right: 8, top:20, bottom: 0 }:{ left: 0, right: (105-extraSpace*3), top: 10, bottom: 30 }}
                         type={'hybrid'}
                         seriesName="MSFT"
                         data={data}
@@ -430,8 +434,8 @@ class CandleStickChart extends Component{
                         {pipelineRender}
                         
                         <Chart id={10} yExtents={d => [parseFloat(d.high), parseFloat(d.low)]}>
-                            <XAxis axisAt="bottom" orient="bottom"/>
-                            <MouseCoordinateX at="bottom" orient="bottom" displayFormat={timeFormat("%_d %b %y, %I:%M %p")} />
+                            <XAxis axisAt={value.isMobile?"top":"bottom"} orient={value.isMobile?"top":"bottom"}/>
+                            <MouseCoordinateX at={value.isMobile?"top":"bottom"} orient={value.isMobile?"top":"bottom"} displayFormat={timeFormat("%_d %b %y, %I:%M %p")} />
                         </Chart>
                         <CrossHairCursor />
                         {drawingSelector}

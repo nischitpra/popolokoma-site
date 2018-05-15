@@ -86,7 +86,7 @@ class TrendSummary extends Component{
                 height={height}
                 width={width}
                 ratio={3}
-                margin={{ left: 0, right: 45, top: 0, bottom: 0 }}
+                margin={value.isMobile?{ left: 35, right: 0, top: 0, bottom: 0 }:{ left: 0, right: 35, top: 0, bottom: 0 }}
                 type={'hybrid'}
                 seriesName="MSFT"
                 data={data}
@@ -97,9 +97,9 @@ class TrendSummary extends Component{
                 panEvent={true}
                 zoomEvent={value.isMobile?false:true}
                 >
-                <Chart id={1} yExtents={d => [this.state.min,this.state.max*1.005]} height={height-25}>
-                    <YAxis axisAt="right" orient="right" ticks={4} displayFormat={format(".2f")} />
-                    <MouseCoordinateY at="right" orient="right" displayFormat={format(".2f")} />
+                <Chart id={1} yExtents={d => [this.state.min*0.9975,this.state.max*1.0025]} height={height-25} origin={(w, h) => [0, value.isMobile?25:0]}>
+                    <YAxis axisAt={value.isMobile?"left":"right"} orient={value.isMobile?"left":"right"} ticks={4} displayFormat={format(".2f")} />
+                    <MouseCoordinateY at={value.isMobile?"left":"right"} orient={value.isMobile?"left":"right"} displayFormat={format(".2f")} />
                     <TrendLine
                         enabled={true}
                         onStart={() => console.log("START")}
@@ -116,8 +116,8 @@ class TrendSummary extends Component{
                         />
                     <LineSeries yAccessor={d => d[id.high]} stroke={color.darkGreen} />
                     <LineSeries yAccessor={d => d[id.low]} stroke={color.darkRed} />
-                    <XAxis axisAt="bottom" orient="bottom" ticks={4}/>
-                    <MouseCoordinateX at="bottom" orient="bottom" displayFormat={timeFormat("%_d %b %y, %I:%M %p")} />
+                    <XAxis axisAt={value.isMobile?"top":"bottom"} orient={value.isMobile?"top":"bottom"} ticks={4}/>
+                    <MouseCoordinateX at={value.isMobile?"top":"bottom"} orient={value.isMobile?"top":"bottom"} displayFormat={timeFormat("%_d %b %y, %I:%M %p")} />
                 </Chart>
                 <CrossHairCursor />
             </ChartCanvas>

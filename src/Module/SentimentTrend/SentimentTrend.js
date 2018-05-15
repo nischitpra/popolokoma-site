@@ -44,7 +44,7 @@ class SentimentTrend extends Component{
                         height={height}
                         width={width}
                         ratio={3}
-                        margin={{ left: 0, right: 45, top: 10, bottom: 30 }}
+                        margin={value.isMobile?{ left: 0, right: 0, top: 0, bottom: 0 }:{ left: 0, right: 0, top: 10, bottom: 0 }}
                         type={'hybrid'}
                         seriesName="MSFT"
                         data={data}
@@ -54,32 +54,32 @@ class SentimentTrend extends Component{
                         xExtents={xExtents}
                         zoomEvent={value.isMobile?false:true}
                         >
-                        <Chart id={1} yExtents={yExtent} height={height-50}>
-                            <YAxis axisAt="right" orient="right" ticks={5} displayFormat={format(".0f")} />
-                            <MouseCoordinateY at="right" orient="right" displayFormat={format(".0f")} />
-                            <EdgeIndicator 
+                        <Chart id={1} yExtents={yExtent} height={height-25} origin={(w, h) => [0, value.isMobile?25:0]}>
+                        {/* <YAxis axisAt={value.isMobile?"left":"right"} orient={value.isMobile?"left":"right"} ticks={4} displayFormat={format(".0f")} /> */}
+                        {/* <MouseCoordinateY at={value.isMobile?"left":"right"} orient={value.isMobile?"left":"right"} displayFormat={format(".0f")} /> */}
+                        {/* <EdgeIndicator 
                                 itemType="last" 
                                 orient="right" 
                                 edgeAt="right" 
                                 yAccessor={d => d.close} 
                                 displayFormat={format(".0f")}
-                                fill={d => d.close > d.open ? color.green : color.red }/>
+                                fill={d => d.close > d.open ? color.green : color.red }/> */}
                             <CandlestickSeries width={timeIntervalBarWidth(utcHour)}
-                            wickStroke={(d)=>d.close > d.open ? color.green : color.brightRed}
-                            fill={(d)=>d.close > d.open ? color.green : color.brightRed}
-                            stroke={(d)=>d.close > d.open ? color.green : color.brightRed}
-                            candleStrokeWidth={1}
-                            straightLineStroke= "#000000"
-                            widthRatio={0.5}
-                            opacity={1}
-                            />
-                            <OHLCTooltip origin={[0, -5]} ohlcFormat={format(".0f")} accessor= {d => {
+                                wickStroke={(d)=>d.close > d.open ? color.green : color.brightRed}
+                                fill={(d)=>d.close > d.open ? color.green : color.brightRed}
+                                stroke={(d)=>d.close > d.open ? color.green : color.brightRed}
+                                candleStrokeWidth={1}
+                                straightLineStroke= "#000000"
+                                widthRatio={0.5}
+                                opacity={1}
+                                />
+                            <OHLCTooltip origin={(w, h) => [0, value.isMobile?h-5:-5]} ohlcFormat={format(".0f")} accessor= {d => {
                                 const acc={date: parseInt(d.time), open: d.open,high: d.high,low: d.low,close: d.close,volume: (d.high-d.low) }
                                 return acc}}
-                                xDisplayFormat={timeFormat("%_d %b %y, %I:%M %p")}
+                                xDisplayFormat={value.isMobile?timeFormat("%_d.%m.%y %H:%M"):timeFormat("%_d %b %y, %I:%M %p")}
                                 />
-                            <XAxis axisAt="bottom" orient="bottom" ticks={4}/>
-                            <MouseCoordinateX at="bottom" orient="bottom" displayFormat={timeFormat("%_d %b %y, %I:%M %p")} />
+                            <XAxis axisAt={value.isMobile?"top":"bottom"} orient={value.isMobile?"top":"bottom"} ticks={4}/>
+                            <MouseCoordinateX at={value.isMobile?"top":"bottom"} orient={value.isMobile?"top":"bottom"} displayFormat={timeFormat("%_d %b %y, %I:%M %p")} />
                         </Chart>
                         <CrossHairCursor />
                     </ChartCanvas>
