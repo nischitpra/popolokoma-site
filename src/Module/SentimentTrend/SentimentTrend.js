@@ -44,7 +44,7 @@ class SentimentTrend extends Component{
                         height={height}
                         width={width}
                         ratio={3}
-                        margin={value.isMobile?{ left: 0, right: 0, top: 0, bottom: 0 }:{ left: 0, right: 0, top: 10, bottom: 0 }}
+                        margin={value.isMobile?{ left: 0, right: 0, top: 0, bottom: 0 }:{ left: 0, right: 0, top: 0, bottom: 0 }}
                         type={'hybrid'}
                         seriesName="MSFT"
                         data={data}
@@ -73,7 +73,7 @@ class SentimentTrend extends Component{
                                 widthRatio={0.5}
                                 opacity={1}
                                 />
-                            <OHLCTooltip origin={(w, h) => [0, value.isMobile?h-5:-5]} ohlcFormat={format(".0f")} accessor= {d => {
+                            <OHLCTooltip origin={(w, h) => [0, value.isMobile?h-10:5]} ohlcFormat={format(".0f")} accessor= {d => {
                                 const acc={date: parseInt(d.time), open: d.open,high: d.high,low: d.low,close: d.close,volume: (d.high-d.low) }
                                 return acc}}
                                 xDisplayFormat={value.isMobile?timeFormat("%_d.%m.%y %H:%M"):timeFormat("%_d %b %y, %I:%M %p")}

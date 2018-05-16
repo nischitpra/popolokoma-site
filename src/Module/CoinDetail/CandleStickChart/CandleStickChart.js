@@ -266,7 +266,7 @@ class CandleStickChart extends Component{
              */
             if(this.presenter.getToolbar().areaChart){
                 yExtent.push(d => [parseFloat(d.close)])
-                var areaChart=(<Chart id={0} yExtents={yExtent} height={value.isMobile?this.props.chartWidth*value.chartHeightRatio:this.props.chartWidth*0.75*value.chartHeightRatio}>
+                var areaChart=(<Chart id={0} yExtents={yExtent} height={value.isMobile?this.props.chartWidth*value.chartHeightRatio:this.props.chartWidth*0.6*value.chartHeightRatio}>
                     {value.isMobile?(""):<YAxis axisAt="right" orient="right" ticks={5} displayFormat={format(`.${decimalPlaces}f`)} />}
                     {value.isMobile?(""):<MouseCoordinateY at="right" orient="right" displayFormat={format(`.${decimalPlaces}f`)} />}
                     {value.isMobile?(""):<EdgeIndicator 
@@ -286,11 +286,11 @@ class CandleStickChart extends Component{
                     {pipelineOverlayCandleStick}
                     </Chart>)
                 pipelineRender.push(areaChart)
-                pipelineHeight.push((value.isMobile?this.props.chartWidth*value.chartHeightRatio:this.props.chartWidth*0.75*value.chartHeightRatio)-100)
+                pipelineHeight.push((value.isMobile?this.props.chartWidth*value.chartHeightRatio:this.props.chartWidth*0.6*value.chartHeightRatio)-100)
             }else{
                 yExtent.push(d => [d.high, d.low])
                 var timeRange= historyType===id.binance.candle_interval._1m?utcMinute:historyType===id.binance.candle_interval._1h?utcHour:utcDay
-                areaChart=(<Chart id={1} yExtents={yExtent} height={value.isMobile?this.props.chartWidth*value.chartHeightRatio:this.props.chartWidth*0.75*value.chartHeightRatio}>
+                areaChart=(<Chart id={1} yExtents={yExtent} height={value.isMobile?this.props.chartWidth*value.chartHeightRatio:this.props.chartWidth*0.6*value.chartHeightRatio}>
                     {value.isMobile?(""):<YAxis axisAt="right" orient="right" ticks={5} displayFormat={format(`.${decimalPlaces}f`)} />}
                     {value.isMobile?(""):<MouseCoordinateY at="right" orient="right" displayFormat={format(`.${decimalPlaces}f`)} />}
                     {value.isMobile?(""):<EdgeIndicator 
@@ -318,7 +318,7 @@ class CandleStickChart extends Component{
                     {pipelineOverlayCandleStick}
                 </Chart>)
                 pipelineRender.push(areaChart)
-                pipelineHeight.push((value.isMobile?this.props.chartWidth*value.chartHeightRatio:this.props.chartWidth*0.75*value.chartHeightRatio)-100)
+                pipelineHeight.push((value.isMobile?this.props.chartWidth*value.chartHeightRatio:this.props.chartWidth*0.6*value.chartHeightRatio)-100)
             }
 
             /**
