@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import Home from './Module/Home/Home'
 import CoinDetail from './Module/CoinDetail/CoinDetail'
 import CoinList from './Module/CoinList/CoinList'
+import Feed from './Module/Feed/Feed'
 import Navbar from './Module/Navbar/Navbar'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Presenter from './Presenter'
@@ -44,6 +45,7 @@ class App extends Component {
               <Route exact path='/' render={(props)=>(<Home setNavbarTab={this.setNavbarTab}/>)}/>
               <Route exact path={`/${string.navbar.url.favourites}&f=:coin&t=:tab`} render={(props)=>(<CoinDetail from={props.match.params.coin} to={props.match.params.tab}/>)}/> 
               <Route exact path='/coinList' render={(props)=>(<CoinList setNavbarTab={this.setNavbarTab}/>)}/>
+              <Route exact path='/feed' render={(props)=>(<Feed setNavbarTab={this.setNavbarTab}/>)}/>
               <Route path='*' component={NotFound} />
             </Switch>
           </div>

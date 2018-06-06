@@ -24,6 +24,8 @@ export const url={
             candlestick:(from,to,interval,fromTime,toTime,isNew)=>`${value.base_api}/cc/gcs?f=${from}&t=${to}&type=${interval}&ft=${fromTime}&tt=${toTime}&n=${isNew}`,
             snapshot:(from,to)=>`${value.base_api}/cc/t?f=${from}&t=${to}`,
             snapshotAll:`${value.base_api}/cc/t`,
+            tradePage:(key)=>`https://www.binance.com/trade.html?symbol=${key}`,
+            tradePageMobile:(key)=>`https://www.binance.com/indexSpa.html#/trade/index?symbol=${key}`,
         },
         forecast:{
             forecast:(from,to,type)=>`${value.base_api}/forecast/q?f=${from}&t=${to}&type=${type}`,
@@ -32,6 +34,7 @@ export const url={
         cc:{
             getFilterTrend:(filterType)=>`${value.base_api}/cc/gft?filt=${filterType}`,
             getTrendSummary:(from,to)=>`${value.base_api}/cc/gs?f=${from}&t=${to}`,
+            feedList:`${value.base_api}/cc/gfl`
         },
         develop:{
             exportTrendDataset:`${value.base_api}/cc/exportDataset`,

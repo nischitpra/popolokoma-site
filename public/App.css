@@ -288,6 +288,9 @@ Link{
 .border.active{
   border: var(--small-2x-spacing) solid var(--black);
 }
+.flex{
+  flex: 1;
+}
 .flex-container-reverse{
   display: flex;
   flex-direction: row;
@@ -572,6 +575,9 @@ Link{
   margin:4px;
   font-size: 0.85em;
   font-weight: bold;
+}
+.btn.active{
+  background: var(--red);
 }
 
 .snapshot-green-text{

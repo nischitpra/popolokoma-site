@@ -35,7 +35,9 @@ class TrendSummary extends Component{
     }
   
   componentDidMount(){
-      this.presenter.getTrendData(this.props.from,this.props.to)
+      if(this.props.overrideInit==undefined || !this.props.overrideInit){
+        this.presenter.getTrendData(this.props.from,this.props.to)
+      }
   }
   bound(value){
       return ((this.state.max-this.state.min)/(this.state.max_vola-this.state.min_vola))*(value-this.state.min_vola)+this.state.min
@@ -50,7 +52,8 @@ class TrendSummary extends Component{
     }
     const height=this.props.chartWidth*value.chartHeightRatio
     const xAccessor = (d) => { return new Date(parseInt(d[id.binance.id])) }
-    const xExtents = [ xAccessor(last(data)), xAccessor(data[data.length-20]) ]
+    // const xExtents = [ xAccessor(last(data)), xAccessor(data[data.length-20]) ]
+    const xExtents = [ xAccessor(last(data)), xAccessor(data[0]) ]
     
     var trendList=[]
     for(var i in trend){
@@ -94,8 +97,9 @@ class TrendSummary extends Component{
                 xScale={scaleTime()}
                 displayXAccessor={xAccessor}
                 xExtents={xExtents}
-                panEvent={true}
-                zoomEvent={value.isMobile?false:true}
+                panEvent={false}
+                // zoomEvent={value.isMobile?false:true}
+                zoomEvent={false}
                 >
                 <Chart id={1} yExtents={d => [this.state.min*0.9975,this.state.max*1.0025]} height={height-25} origin={(w, h) => [0, value.isMobile?25:0]}>
                     <YAxis axisAt={value.isMobile?"left":"right"} orient={value.isMobile?"left":"right"} ticks={4} displayFormat={format(".2f")} />
@@ -116,7 +120,7 @@ class TrendSummary extends Component{
                         />
                     <LineSeries yAccessor={d => d[id.high]} stroke={color.darkGreen} />
                     <LineSeries yAccessor={d => d[id.low]} stroke={color.darkRed} />
-                    <XAxis axisAt={value.isMobile?"top":"bottom"} orient={value.isMobile?"top":"bottom"} ticks={4}/>
+                    <XAxis axisAt={value.isMobile?"top":"bottom"} orient={value.isMobile?"top":"bottom"} ticks={4} />
                     <MouseCoordinateX at={value.isMobile?"top":"bottom"} orient={value.isMobile?"top":"bottom"} displayFormat={timeFormat("%_d %b %y, %I:%M %p")} />
                 </Chart>
                 <CrossHairCursor />

@@ -26,6 +26,7 @@ class Navbar extends Component{
             <span className={'navbar-container padding-horizontal-container'}>
                 <span><Link to={`/${string.navbar.url.home}`} style={styl} className={this.presenter.getNavbar().currentTab===string.navbar.url.home?'mainnav active':'mainnav'} onClick={()=>this.switchTab(string.navbar.url.home)} >{string.navbar.home}</Link></span>
                 <span><Link to={`/${string.navbar.url.coinList}`} style={styl} className={this.presenter.getNavbar().currentTab===string.navbar.url.coinList?'mainnav active':'mainnav'} onClick={()=>this.switchTab(string.navbar.url.coinList)} >{string.navbar.coinList}</Link></span>
+                <span><Link to={`/${string.navbar.url.feed}`} style={styl} className={this.presenter.getNavbar().currentTab===string.navbar.url.feed?'mainnav active':'mainnav'} onClick={()=>this.switchTab(string.navbar.url.feed)} >{string.navbar.feed}</Link></span>
             </span>
         )
     }
