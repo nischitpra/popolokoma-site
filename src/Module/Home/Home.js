@@ -19,8 +19,8 @@ class Home extends Component{
     this.setChartWidth=this.setChartWidth.bind(this)
   }
   setChartWidth(){
-    var sentiWidth=(this.sentiContainer.clientWidth)-8*2 // padding 
-    var forecastWidth=(this.forecastContainer.clientWidth)-8*2 //padding
+    var sentiWidth=(this.sentiContainer.clientWidth) // padding 
+    var forecastWidth=(this.forecastContainer.clientWidth) //padding
     this.setState({
       sentiWidth:sentiWidth,
       forecastWidth:forecastWidth,
@@ -40,26 +40,16 @@ class Home extends Component{
 
   render() {
     return (
-      <div>
-        <div className='flex-container'>
-          <div className='home-left-panel ' >
-            <div className='padding-container'>
-              <div className='title-tag' ref={forecastContainer=>this.forecastContainer=forecastContainer}>{string.forecastTrend}</div>
-              <ForecastTrend from={this.state.from} to={this.state.to} type={this.state.type} exchange={this.state.exchange} chartWidth={this.state.forecastWidth}/>
-              <div className='title-tag '>{string.headlines}</div>
-            </div>
-            <div><HomeNews type={id.news.headlines} count={7}/></div>
-            <div><Trend/></div>
+      <div className='flex-container home-container'>
+          <div ref={forecastContainer=>this.forecastContainer=forecastContainer}>
+            {/* <ForecastTrend from={this.state.from} to={this.state.to} type={this.state.type} exchange={this.state.exchange} chartWidth={this.state.forecastWidth}/> */}
           </div>
-          <div className='home-right-panel'>
-            <div className='padding-container'>
-              <div className='title-tag' ref={sentiContainer=>this.sentiContainer=sentiContainer}>{string.sentimentTrend}</div>
-              <SentimentTrend chartWidth={this.state.sentiWidth}/>
-              <div className='title-tag'>{string.twitter}</div>
-            </div>
-            <Twitter count={7}/>
+          <HomeNews type={id.news.headlines} count={7}/>
+          <Trend/>
+          <div ref={sentiContainer=>this.sentiContainer=sentiContainer}>
+            <SentimentTrend chartWidth={this.state.sentiWidth}/>
           </div>
-        </div>
+          <Twitter count={7}/>
       </div>
     );
   }

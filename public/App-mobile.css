@@ -2,19 +2,19 @@
 
 .App {
   font-weight: 350;
-  margin-bottom: 64px;
-  background: white;
+  background: linear-gradient(65deg, #41a3ff, #0cb8b0);
+
 }
 .App-logo {
   height: var(--medium-5x-spacing);
 }
 .App-title {
-  display: flex;
-  align-items: center;
+  display: block;
   font-size: 1.025em;
   font-weight: bold;
   color: white;
-  padding-left:16px;
+  padding-top:8px;
+  padding-bottom:8px;
 }
 
 .App-intro {
@@ -53,33 +53,33 @@
   100%   {background-color:var(--loader-color-1-background);}
 }
 .main-body{
-  margin-left: 16px;
-  margin-right: 16px;
+  /* margin-left: 16px; */
+  /* margin-right: 16px; */
 }
 .icon{
   width: var(--big-spacing);
   height: var(--big-spacing);
 }
+
 .navbar-container{
-  display: block;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .mainnav{
-  display: block;
+  display: flex;
   list-style:none;
   cursor: pointer;
-  align-items: center;
-  justify-content: center;
   transition:var(--transition);
   font-weight: bold;
 }
-.mainnav:hover{
-  background: var(--primaryColorDarkOverlay);
-  transition:var(--transition);
-}
+
+
 .title-toolbar{
   display: block;
-  color: var(--primaryColor);
+  color: var(--primaryColorDark);
   font-size: 0.9em;
   font-weight: bold;
   padding-top: 4px;
@@ -226,9 +226,9 @@ input[type=number]::-webkit-outer-spin-button {
   font-size: var(--small-text);
 }
 .main-navbar-container{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  display: block;
+  padding-left: 16px;
+  padding-right: 16px;
   background: var(--primaryColor);
   font-size: var(--normal-1x-text);
   box-shadow: var(--box-shadow);
@@ -291,6 +291,18 @@ Link{
 .right-panel{
   flex:1;
 }
+.coindetail-container{
+  margin-left:8px;
+  margin-right:8px;
+}
+.portfolio-container{
+  margin-left:16px;
+  margin-right:16px;
+}
+.home-container{
+  margin-left:8px;
+  margin-right:8px;
+}
 .home-left-panel{
   /* flex:1; */
 }
@@ -300,12 +312,27 @@ Link{
 .home-right-panel{
   /* flex:1; */
 }
+
+/* homenews */
+.home-news-container{
+  display:block;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
 .news-card{
   display: inline-block;
   flex:1;
   min-width: 200px;
   background: white;
   transition: var(--transition);
+  padding: 16px;
+  margin-top:2px;
+  margin-bottom:2px;
+  border-radius: 4px;
+}
+.news-img{
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 }
 .news-card:hover{
   color: var(--primaryColorDark);
@@ -313,7 +340,7 @@ Link{
   cursor: pointer;
 }
 .card-body{
-  margin-bottom: 28px;
+  padding:16px;
 }
 .card-title{
   font-size: 0.85em;
@@ -352,12 +379,31 @@ Link{
   font-weight: 500;
   color: black;
 }
+.title-tag-independent{
+  color: var(--black);
+  font-size: 1em;
+  font-weight: bold;
+  padding-left: 16px;
+  padding-top:4px;
+  padding-bottom:4px;
+  background: white;
+  border-radius: 4px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
 .title-tag{
   color: var(--black);
-  font-size: 1.4em;
+  font-size: 1em;
   font-weight: bold;
-  margin-top: 24px;
-  margin-bottom: 24px;
+  border-bottom-width: 1px;
+  border-bottom-color: gray;
+  border-bottom-style: solid;
+  padding-left: 16px;
+  padding-top:4px;
+  padding-bottom:4px;
+  background: white;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
 }
 
 .snapshot{
@@ -391,15 +437,20 @@ Link{
   padding-top: var(--small-spacing);
   padding-bottom: var(--small-spacing);
 }
-.tweet-container{
-  /* flex: 1; */
+
+
+/* Twitter */
+.twitter-container{
   display: block;
-  min-width: 240px;
-  transition: var(--transition);
-  margin-top: 16px;
-  margin-bottom: 16px;
-  border-color: var(--transparent);
-  border-style: solid;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+.tweet-container{
+  background: white;
+  border-radius: 4px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding:16px;
 }
 .tweet-container:hover{
   cursor: pointer; 
@@ -514,9 +565,7 @@ Link{
 .small-left-right-padding{
 }
 .chart{
-  border-width: 1px;
-  border-style: solid;
-  color: var(--lightGray);
+  background: white;
 }
 
 .favourites-toolbar-margin{
@@ -530,22 +579,23 @@ Link{
   cursor: pointer;
 }
 .padding-horizontal-container{
+  
 }
-.padding-container{
-  padding:0px;
+.margin-horizontal-container{
+  margin-left: 8px;
+  margin-right: 8px;
 }
-
 
 .btn{
   background: var(--primaryColor);
   color: white;
   cursor: pointer;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 16px;
+  padding-bottom: 16px;
   padding-left: 16px;
   padding-right: 16px;
   text-align: center;
-  margin:4px;
+  margin-top:8px;
   font-size: 0.85em;
   font-weight: bold;
 }
@@ -571,3 +621,116 @@ Link{
   margin-top: 8px;
   margin-bottom: 8px;
 }
+
+.feed-container{
+  height: 100%;
+}
+.feed-content{
+  margin-left: 8px;
+  margin-right: 8px;
+}
+.feed-snapshot-main-container{
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+.feed-snapshot-container{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  background: white;
+  padding: 16px;
+}
+.feed-snapshot-left{
+  flex: 1;
+  text-align: start;
+  flex-basis: 20%;
+  padding-top:2px;
+  padding-bottom:2px;
+}
+.feed-snapshot-right{
+  flex: 2;
+  text-align: end;
+  flex-basis: 80%;
+  padding-top:2px;
+  padding-bottom:2px;
+  font-weight: bold;
+}
+.feed-bottom-bar-container{
+  display: flex;
+}
+.feed-bottom-bar{
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+}
+.icon-btn{
+  width: 24px;
+  height: 24px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background: var(--primaryColor);
+  /* border-width: 2px;
+  border-color: var(--black);
+  border-style: solid; */
+}
+
+.candle-stick-container{
+  margin-top: 12px;
+  margin-bottom: 12px;
+  border-radius: 4px;
+  background: white;
+}
+
+/* trend */
+.trend-container{
+  margin-top: 12px;
+  margin-bottom: 12px;
+  border-radius: 4px;
+  background: white;
+
+}
+.trend-toolbar{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left:16px;
+  padding-right:16px;
+  padding-top:4px;
+  padding-bottom:4px;
+}
+.trend-toolbar-item{
+  display: flex;
+  flex:1;
+  color: var(--primaryColor);
+  background: white;
+  align-items: center;
+  justify-content: center;
+}
+.trend-toolbar-item.active{
+  flex:1;
+  color: var(--accentColor);
+  background: white;
+}
+
+
+/* sentiment-trend */
+.sentiment-trend-container{
+  border-radius: 4px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+
+/* trend summary */
+.trend-summary-container{
+  border-radius: 4px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+
+

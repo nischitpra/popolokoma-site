@@ -47,7 +47,8 @@ class ForecastTrend extends Component{
             }
             const xExtents = [ xAccessor(last(data)), xAccessor(data[0]) ]
             return(
-                <div className={'chart'}>
+                <div className={'sentiment-trend-container chart'}>
+                    <div className='title-tag-independent' >{string.forecastTrend}</div>
                     <ChartCanvas 
                         height={350}
                         width={this.props.chartWidth}

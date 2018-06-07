@@ -14,7 +14,11 @@ class Presenter{
             sentimentData:data
         })
     }
-
+    startLoading(){
+        this.script.setState({
+            isLoading:true,
+        })
+    }
     stopLoading(){
         this.script.setState({
             isLoading:false,
@@ -23,11 +27,15 @@ class Presenter{
     getFavouritesList(){
         return this.interactor.getFavouritesList()
     }
-    setFavouritesList(favouritesList){
-        this.interactor.setFavouritesList(favouritesList)
-    }
 
-    
+    getSnapshot(from,to){
+        this.interactor.getSnapshot(from,to)
+    }   
+    setSnapshot(data){
+        this.script.setState({
+            snapshot:data,
+        })
+    } 
     
 }
 

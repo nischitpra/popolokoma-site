@@ -84,7 +84,8 @@ class TrendSummary extends Component{
     
     const width=this.props.chartWidth
     return (
-        <div className={'chart'}>
+        <div className={'trend-summary-container chart'}>
+            <div className='title-tag'>{string.trend._4day_summary}</div>
             <ChartCanvas 
                 height={height}
                 width={width}

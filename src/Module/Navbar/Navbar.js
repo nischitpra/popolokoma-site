@@ -2,6 +2,7 @@ import React,{Component} from 'react'
 import {string} from '../../Values/Constants'
 import Presenter from './Presenter'
 import { Link } from 'react-router-dom'
+import { Color } from '../../Values/Color';
 
 class Navbar extends Component{
     presenter = new Presenter(this)
@@ -12,22 +13,29 @@ class Navbar extends Component{
         const styl={
             textDecoration:'none', 
             color:'white',
-            paddingLeft:'16px', 
-            paddingRight:'16px', 
-            paddingTop:'6px', 
-            paddingBottom:'6px', 
-            height:'25px', 
-            fontSize:'0.8em', 
-            display:'flex', 
-            alignItems:'center',
-            
+            flex:'1',
+            paddingLeft:'16px',
+            paddingTop:'8px',
+            paddingBottom:'8px',
+            alignItems: 'center',
+            textAlign: 'center',
+        }
+        const active={
+            textDecoration:'none', 
+            color: Color.primaryAccentColor,
+            flex:'1',
+            paddingLeft:'16px',
+            paddingTop:'8px',
+            paddingBottom:'8px',
+            alignItems: 'center',
+            textAlign: 'center',
         }
         return(
-            <span className={'navbar-container padding-horizontal-container'}>
-                <span><Link to={`/${string.navbar.url.home}`} style={styl} className={this.presenter.getNavbar().currentTab===string.navbar.url.home?'mainnav active':'mainnav'} onClick={()=>this.switchTab(string.navbar.url.home)} >{string.navbar.home}</Link></span>
-                <span><Link to={`/${string.navbar.url.coinList}`} style={styl} className={this.presenter.getNavbar().currentTab===string.navbar.url.coinList?'mainnav active':'mainnav'} onClick={()=>this.switchTab(string.navbar.url.coinList)} >{string.navbar.coinList}</Link></span>
-                <span><Link to={`/${string.navbar.url.feed}`} style={styl} className={this.presenter.getNavbar().currentTab===string.navbar.url.feed?'mainnav active':'mainnav'} onClick={()=>this.switchTab(string.navbar.url.feed)} >{string.navbar.feed}</Link></span>
-            </span>
+            <div className={'navbar-container'}>
+                <div className="mainnav flex" style={{background: Color.primaryColor}}><Link to={`/${string.navbar.url.home}`} style={this.presenter.getNavbar().currentTab===string.navbar.url.home?active:styl} onClick={()=>this.switchTab(string.navbar.url.home)} >{string.navbar.home}</Link></div>
+                <div className="mainnav flex" style={{background: Color.primaryColor}}><Link to={`/${string.navbar.url.coinList}`} style={this.presenter.getNavbar().currentTab===string.navbar.url.coinList?active:styl} onClick={()=>this.switchTab(string.navbar.url.coinList)} >{string.navbar.coinList}</Link></div>
+                <div className="mainnav flex" style={{background: Color.primaryColor}}><Link to={`/${string.navbar.url.feed}`} style={this.presenter.getNavbar().currentTab===string.navbar.url.feed?active:styl} onClick={()=>this.switchTab(string.navbar.url.feed)} >{string.navbar.feed}</Link></div>
+            </div>
         )
     }
 

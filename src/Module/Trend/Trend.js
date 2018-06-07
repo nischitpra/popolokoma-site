@@ -55,11 +55,14 @@ class Trend extends Component{
         {Header: string.trend.endTime, accessor:'end_time',},
     ]
     return (
-        <div style={{overflowX: "auto"}}>
-            <span className={this.state.tab===id.trend.all?'nav-tool active':'nav-tool'} onClick={()=>this.switchTab(id.trend.all)}>{string.trend.all}</span>
-            <span className={this.state.tab===id.trend.rise?'nav-tool active':'nav-tool'} onClick={()=>this.switchTab(id.trend.rise)}>{string.trend.rise}</span>
-            <span className={this.state.tab===id.trend.consolidate?'nav-tool active':'nav-tool'} onClick={()=>this.switchTab(id.trend.consolidate)}>{string.trend.consolidate}</span>
-            <span className={this.state.tab===id.trend.fall?'nav-tool active':'nav-tool'} onClick={()=>this.switchTab(id.trend.fall)}>{string.trend.fall}</span>
+        <div className='trend-container' style={{overflowX: "auto"}}>
+            <div className='title-tag'>{string.trendFilter}</div>
+            <div className='trend-toolbar'>
+                <span className={this.state.tab===id.trend.all?'trend-toolbar-item active':'trend-toolbar-item'} onClick={()=>this.switchTab(id.trend.all)}>{string.trend.all}</span>
+                <span className={this.state.tab===id.trend.rise?'trend-toolbar-item active':'trend-toolbar-item'} onClick={()=>this.switchTab(id.trend.rise)}>{string.trend.rise}</span>
+                <span className={this.state.tab===id.trend.consolidate?'trend-toolbar-item active':'trend-toolbar-item'} onClick={()=>this.switchTab(id.trend.consolidate)}>{string.trend.consolidate}</span>
+                <span className={this.state.tab===id.trend.fall?'trend-toolbar-item active':'trend-toolbar-item'} onClick={()=>this.switchTab(id.trend.fall)}>{string.trend.fall}</span>
+            </div>
             <Loading isLoading={this.state.isLoading}/>
             <ReactTable data={data} columns={column} pageSize={data.length>20?20:data.length} className="-striped -highlight" 
                 showPageSizeOptions={false}

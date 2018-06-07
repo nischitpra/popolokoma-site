@@ -43,7 +43,7 @@ class CandleStickChart extends Component{
             enableTrendLine: false,
             trends_1: [],
             lineColor: color.green,
-            snapshot:{[id.price]:0.0,[id.open]:0.0,[id.high]:0.0,[id.low]:0.0,[id.volume]:0.0},
+            snapshot:{[id.close]:0.0,[id.price]:0.0,[id.open]:0.0,[id.high]:0.0,[id.low]:0.0,[id.volume]:0.0},
             isLoading:true,
             exportLoading:false,
             loadmoreLock:false,
@@ -399,37 +399,62 @@ class CandleStickChart extends Component{
             }
 
             var height=value.isMobile?(pipelineHeight.reduce(this.sum)+20):(pipelineHeight.reduce(this.sum)+40)// this 40 is from the margin  10 from upper padding
-            const snapshot = value.isMobile?<div className={'snapshot'}>{string.snapshot_mobile(this.state.snapshot[id.snapshot.priceChange],this.state.snapshot[id.snapshot.openPrice],this.state.snapshot[id.snapshot.highPrice],this.state.snapshot[id.snapshot.lowPrice],this.state.snapshot[id.snapshot.volume],this.state.snapshot[id.snapshot.priceChangePercent])}</div> : <div className={'snapshot'}>{string.snapshot(this.state.snapshot[id.snapshot.priceChange],this.state.snapshot[id.snapshot.openPrice],this.state.snapshot[id.snapshot.highPrice],this.state.snapshot[id.snapshot.lowPrice],this.state.snapshot[id.snapshot.volume],this.state.snapshot[id.snapshot.priceChangePercent])}</div>
+            const snapshot = value.isMobile?
+                <div className='feed-snapshot-main-container'>
+                    <div className='title-tag'>{string.cc.snapshot}</div>
+                    <div className='feed-snapshot-container'>
+                        <div className='feed-snapshot-left'>{string.cc.change}</div>
+                        <div className={`feed-snapshot-right ${this.state.snapshot[id.snapshot.priceChange]>0?'green-text':this.state.snapshot[id.snapshot.priceChange]<0?'red-text':''}`}>{this.state.snapshot[id.snapshot.priceChange]} ({parseFloat(this.state.snapshot[id.snapshot.priceChangePercent]).toFixed(2)}%)</div>
+                        
+                        <div className='feed-snapshot-left'>{string.cc.open}</div>
+                        <div className='feed-snapshot-right'>{this.state.snapshot[id.snapshot.openPrice]}</div>
+
+                        <div className='feed-snapshot-left'>{string.cc.high}</div>
+                        <div className='feed-snapshot-right'>{this.state.snapshot[id.snapshot.highPrice]}</div>
+
+                        <div className='feed-snapshot-left'>{string.cc.low}</div>
+                        <div className='feed-snapshot-right'>{this.state.snapshot[id.snapshot.lowPrice]}</div>
+
+                        <div className='feed-snapshot-left'>{string.cc.close}</div>
+                        <div className='feed-snapshot-right'>{this.state.snapshot[id.snapshot.prevClosePrice]}</div>
+
+                        <div className='feed-snapshot-left'>{string.cc.volume}</div>
+                        <div className='feed-snapshot-right'>{parseFloat(this.state.snapshot[id.snapshot.volume]).toFixed(2)}</div>
+                    </div>
+                </div>
+                : <div className={'snapshot'}>{string.snapshot(this.state.snapshot[id.snapshot.priceChange],this.state.snapshot[id.snapshot.openPrice],this.state.snapshot[id.snapshot.highPrice],this.state.snapshot[id.snapshot.lowPrice],this.state.snapshot[id.snapshot.volume],this.state.snapshot[id.snapshot.priceChangePercent])}</div>
+            
             return(<div >
                     {snapshot}
-                    <div className={'chart'}>
-                    <ChartCanvas 
-                        height={height}
-                        width={this.props.chartWidth}
-                        ratio={3}
-                        margin={value.isMobile?{ left: 0, right: 8, top:20, bottom: 0 }:{ left: 0, right: (105-extraSpace*3), top: 10, bottom: 30 }}
-                        type={'hybrid'}
-                        seriesName="MSFT"
-                        data={data}
-                        xAccessor={xAccessor}
-                        xExtents={xExtents}
-                        xScale={scaleTime()}
-                        displayXAccessor={xAccessor}
-                        xExtents={xExtents}
-                        onLoadMore={this.downloadMoreHistory}
-                        zoomEvent={value.isMobile?false:true}
-					    clamp={false}
-                        >
-                    
-                        {pipelineRender}
+                    <div className={'candle-stick-container chart'}>
+                        <div className='title-tag'>{string.cc.priceMovement}</div>
+                        <ChartCanvas 
+                            height={height}
+                            width={this.props.chartWidth}
+                            ratio={3}
+                            margin={value.isMobile?{ left: 0, right: 8, top:20, bottom: 0 }:{ left: 0, right: (105-extraSpace*3), top: 10, bottom: 30 }}
+                            type={'hybrid'}
+                            seriesName="MSFT"
+                            data={data}
+                            xAccessor={xAccessor}
+                            xExtents={xExtents}
+                            xScale={scaleTime()}
+                            displayXAccessor={xAccessor}
+                            xExtents={xExtents}
+                            onLoadMore={this.downloadMoreHistory}
+                            zoomEvent={value.isMobile?false:true}
+                            clamp={false}
+                            >
                         
-                        <Chart id={10} yExtents={d => [parseFloat(d.high), parseFloat(d.low)]}>
-                            <XAxis axisAt={value.isMobile?"top":"bottom"} orient={value.isMobile?"top":"bottom"}/>
-                            <MouseCoordinateX at={value.isMobile?"top":"bottom"} orient={value.isMobile?"top":"bottom"} displayFormat={timeFormat("%_d %b %y, %I:%M %p")} />
-                        </Chart>
-                        <CrossHairCursor />
-                        {drawingSelector}
-                    </ChartCanvas>
+                            {pipelineRender}
+                            
+                            <Chart id={10} yExtents={d => [parseFloat(d.high), parseFloat(d.low)]}>
+                                <XAxis axisAt={value.isMobile?"top":"bottom"} orient={value.isMobile?"top":"bottom"}/>
+                                <MouseCoordinateX at={value.isMobile?"top":"bottom"} orient={value.isMobile?"top":"bottom"} displayFormat={timeFormat("%_d %b %y, %I:%M %p")} />
+                            </Chart>
+                            <CrossHairCursor />
+                            {drawingSelector}
+                        </ChartCanvas>
                     </div>
                 </div>)
         }

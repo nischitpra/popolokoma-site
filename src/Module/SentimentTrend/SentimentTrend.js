@@ -11,7 +11,7 @@ import { XAxis, YAxis } from "react-stockcharts/lib/axes"
 import { last, timeIntervalBarWidth } from "react-stockcharts/lib/utils"
 import { OHLCTooltip } from "react-stockcharts/lib/tooltip"
 import { CrossHairCursor, EdgeIndicator, MouseCoordinateX, MouseCoordinateY,} from "react-stockcharts/lib/coordinates"
-import {value} from "../../Values/Constants"
+import { string, value} from "../../Values/Constants"
 const color =require("../../Values/Color").Color
 
 class SentimentTrend extends Component{
@@ -39,7 +39,8 @@ class SentimentTrend extends Component{
             const height=this.props.chartWidth*value.chartHeightRatio
             const width=this.props.chartWidth
             return(
-                <div className={'chart'}>
+                <div className={'sentiment-trend-container chart'}>
+                    <div className='title-tag' >{string.sentimentTrend}</div>
                     <ChartCanvas 
                         height={height}
                         width={width}

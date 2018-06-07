@@ -2,6 +2,7 @@ import React,{Component} from 'react'
 import Loading from '../../Loading/Loading'
 import Presenter from './Presenter'
 import TweetBlock from './ViewHolder/TweetBlock'
+import {string} from '../../../Values/Constants'
 class Twitter extends Component{
     constructor(props){
         super(props)
@@ -23,7 +24,11 @@ class Twitter extends Component{
         console.log(`twitter data: ${this.state.data}`)
         const list=this.state.data.map((tweet,index)=><TweetBlock key={index} data={tweet}/>)
         if(list.length>0){
-            return(<div className='flex-container'>{list}</div>)
+            return(
+            <div className='twitter-container'>
+                <div className='title-tag-independent'>{string.twitter}</div>
+                {list}
+            </div>)
         }
         return(<div className='padding-container'><Loading data={list} isLoading={this.state.isLoading}/></div>)
     }

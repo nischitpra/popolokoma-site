@@ -39,10 +39,10 @@ class CoinDetail extends Component{
       var candleWid=(this.candleContainer.clientWidth)
       var forecastWidth=(this.forecastContainer.clientWidth)
       this.setState({
-            candle_chartWidth:candleWid-2,
-            sentiment_chartWidth:sentiWidth-2,
-            forecast_chartWidth:forecastWidth-2,
-            trendsummary_chartWidth:trendsummaryWidth-2,
+            candle_chartWidth:candleWid,
+            sentiment_chartWidth:sentiWidth,
+            forecast_chartWidth:forecastWidth,
+            trendsummary_chartWidth:trendsummaryWidth,
       })
     }
     refreshPage(){
@@ -67,28 +67,16 @@ class CoinDetail extends Component{
     render(){
         console.log('render id: '+this.state.handleTrendLineId)
         return(
-            <div>
-                <div className='favourites-toolbar-margin padding-container' ref={candleContainer=>this.candleContainer=candleContainer}>
-                    <Toolbar from={this.state.from} to={this.state.to} refreshPage={this.refreshPage} handleTrendLine={this.handleTrendLine} handleTrendLineId={this.state.handleTrendLineId}/>
-                </div>
-                <div className='padding-container'>
+            <div className='coindetail-container'>
+                <Toolbar from={this.state.from} to={this.state.to} refreshPage={this.refreshPage} handleTrendLine={this.handleTrendLine} handleTrendLineId={this.state.handleTrendLineId}/>
+                <div  ref={candleContainer=>this.candleContainer=candleContainer}>
                     <CandleStickChart from={this.state.from} to={this.state.to} exchange={this.state.exchange}  
                      handleTrendLineId={this.state.handleTrendLineId} resetLineTool={this.resetLineTool} chartWidth={this.state.candle_chartWidth}/> 
                 </div>
-                <div className='flex-container'>
-                    <div className='home-left-panel padding-container' >
-                        <div className='title-tag' ref={forecastContainer=>this.forecastContainer=forecastContainer}>{string.forecastTrend}</div>
-                        <div><ForecastTrend from={this.state.from} to={this.state.to} type={this.state.type} exchange={this.state.exchange} chartWidth={this.state.forecast_chartWidth}/></div>
-                        <div className='title-tag' ref={sentiContainer=>this.sentiContainer=sentiContainer}>{string.sentimentTrend}</div>
-                        <div><SentimentTrend chartWidth={this.state.sentiment_chartWidth}/></div>
-                        <div className='title-tag' ref={trendContainer=>this.trendContainer=trendContainer}>{string.trendSummary}</div>
-                        <div><TrendSummary from={this.state.from} to={this.state.to} chartWidth={this.state.trendsummary_chartWidth}/></div>
-                    </div>
-                    <div className='home-right-panel '>
-                        <div className='title-tag padding-container'>{string.twitter}</div>
-                        <Twitter count={7}/>
-                    </div>
-                </div>
+                <div ref={forecastContainer=>this.forecastContainer=forecastContainer}><ForecastTrend from={this.state.from} to={this.state.to} type={this.state.type} exchange={this.state.exchange} chartWidth={this.state.forecast_chartWidth}/></div>
+                <div ref={sentiContainer=>this.sentiContainer=sentiContainer}><SentimentTrend chartWidth={this.state.sentiment_chartWidth}/></div>
+                <div ref={trendContainer=>this.trendContainer=trendContainer}><TrendSummary from={this.state.from} to={this.state.to} chartWidth={this.state.trendsummary_chartWidth}/></div>
+                <Twitter count={7}/>
             </div>
         )
     }

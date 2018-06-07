@@ -93,6 +93,7 @@ class Presenter {
                 [id.snapshot.openPrice]:data[id.snapshot.openPrice],
                 [id.snapshot.highPrice]:data[id.snapshot.highPrice],
                 [id.snapshot.lowPrice]:data[id.snapshot.lowPrice],
+                [id.snapshot.prevClosePrice]:data[id.snapshot.prevClosePrice],
                 [id.snapshot.priceChange]:data[id.snapshot.priceChange],
                 [id.snapshot.priceChangePercent]:data[id.snapshot.priceChangePercent],
             }

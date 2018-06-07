@@ -130,15 +130,16 @@ export const string={
     delete:'DELETE',
 
     // for home news
+    trendFilter:'Trend Filter',
     headlines:'HeadLines',
     other:'Other',
     news:'News',
     twitter:'Twitter',
     
     trend:{
-        rise:'Rising',
-        fall:'Falling',
-        consolidate:'Consolidating',
+        rise:'Rise',
+        fall:'Fall',
+        consolidate:'Conso',
         all:'All',
         trend:'Trend',
         from:'F',
@@ -147,6 +148,17 @@ export const string={
         startTime:'ST',
         endTime:'ET',
         velocity:'Velocity',
+        _4day_summary:'4 Days Summary',
+    },
+    cc:{
+        open:'Open',
+        high:'High',
+        low:'Low',
+        close:'Close',
+        volume:'Volume',
+        change:'Change',
+        priceMovement:'Price Movement',
+        snapshot:'Snapshot',
     },
 
 

@@ -3,7 +3,7 @@ import Loading from '../../Loading/Loading'
 import Presenter from './Presenter'
 import NewsCard from './ViewModel/NewsCard'
 import NewsStripCard from './ViewModel/NewsStripCard'
-import {id} from '../../../Values/Constants'
+import {string, id} from '../../../Values/Constants'
 
 class HomeNews extends Component{
     constructor(props){
@@ -25,7 +25,11 @@ class HomeNews extends Component{
             newsList=this.state.newsList.map((item,index)=><NewsStripCard key={index} details={item}/>)
         }
         if(newsList.length>0){
-            return(<div className='flex-container'>{newsList}</div>)
+            return(
+            <div className='home-news-container'>
+               <div className='title-tag-independent'>{string.headlines}</div>
+                {newsList}
+            </div>)
         }
         return(<div className='padding-container'><Loading data={newsList} isLoading={this.state.isLoading}/></div>)
     }

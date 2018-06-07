@@ -9,11 +9,12 @@
   height: var(--medium-5x-spacing);
 }
 .App-title {
-  display: flex;
-  align-items: center;
+  display: block;
   font-size: 1.025em;
   font-weight: bold;
   color: white;
+  padding-top:8px;
+  padding-bottom:8px;
 }
 
 .App-intro {
@@ -62,23 +63,18 @@
 .navbar-container{
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap-reverse;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .mainnav{
   display: flex;
   list-style:none;
   cursor: pointer;
-  align-items: center;
-  justify-content: center;
   transition:var(--transition);
   font-weight: bold;
 }
-.mainnav:hover{
-  background: var(--primaryColorDarkOverlay);
-  transition:var(--transition);
-}
+
 .title-toolbar{
   display: flex;
   flex-direction: row;
@@ -239,9 +235,7 @@ input[type=number]::-webkit-outer-spin-button {
   font-size: var(--small-text);
 }
 .main-navbar-container{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  display: block;
   padding-left: 8%;
   padding-right: 8%;
   background: var(--primaryColor);
@@ -306,6 +300,15 @@ Link{
 }
 .right-panel{
   flex:1;
+}
+
+.portfolio-container{
+  margin-left:0px;
+  margin-right:0px;
+}
+.home-container{
+  margin-left:0px;
+  margin-right:0px;
 }
 .home-left-panel{
   flex:1;
@@ -559,7 +562,7 @@ Link{
   padding-right: 12px;
 }
 .padding-container{
-  padding:12px;
+  padding:8px;
 }
 
 
@@ -572,7 +575,8 @@ Link{
   padding-left: 16px;
   padding-right: 16px;
   text-align: center;
-  margin:4px;
+  margin-top:4px;
+  margin-bottom:4px;
   font-size: 0.85em;
   font-weight: bold;
 }
@@ -596,4 +600,23 @@ Link{
 .margin-top{
   margin-top: 8px;
   margin-bottom: 8px;
+}
+
+.feed-snapshot-container{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-size: 1.2em;
+}
+.feed-snapshot-left{
+  flex: 1;
+  text-align: start;
+  flex-basis: 50%;
+}
+.feed-snapshot-right{
+  flex: 1;
+  text-align: end;
+  flex-basis: 50%;
+  font-weight: bold;
 }

@@ -33,12 +33,10 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className='App'>
-          <div ref={navbar=>this.navbar=navbar}>
-            <div className='main-navbar-container'>
-              <span className='App-title padding-horizontal-container'><Link to={`/${string.navbar.url.home}`} style={{textDecoration:'none', color:'white'}}>{string.projectName}</Link></span>
-              <Navbar setNavbarTab={this.setNavbarTab}/>
-            </div>
+        <div className='App' style={{height:'100%'}} >
+          <div className='main-navbar-container' ref={navbar=>this.navbar=navbar}>
+            {/* <div className='App-title'><Link to={`/${string.navbar.url.home}`} style={{textDecoration:'none', color:'white'}}>{string.projectName}</Link></div> */}
+            <Navbar setNavbarTab={this.setNavbarTab}/>
           </div>
           <div className={'main-body'}>
             <Switch>

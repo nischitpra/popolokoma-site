@@ -92,7 +92,7 @@ class CoinList extends Component{
         if(data==undefined){ data=[]}
         const loader=this.state.isLoading?<div><Loading data={[]} isLoading={this.state.isLoading}/></div>:''
         return(
-        <div>
+        <div className='portfolio-container'>
             <div>
                 <div className={'toolbar navbar-container  favourites-toolbar-margin'}>
                     {exchageFromList}
