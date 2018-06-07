@@ -7,15 +7,8 @@ class Presenter{
     }
 
     setTweets(tweets){
-        // var dataList=this.script.state.data
-        // var list=[]
-        // data=data.map(item=>{
-            // list.push(item) 
-        // })
-
-        // dataList=dataList.concat(list)
+        if(this.script!=undefined)
         this.script.setState({
-            // data:dataList
             data:tweets
         })
     }
@@ -35,11 +28,13 @@ class Presenter{
         this.interactor.getGoodBadTweets(count)
     }
     stopLoading(){
+        if(this.script!=undefined)
         this.script.setState({
             isLoading:false,
         })
     }
     setGoodBadTweets(data){
+        if(this.script!=undefined)
         this.script.setState({
             data:data
         })

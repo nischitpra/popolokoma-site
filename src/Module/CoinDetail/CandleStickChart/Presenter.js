@@ -7,20 +7,25 @@ class Presenter {
         this.script=script
     }
     init(from,to,exchange,refreshRate){
-        clearInterval(this.script.state.interval)
-        this.script.setState({
-            interval:setInterval(()=>this.fetchNewInterval(from,to),refreshRate),
-            enableTrendLine: false,
-            trends_1: this.getLine(from,to),
-        }) 
-        this.fetchNewInterval(from,to)
+        if(this.script!=undefined){
+            clearInterval(this.script.state.interval)
+            this.script.setState({
+                interval:setInterval(()=>this.fetchNewInterval(from,to),refreshRate),
+                enableTrendLine: false,
+                trends_1: this.getLine(from,to),
+            }) 
+            this.fetchNewInterval(from,to)
+        }
     }
+    
+
     getSnapshot(from,to){
         this.interactor.getSnapshot(from,to)
     }
 
     fetchNewInterval(from,to){
-        console.log(`fetch new interval`)
+        if(this.script==undefined) return
+
         const type=this.getHistoryType();
         var fromTime=this.getStartTimeHistory(new Date().getTime(),500)
         if(type===id.binance.candle_interval._1m){
@@ -30,15 +35,15 @@ class Presenter {
         }else{
             fromTime = this.script.state.historyDay.length>0?this.script.state.historyDay[this.script.state.historyDay.length-1][id.binance.id]:fromTime
         }
-        console.log(`from time: ${fromTime}`)
         this.fetchCandleStick(from,to,fromTime+1,new Date().getTime(),true)
         this.getSnapshot(from,to)
     }
 
     fetchCandleStick(from,to,fromTime,toTime,isNew){
+        if(this.script==undefined) return
+        
         if(!this.script.state.loadmoreLock){
             this.lockLoadMore()
-            console.log('fetching candle stick data')
             this.interactor.fetchCandleStick(from,to,this.getHistoryType(),fromTime,toTime,isNew)
         }else{
             console.log('download more has been locked. waiting for previous request to complete.')
@@ -46,6 +51,8 @@ class Presenter {
     }
 
     loadCandleStick(type,data,isNew){
+        if(this.script==undefined) return
+        
         this.unlockLoadMore()
         if(data===undefined || data===null || data.length<1){
             console.log(`candle stick downloaded is null `)
@@ -55,7 +62,6 @@ class Presenter {
             console.log(`Not Array: ${data}`)
             return 
         }
-        console.log(JSON.stringify(data))
         var prevData=[]
         if(type===id.binance.candle_interval._1m){ prevData = this.script.state.historyMinute }
         else if(type===id.binance.candle_interval._1h){ prevData = this.script.state.historyHour }
@@ -71,14 +77,17 @@ class Presenter {
         }
 
         if(type===id.binance.candle_interval._1m){
+            if(this.script!=undefined)
             this.script.setState({
                 historyMinute:data,
             })
         }else if(type===id.binance.candle_interval._1h){
+            if(this.script!=undefined)
             this.script.setState({
                 historyHour:data,
             })
         }else{
+            if(this.script!=undefined)
             this.script.setState({
                 historyDay:data,
             })
@@ -98,19 +107,21 @@ class Presenter {
                 [id.snapshot.priceChangePercent]:data[id.snapshot.priceChangePercent],
             }
         }
-        console.log(JSON.stringify(_value))
         
+        if(this.script!=undefined)
         this.script.setState({
             snapshot:_value
         })
     }
 
     lockLoadMore(){
+        if(this.script!=undefined)
         this.script.setState({
             loadmoreLock:true,
         })
     }
     unlockLoadMore(){
+        if(this.script!=undefined)
         this.script.setState({
             loadmoreLock:false,
         })
@@ -153,11 +164,13 @@ class Presenter {
         return this.interactor.getLine(from,to)
     }
     startLoading(){
+        if(this.script!=undefined)
         this.script.setState({
             isLoading:false,
         })
     }
     stopLoading(){
+        if(this.script!=undefined)
         this.script.setState({
             isLoading:false,
         })
@@ -169,16 +182,20 @@ class Presenter {
     }
 
     startExportLoading(){
+        if(this.script!=undefined)
         this.script.setState({
             exportLoading:true,
         })
     }
     stopExportLoading(){
+        if(this.script!=undefined)
         this.script.setState({
             exportLoading:false,
         })
     }
     getHistoryType(){
+        if(this.script==undefined) return
+        
         const type=this.getToolbar().historyType[`${this.script.props.from}_${this.script.props.to}`]
         if(type===undefined|| type===null){
             return id.binance.candle_interval._1h

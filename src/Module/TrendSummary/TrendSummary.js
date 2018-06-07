@@ -39,6 +39,9 @@ class TrendSummary extends Component{
         this.presenter.getTrendData(this.props.from,this.props.to)
       }
   }
+  componentWillUnmount(){
+      this.presenter.script=undefined
+  }
   bound(value){
       return ((this.state.max-this.state.min)/(this.state.max_vola-this.state.min_vola))*(value-this.state.min_vola)+this.state.min
   }

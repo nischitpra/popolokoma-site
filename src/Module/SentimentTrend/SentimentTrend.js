@@ -26,6 +26,9 @@ class SentimentTrend extends Component{
     componentDidMount(){
         this.presenter.fetchSentimentTrend()
     }
+    componentWillUnmount(){
+        this.presenter.script=undefined
+    }
 
     render(){
         var data=this.state.sentimentData
@@ -33,9 +36,11 @@ class SentimentTrend extends Component{
             var yExtent=[]
             yExtent.push(d => [d.high, d.low])
             const xAccessor = (d) => {
-                return new Date(parseInt(d.time))
+                if(d!=undefined)return new Date(parseInt(d.time)) 
+                else
+                return new Date() 
             }
-            const xExtents = [ xAccessor(last(data)), xAccessor(data[data.length-96]) ]
+            const xExtents = [ xAccessor(last(data)), xAccessor(data[0]) ]
             const height=this.props.chartWidth*value.chartHeightRatio
             const width=this.props.chartWidth
             return(

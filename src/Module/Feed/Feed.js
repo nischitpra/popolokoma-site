@@ -25,6 +25,9 @@ class Feed extends Component{
     componentDidMount(){
         this.props.setNavbarTab(string.navbar.url.feed)
     }
+     componentWillUnmount(){
+         this.presenter.script=undefined
+     }
 
     processChange(index,slide,context){
         const pos=context.state.position

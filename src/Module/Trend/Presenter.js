@@ -6,7 +6,6 @@ class Presenter{
     interactor=new Interactor(this)
     constructor(script){
         this.script=script
-        // this.format=timeFormat("%_I:%M %p, %_d %b")
         this.format=timeFormat("%_I:%M %p")
     }
     getTrendData(_id){
@@ -38,16 +37,19 @@ class Presenter{
             data[i]['velocity']=data[i]['velocity']
         }
         
+        if(this.script!=undefined)
         this.script.setState({
             data:this.script.state.data.concat(data)
         })
     }
     startLoading(){
+        if(this.script!=undefined)
         this.script.setState({
             isLoading:true,
         })
     }
     stopLoading(){
+        if(this.script!=undefined)
         this.script.setState({
             isLoading:false,
         })

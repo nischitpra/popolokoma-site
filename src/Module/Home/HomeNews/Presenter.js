@@ -9,15 +9,18 @@ class Presenter{
         this.interactor.getNews(type,count,page)
     }
     setNews(newsList){
-        this.script.setState({
-            newsList:newsList,
-        })
-        console.log('home news set')
+        if(this.script!=undefined){
+            this.script.setState({
+                newsList:newsList,
+            })
+        }
     }
     stopLoading(){
-        this.script.setState({
-            isLoading:false,
-        })
+        if(this.script!=undefined){
+            this.script.setState({
+                isLoading:false,
+            })
+        }
     }
 }
 

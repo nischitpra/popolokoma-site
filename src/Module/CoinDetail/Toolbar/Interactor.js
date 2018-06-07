@@ -107,7 +107,6 @@ class Interactor{
                             callback(email)
                         }
                     }else{
-                        console.log('some error')
                         alert(json[id.message])
                     }
                 })
@@ -132,10 +131,8 @@ class Interactor{
                         alert(json[id.message])
                         if(callback!==undefined){
                             callback(true)
-                            console.log('callback')
                         }
                     }else{
-                        console.log('some error')
                         alert(json[id.message])
                         if(callback!==undefined){
                             callback(false)
@@ -164,7 +161,6 @@ class Interactor{
                     if(json[id.status]===value.status.ok){
                         this.presenter.refreshPage()
                     }else{
-                        console.log('some error')
                         alert(json[id.message])
                     }
                 })

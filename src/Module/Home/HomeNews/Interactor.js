@@ -6,7 +6,6 @@ class Interactor{
     }
 
     getNews(type,count,page){
-        console.log('getting home news')
         fetch(url.api.news(type,count,page),{
             method: 'GET',
 			headers: {

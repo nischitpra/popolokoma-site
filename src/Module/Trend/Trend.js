@@ -27,6 +27,7 @@ class Trend extends Component{
         this.presenter.getTrendData(this.state.tab)
     }
     componentWillUnmount(){
+        this.presenter.script=undefined
     }
     loadPage(from,to){
         this.setState({
@@ -38,7 +39,6 @@ class Trend extends Component{
             data:[],
             tab:_id,
         },this.presenter.getTrendData(_id))
-        console.log(`switchtab: ${_id}`)
     }
 
     render() {

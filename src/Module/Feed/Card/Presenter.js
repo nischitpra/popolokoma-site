@@ -10,16 +10,19 @@ class Presenter{
     }
 
     loadSentiment(data){
+        if(this.script!=undefined)
         this.script.setState({
             sentimentData:data
         })
     }
     startLoading(){
+        if(this.script!=undefined)
         this.script.setState({
             isLoading:true,
         })
     }
     stopLoading(){
+        if(this.script!=undefined)
         this.script.setState({
             isLoading:false,
         })
@@ -32,6 +35,7 @@ class Presenter{
         this.interactor.getSnapshot(from,to)
     }   
     setSnapshot(data){
+        if(this.script!=undefined)
         this.script.setState({
             snapshot:data,
         })

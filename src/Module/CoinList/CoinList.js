@@ -37,6 +37,7 @@ class CoinList extends Component{
     }
     componentWillUnmount(){
         clearInterval(this.state.interval)
+        this.presenter.script=undefined
     }
     selectItem(key,from,to){
         var selectedCoinList=this.state.selectedCoinList

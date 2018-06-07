@@ -24,6 +24,9 @@ class Toolbar extends Component{
     componentWillReceiveProps(){
         this.presenter.getIsSubscribed(this.presenter.getEmail(),this.props.from,this.props.to)
     }
+    componentWillUnmount(){
+        this.presenter.script=undefined
+    }
     getHistoryType(){
         const type=this.state.toolbar.historyType[`${this.props.from}_${this.props.to}`]
         if(type===undefined|| type===null){
@@ -117,10 +120,8 @@ class Toolbar extends Component{
 
     subscribeButtonClick(){
         if(this.state.isSubscribed){
-            console.log('unsubs button click')
             this.presenter.unsubscribe(this.presenter.getEmail(),this.props.from,this.props.to)
         }else{
-            console.log('subs button click')
             this.setState({openSubscribeForm:true})
         }
     }

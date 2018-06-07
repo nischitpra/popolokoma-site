@@ -83,6 +83,7 @@ class Presenter{
         this.interactor.getIsSubscribed(email,from,to)
     }
     setIsSubscribed(value){
+        if(this.script!=undefined)
         this.script.setState({
             isSubscribed:value,
         })

@@ -102,6 +102,7 @@ class CandleStickChart extends Component{
     componentWillUnmount(){
         document.title=string.projectName
         clearInterval(this.state.interval)
+        this.presenter.script=undefined
     }
     getInteractiveNodes() {
         return this.interactiveNodes
@@ -138,7 +139,6 @@ class CandleStickChart extends Component{
         this.props.resetLineTool()
     }
     drawTrendLine(){
-        console.log("draw trend line")
         this.setState({
             enableTrendLine: true
         })
@@ -425,7 +425,6 @@ class CandleStickChart extends Component{
                 : <div className={'snapshot'}>{string.snapshot(this.state.snapshot[id.snapshot.priceChange],this.state.snapshot[id.snapshot.openPrice],this.state.snapshot[id.snapshot.highPrice],this.state.snapshot[id.snapshot.lowPrice],this.state.snapshot[id.snapshot.volume],this.state.snapshot[id.snapshot.priceChangePercent])}</div>
             
             return(<div >
-                    {snapshot}
                     <div className={'candle-stick-container chart'}>
                         <div className='title-tag'>{string.cc.priceMovement}</div>
                         <ChartCanvas 
@@ -456,6 +455,7 @@ class CandleStickChart extends Component{
                             {drawingSelector}
                         </ChartCanvas>
                     </div>
+                    {snapshot}
                 </div>)
         }
         return(<div><Loading data={data} isLoading={this.state.isLoading}/></div>)

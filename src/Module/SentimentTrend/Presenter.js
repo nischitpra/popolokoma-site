@@ -10,15 +10,19 @@ class Presenter{
     }
 
     loadSentiment(data){
-        this.script.setState({
-            sentimentData:data
-        })
+        if(this.script!=undefined){
+            this.script.setState({
+                sentimentData:data
+            })
+        }
     }
 
     stopLoading(){
-        this.script.setState({
-            isLoading:false,
-        })
+        if(this.script!=undefined){
+            this.script.setState({
+                isLoading:false,
+            })
+        }
     }
     
 }

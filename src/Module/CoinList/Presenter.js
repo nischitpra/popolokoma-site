@@ -8,6 +8,7 @@ class Presenter{
     }
     init(refreshRate){
         this.fetchNewInterval()
+        if(this.script!=undefined)
         this.script.setState({
             interval:setInterval(()=>this.fetchNewInterval(),refreshRate),
         }) 
@@ -19,35 +20,41 @@ class Presenter{
     getSnapshot(){
         var fav=this.getFavouritesDetailList()
         for(var i in fav){
-            console.log(`${fav[i][id.coinList.from]},${fav[i][id.coinList.to]}`)
             this.interactor.getSnapshot(fav[i][id.coinList.from],fav[i][id.coinList.to])
         }
     }
     setSnapshot(data){
-        var coinList=this.script.state.coinList
-        if(coinList[string.mine].length>0){
-            const name_list=coinList[string.mine].map(row=>row[id.snapshot.symbol])
-            const i=name_list.indexOf(data[id.snapshot.symbol])
-            if(i>-1){
-                coinList[string.mine][i]=data
+        if(this.script!=undefined){
+            var coinList=this.script.state.coinList
+            if(coinList[string.mine].length>0){
+                const name_list=coinList[string.mine].map(row=>row[id.snapshot.symbol])
+                const i=name_list.indexOf(data[id.snapshot.symbol])
+                if(i>-1){
+                    coinList[string.mine][i]=data
+                }else{
+                    coinList[string.mine].push(data)
+                }
             }else{
                 coinList[string.mine].push(data)
             }
-        }else{
-            coinList[string.mine].push(data)
+            if(this.script!=undefined)
+            this.script.setState({
+                coinList:coinList,
+            })
         }
-        this.script.setState({
-            coinList:coinList,
-        })
+        
     }
     getCoinList(){
         this.interactor.getCoinList()
     }
     setCoinList(coinList){
+        if(this.script==undefined) return
+
         var btc=[]
         var bnb=[]
         var eth=[]
         var usdt=[]
+        
         const mine=this.script.state.coinList[string.mine]
 
         for(var i in coinList){
@@ -73,6 +80,7 @@ class Presenter{
             [string.bnb]:bnb,
             [string.usdt]:usdt,
         }
+        if(this.script!=undefined)
         this.script.setState({
             coinList:coinList,
         })
@@ -90,6 +98,7 @@ class Presenter{
         this.interactor.setFavouritesDetailList(coinDetailList)
     }
     stopLoading(){
+        if(this.script!=undefined)
         this.script.setState({
             isLoading:false,
         })

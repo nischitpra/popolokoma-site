@@ -30,12 +30,14 @@ class Presenter{
                 min=data[id.trendSummary.volatility][i][id.trendSummary.volatility]
             }
         }
-        this.script.setState({
-            trend:data[id.trendSummary.trend],
-            volatility:data[id.trendSummary.volatility],
-            min_vola:min,
-            max_vola:1,
-        })
+        if(this.script!=undefined){
+            this.script.setState({
+                trend:data[id.trendSummary.trend],
+                volatility:data[id.trendSummary.volatility],
+                min_vola:min,
+                max_vola:1,
+            })
+        }
     }
     setPriceData(data){
         var max=0
@@ -55,21 +57,27 @@ class Presenter{
                 min=data[i][id.low]
             }
         }
-        this.script.setState({
-            data:data,
-            min:min,
-            max:1,
-        })
+        if(this.script!=undefined){
+            this.script.setState({
+                data:data,
+                min:min,
+                max:1,
+            })
+        }
     }
     startLoading(){
-        this.script.setState({
-            isLoading:true,
-        })
+        if(this.script!=undefined){
+            this.script.setState({
+                isLoading:true,
+            })
+        }
     }
     stopLoading(){
-        this.script.setState({
-            isLoading:false,
-        })
+        if(this.script!=undefined){
+            this.script.setState({
+                isLoading:false,
+            })
+        }
     }
 }
 export default Presenter

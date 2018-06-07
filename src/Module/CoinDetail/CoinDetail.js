@@ -32,6 +32,7 @@ class CoinDetail extends Component{
     }
     componentWillUnmount(){
         window.removeEventListener("resize", this.setChartWidth);
+        this.presenter.script=undefined
     }
     setChartWidth(){
       var sentiWidth=(this.sentiContainer.clientWidth)
@@ -62,10 +63,8 @@ class CoinDetail extends Component{
         })
     }
     componentWillUpdate(){
-        console.log('coin detail: handleTrendLineId: '+this.state.handleTrendLineId)
     }
     render(){
-        console.log('render id: '+this.state.handleTrendLineId)
         return(
             <div className='coindetail-container'>
                 <Toolbar from={this.state.from} to={this.state.to} refreshPage={this.refreshPage} handleTrendLine={this.handleTrendLine} handleTrendLineId={this.state.handleTrendLineId}/>
@@ -76,7 +75,7 @@ class CoinDetail extends Component{
                 <div ref={forecastContainer=>this.forecastContainer=forecastContainer}><ForecastTrend from={this.state.from} to={this.state.to} type={this.state.type} exchange={this.state.exchange} chartWidth={this.state.forecast_chartWidth}/></div>
                 <div ref={sentiContainer=>this.sentiContainer=sentiContainer}><SentimentTrend chartWidth={this.state.sentiment_chartWidth}/></div>
                 <div ref={trendContainer=>this.trendContainer=trendContainer}><TrendSummary from={this.state.from} to={this.state.to} chartWidth={this.state.trendsummary_chartWidth}/></div>
-                <Twitter count={7}/>
+                <div style={{marginTop:12,marginBottom:4}}><Twitter count={7}/></div>
             </div>
         )
     }

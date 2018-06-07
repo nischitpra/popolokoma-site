@@ -25,6 +25,7 @@ class App extends Component {
     document.title=string.projectName
   }
   componentWillUnmount(){
+    this.presenter.script=undefined
   }
   setNavbarTab(tab){
     this.presenter.setNavbarTab({currentTab:tab})
@@ -34,6 +35,7 @@ class App extends Component {
     return (
       <Router>
         <div className='App' style={{height:'100%'}} >
+          <div className='background'/>
           <div className='main-navbar-container' ref={navbar=>this.navbar=navbar}>
             {/* <div className='App-title'><Link to={`/${string.navbar.url.home}`} style={{textDecoration:'none', color:'white'}}>{string.projectName}</Link></div> */}
             <Navbar setNavbarTab={this.setNavbarTab}/>

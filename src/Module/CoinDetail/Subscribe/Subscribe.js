@@ -13,6 +13,8 @@ class Subscribe extends Component{
         this.submit=this.submit.bind(this)
         this.setEmailSubscription=this.setEmailSubscription.bind(this)
     }
+    componentWillUnmount(){
+    }
     changeValue(key,evt){
         this.setState({
             [key]:evt.target.value

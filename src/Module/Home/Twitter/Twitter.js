@@ -19,9 +19,10 @@ class Twitter extends Component{
             this.presenter.getGoodBadTweets(this.props.count)
         }
     }
-
+    componentWillUnmount(){
+        this.presenter.script=undefined
+    }
     render(){
-        console.log(`twitter data: ${this.state.data}`)
         const list=this.state.data.map((tweet,index)=><TweetBlock key={index} data={tweet}/>)
         if(list.length>0){
             return(

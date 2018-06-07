@@ -74,7 +74,6 @@ class Interactor{
             this.presenter.unlockLoadMore()
             this.presenter.stopLoading()
             console.log(`error: ${JSON.stringify(error)}`)
-            console.log(`retrying to reload data for chart... `)
         })
     }
     fetchTradingPrice(historyType,from,to,exchange){
@@ -94,7 +93,6 @@ class Interactor{
         }).catch((error)=>{
             this.presenter.stopLoading()
             console.log(`error: ${JSON.stringify(error)}`)
-            console.log(`retrying to reload data for chart... `)
         })
     }
     fetchOlderTradingPrice(historyType,from,to,exchange,toTime){
@@ -113,8 +111,6 @@ class Interactor{
         }).catch((error)=>{
             this.presenter.stopLoading()
             console.log(`error: ${JSON.stringify(error)}`)
-            console.log(`retrying to reload data for chart... `)
-            // this.fetchTradingPrice(historyType,from,to,exchange)
         })
     }
 
@@ -143,7 +139,6 @@ class Interactor{
 
     exportTrendSet(trends,historyKey,datasetKey,callback){
         this.presenter.startExportLoading()
-        console.log('export trend data')
         fetch(url.api.develop.exportTrendDataset,{
 			method: 'POST',
 			headers: {
@@ -160,8 +155,6 @@ class Interactor{
         }).catch((error)=>{
             this.presenter.stopExportLoading()
             console.log(`error: ${JSON.stringify(error)}`)
-            console.log(`retrying to reload data for chart... `)
-            // this.fetchTradingPrice(historyType,from,to,exchange)
         })
     }
 }

@@ -17,6 +17,9 @@ class HomeNews extends Component{
     componentDidMount(){
         this.presenter.getNews(this.props.type, this.props.count,1)
     }
+    componentWillUnmount(){
+        this.presenter.script=undefined
+    }
     render(){
         var newsList=[]
         if(this.props.type===id.news.headlines){

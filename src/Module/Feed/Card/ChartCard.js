@@ -20,7 +20,6 @@ class ChartCard extends Component{
             refresh:false,
             snapshot:null,
             isLoading:false,
-            height: window.innerHeight+20,// height of toolbar
 
         }
         this.presenter= new Presenter(this)
@@ -36,6 +35,7 @@ class ChartCard extends Component{
     }
     componentWillUnmount(){
         window.removeEventListener("resize", this.setChartWidth);
+        this.presenter.script=undefined
     }
     setChartWidth(){
         var trendsummaryWidth=(this.trendSummaryContainer.clientWidth)
@@ -97,42 +97,38 @@ class ChartCard extends Component{
         if(this.state.redirect!=null) return(this.state.redirect)
         
         return(
-            <div className='feed-container' style={{height:this.state.height}} >
-                <div className='feed-content' ref={container=>this.trendSummaryContainer=container}>
-                    {this.state.isLoading?<Loading/>:''}
-                    <div className='title-tag-independent'>{this.state.from}:{this.state.to}</div>
-                    <TrendSummary ref={obj=>this.trendSummary=obj} from={this.state.from} to={this.state.to} chartWidth={this.state.trendSummaryWidth} overrideInit={true}/>
-                    {this.state.snapshot!=null?
-                        <div className='feed-snapshot-main-container'>
-                            <div className='title-tag'>{string.cc.snapshot}</div>
-                            <div className='feed-snapshot-container'>
-                                <div className='feed-snapshot-left'>{string.cc.change}</div>
-                                <div className={`feed-snapshot-right ${this.state.snapshot[id.snapshot.priceChange]>0?'green-text':this.state.snapshot[id.snapshot.priceChange]<0?'red-text':''}`}>{this.state.snapshot[id.snapshot.priceChange]} ({parseFloat(this.state.snapshot[id.snapshot.priceChangePercent]).toFixed(2)}%)</div>
-                                
-                                <div className='feed-snapshot-left'>{string.cc.open}</div>
-                                <div className='feed-snapshot-right'>{this.state.snapshot[id.snapshot.openPrice]}</div>
+            <div className='feed-content' ref={container=>this.trendSummaryContainer=container}>
+                {this.state.isLoading?<Loading/>:''}
+                <div className='title-tag-independent'>{this.state.from}:{this.state.to}</div>
+                <TrendSummary ref={obj=>this.trendSummary=obj} from={this.state.from} to={this.state.to} chartWidth={this.state.trendSummaryWidth} overrideInit={true}/>
+                {this.state.snapshot!=null?
+                    <div className='feed-snapshot-main-container'>
+                        <div className='title-tag'>{string.cc.snapshot}</div>
+                        <div className='feed-snapshot-container'>
+                            <div className='feed-snapshot-left'>{string.cc.change}</div>
+                            <div className={`feed-snapshot-right ${this.state.snapshot[id.snapshot.priceChange]>0?'green-text':this.state.snapshot[id.snapshot.priceChange]<0?'red-text':''}`}>{this.state.snapshot[id.snapshot.priceChange]} ({parseFloat(this.state.snapshot[id.snapshot.priceChangePercent]).toFixed(2)}%)</div>
+                            
+                            <div className='feed-snapshot-left'>{string.cc.open}</div>
+                            <div className='feed-snapshot-right'>{this.state.snapshot[id.snapshot.openPrice]}</div>
 
-                                <div className='feed-snapshot-left'>{string.cc.high}</div>
-                                <div className='feed-snapshot-right'>{this.state.snapshot[id.snapshot.highPrice]}</div>
+                            <div className='feed-snapshot-left'>{string.cc.high}</div>
+                            <div className='feed-snapshot-right'>{this.state.snapshot[id.snapshot.highPrice]}</div>
 
-                                <div className='feed-snapshot-left'>{string.cc.low}</div>
-                                <div className='feed-snapshot-right'>{this.state.snapshot[id.snapshot.lowPrice]}</div>
+                            <div className='feed-snapshot-left'>{string.cc.low}</div>
+                            <div className='feed-snapshot-right'>{this.state.snapshot[id.snapshot.lowPrice]}</div>
 
-                                <div className='feed-snapshot-left'>{string.cc.close}</div>
-                                <div className='feed-snapshot-right'>{this.state.snapshot[id.snapshot.prevClosePrice]}</div>
+                            <div className='feed-snapshot-left'>{string.cc.close}</div>
+                            <div className='feed-snapshot-right'>{this.state.snapshot[id.snapshot.prevClosePrice]}</div>
 
-                                <div className='feed-snapshot-left'>{string.cc.volume}</div>
-                                <div className='feed-snapshot-right'>{parseFloat(this.state.snapshot[id.snapshot.volume]).toFixed(2)}</div>
-                            </div>
+                            <div className='feed-snapshot-left'>{string.cc.volume}</div>
+                            <div className='feed-snapshot-right'>{parseFloat(this.state.snapshot[id.snapshot.volume]).toFixed(2)}</div>
                         </div>
-                        :''}
-                </div>
-                <div className='feed-bottom-bar'>
-                    <div className='feed-bottom-bar-container'>
-                        <img src={'/icons/chart.svg'} className="icon-btn flex" onClick={()=>{this.viewChart()}}/>
-                        <img src={'/icons/exchange.svg'} className="icon-btn flex" onClick={()=>{this.openTradeApp()}}/>
-                        <img src={this.isFavourite()?'/icons/star_active.svg':'/icons/star.svg'} className='icon-btn flex' onClick={()=>{this.handleFavourites()}}/>
                     </div>
+                    :''}
+                <div className='feed-bottom-bar-container'>
+                    <img src={'/icons/chart.svg'} className="icon-btn flex" onClick={()=>{this.viewChart()}}/>
+                    <img src={'/icons/exchange.svg'} className="icon-btn flex" onClick={()=>{this.openTradeApp()}}/>
+                    <img src={this.isFavourite()?'/icons/star_active.svg':'/icons/star.svg'} className='icon-btn flex' onClick={()=>{this.handleFavourites()}}/>
                 </div>
             </div>
         )
