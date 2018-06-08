@@ -7,6 +7,7 @@ import { YAxis } from "react-stockcharts/lib/axes"
 import { MouseCoordinateY } from "react-stockcharts/lib/coordinates"
 import { StochasticTooltip } from "react-stockcharts/lib/tooltip"
 import Presenter from './Presenter'
+import { value } from '../../../../Values/Constants';
 
 const stoAppearance = {
 	stroke: Object.assign({},
@@ -40,8 +41,8 @@ class StochasticOscillator{
         return(<Chart id={y} yExtents={d => d.sto}
             height={this.chartSize}
             origin={(w, h) => [0, y]}>
-                <YAxis axisAt="right" orient="right" ticks={3} tickFormat={format(".2s")}/>
-                <MouseCoordinateY at="right" orient="right" displayFormat={format(".2s")} />
+                {!value.isMobile?<YAxis axisAt="right" orient="right" ticks={3} tickFormat={format(".2s")}/>:''}
+                {!value.isMobile?<MouseCoordinateY at="right" orient="right" displayFormat={format(".2s")} />:''}
                 <StochasticSeries yAccessor={d => d.sto} {...stoAppearance}/>
                 <StochasticTooltip origin={[0, 0]} yAccessor={d => d.sto} options={this.formulaList[0].options()} appearance={stoAppearance} label="STO" />
             </Chart>                                

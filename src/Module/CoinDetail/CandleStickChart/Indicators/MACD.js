@@ -7,6 +7,7 @@ import { YAxis } from "react-stockcharts/lib/axes"
 import { MouseCoordinateY } from "react-stockcharts/lib/coordinates"
 import { MACDTooltip } from "react-stockcharts/lib/tooltip"
 import Presenter from './Presenter'
+import { value } from '../../../../Values/Constants';
 
 const color =require("../../../../Values/Color").Color
 
@@ -50,8 +51,8 @@ class MACD{
         return(<Chart id={y} yExtents={d => d.macd}
             height={this.chartSize}
             origin={(w, h) => [0, y]}>
-                <YAxis axisAt="right" orient="right" ticks={3} tickFormat={format(".2s")}/>
-                <MouseCoordinateY at="right" orient="right" displayFormat={format(".2s")} />
+                {!value.isMobile?<YAxis axisAt="right" orient="right" ticks={3} tickFormat={format(".2s")}/>:''}
+                {!value.isMobile?<MouseCoordinateY at="right" orient="right" displayFormat={format(".2s")} />:''}
                 <MACDSeries yAccessor={d => d.macd} {...macdAppearance}/>
                 <MACDTooltip origin={[0, 0]} yAccessor={d => d.macd} displayFormat={format(".2s")} options={this.formulaList[0].options()} 
                 appearance={macdAppearance}/>

@@ -357,7 +357,7 @@ Link{
 .news-card{
   display: inline-block;
   flex:1;
-  min-width: 300px;
+  min-width: 30%;
   background: white;
   transition: var(--transition);
   margin:4px;
@@ -710,6 +710,9 @@ Link{
   /* border-width: 2px;
   border-color: var(--black);
   border-style: solid; */
+}
+.feed-item-pagination{
+  text-align: center;
 }
 
 .candle-stick-container{

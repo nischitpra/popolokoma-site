@@ -7,6 +7,7 @@ import { YAxis } from "react-stockcharts/lib/axes"
 import { MouseCoordinateY } from "react-stockcharts/lib/coordinates"
 import { SingleValueTooltip } from "react-stockcharts/lib/tooltip"
 import Presenter from './Presenter'
+import { value } from '../../../../Values/Constants';
 
 class ATR{
     formulaList=[]
@@ -34,8 +35,8 @@ class ATR{
         return(<Chart id={y} yExtents={d => d.atr}
             height={this.chartSize}
             origin={(w, h) => [0, y]}>
-                <YAxis axisAt="right" orient="right" ticks={3} tickFormat={format(".2s")}/>
-                <MouseCoordinateY at="right" orient="right" displayFormat={format(".2s")} />
+                {!value.isMobile?<YAxis axisAt="right" orient="right" ticks={3} tickFormat={format(".2s")}/>:''}
+                {!value.isMobile?<MouseCoordinateY at="right" orient="right" displayFormat={format(".2s")} />:''}
                 <LineSeries yAccessor={d => d.atr} />
                 <SingleValueTooltip origin={[0, 0]} yAccessor={d => d.atr} yLabel={`ATR (${this.formulaList[0].options().windowSize})`} yDisplayFormat={format(".2s")}/>
             </Chart>                                

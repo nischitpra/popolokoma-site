@@ -18,6 +18,8 @@ class Feed extends Component{
         }
         this.processChange=this.processChange.bind(this)
         this.presenter=new Presenter(this)
+        this.prevSlide=this.prevSlide.bind(this)
+        this.nextSlide=this.nextSlide.bind(this)
     }
     componentWillMount(){
         this.presenter.getPairList()
@@ -55,12 +57,18 @@ class Feed extends Component{
         processChange:this.processChange,
         context:this,
     }
+    prevSlide(){
+        this.reactSwipe.prev()
+    }
+    nextSlide(){
+        this.reactSwipe.next()
+    }
 
     render(){
         if(this.state.slides.length>0 && !this.state.isLoading){
             return(
                 <div >
-                    <ReactSwipe swipeOptions={this.swipeOptions}>
+                    <ReactSwipe swipeOptions={this.swipeOptions} ref={reactSwipe => this.reactSwipe = reactSwipe}>
                         {this.state.slides}
                     </ReactSwipe>
                 </div>

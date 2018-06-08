@@ -713,7 +713,9 @@ Link{
   border-color: var(--black);
   border-style: solid; */
 }
-
+.feed-item-pagination{
+  text-align: center;
+}
 .candle-stick-container{
   margin-top: 12px;
   margin-bottom: 12px;

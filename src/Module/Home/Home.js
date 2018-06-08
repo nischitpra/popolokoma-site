@@ -45,7 +45,7 @@ class Home extends Component{
           <div ref={forecastContainer=>this.forecastContainer=forecastContainer}>
             {/* <ForecastTrend from={this.state.from} to={this.state.to} type={this.state.type} exchange={this.state.exchange} chartWidth={this.state.forecastWidth}/> */}
           </div>
-          <HomeNews type={id.news.headlines} count={7}/>
+          <HomeNews type={id.news.headlines} count={9}/>
           <Trend/>
           <div ref={sentiContainer=>this.sentiContainer=sentiContainer}>
             <SentimentTrend chartWidth={this.state.sentiWidth}/>

@@ -7,6 +7,7 @@ import { YAxis } from "react-stockcharts/lib/axes"
 import { MouseCoordinateY } from "react-stockcharts/lib/coordinates"
 import { SingleValueTooltip } from "react-stockcharts/lib/tooltip"
 import Presenter from './Presenter'
+import { value } from '../../../../Values/Constants';
 
 class ElderRay{
     formulaList=[]
@@ -38,8 +39,8 @@ class ElderRay{
             height={this.chartSize}
             origin={(w, h) => [0, y]}
             >
-                <YAxis axisAt="right" orient="right" ticks={3} tickFormat={format(".2s")}/>
-                <MouseCoordinateY at="right" orient="right" displayFormat={format(".2s")} />
+                {!value.isMobile?<YAxis axisAt="right" orient="right" ticks={3} tickFormat={format(".2s")}/>:''}
+                {!value.isMobile?<MouseCoordinateY at="right" orient="right" displayFormat={format(".2s")} />:''}
                 <ElderRaySeries yAccessor={d => d.er} />
                 <SingleValueTooltip origin={[0, 0]} yAccessor={d => d.er} yLabel={`Elder Ray (${this.formulaList[0].options().windowSize}) (Bull, Bear)`} 
                 yDisplayFormat={d => `${format(".2s")(d.bullPower)}, ${format(".2s")(d.bearPower)}`} />

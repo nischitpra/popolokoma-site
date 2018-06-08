@@ -129,6 +129,10 @@ class ChartCard extends Component{
                     <img src={'/icons/exchange.svg'} className="icon-btn flex" onClick={()=>{this.openTradeApp()}}/>
                     <img src={this.isFavourite()?'/icons/star_active.svg':'/icons/star.svg'} className='icon-btn flex' onClick={()=>{this.handleFavourites()}}/>
                 </div>
+                <div className='feed-bottom-bar-container' ref={reactSwipe => this.reactSwipe = reactSwipe}>
+                    <div className='feed-item-pagination flex' onClick={()=>this.props.prevSlide()}>Prev</div>
+                    <div className='feed-item-pagination flex' onClick={()=>this.props.nextSlide()}>Next</div>
+                </div>
             </div>
         )
     }
