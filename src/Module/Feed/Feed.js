@@ -66,7 +66,7 @@ class Feed extends Component{
                 </div>
             )
         }else{
-            return(<Loading/>)
+            return(<Loading data={this.state.slides} isLoading={this.state.isLoading}/>)
         }
         
     }

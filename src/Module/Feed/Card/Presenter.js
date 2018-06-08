@@ -30,6 +30,9 @@ class Presenter{
     getFavouritesList(){
         return this.interactor.getFavouritesList()
     }
+    setFavouritesList(list){
+        this.interactor.setFavouritesList(list)
+    }
 
     getSnapshot(from,to){
         this.interactor.getSnapshot(from,to)

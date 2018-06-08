@@ -41,13 +41,13 @@ class App extends Component {
             <Navbar setNavbarTab={this.setNavbarTab}/>
           </div>
           <div className={'main-body'}>
-            <Switch>
-              <Route exact path='/' render={(props)=>(<Home setNavbarTab={this.setNavbarTab}/>)}/>
-              <Route exact path={`/${string.navbar.url.favourites}&f=:coin&t=:tab`} render={(props)=>(<CoinDetail from={props.match.params.coin} to={props.match.params.tab}/>)}/> 
-              <Route exact path='/coinList' render={(props)=>(<CoinList setNavbarTab={this.setNavbarTab}/>)}/>
-              <Route exact path='/feed' render={(props)=>(<Feed setNavbarTab={this.setNavbarTab}/>)}/>
-              <Route path='*' component={NotFound} />
-            </Switch>
+              <Switch>
+                <Route exact path='/' render={(props)=>(<Home setNavbarTab={this.setNavbarTab}/>)}/>
+                <Route exact path={`/${string.navbar.url.favourites}&f=:coin&t=:tab`} render={(props)=>(<CoinDetail from={props.match.params.coin} to={props.match.params.tab}/>)}/> 
+                <Route exact path='/coinList' render={(props)=>(<CoinList setNavbarTab={this.setNavbarTab}/>)}/>
+                <Route exact path='/feed' render={(props)=>(<Feed setNavbarTab={this.setNavbarTab}/>)}/>
+                <Route path='*' component={NotFound} />
+              </Switch>
           </div>
         </div>
       </Router>

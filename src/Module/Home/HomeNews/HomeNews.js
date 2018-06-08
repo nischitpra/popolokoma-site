@@ -29,9 +29,9 @@ class HomeNews extends Component{
         }
         if(newsList.length>0){
             return(
-            <div className='home-news-container'>
-               <div className='title-tag-independent'>{string.headlines}</div>
-                {newsList}
+            <div>
+                <div className='title-tag-independent'>{string.headlines}</div>
+                <div className='home-news-container'>{newsList}</div>
             </div>)
         }
         return(<div className='padding-container'><Loading data={newsList} isLoading={this.state.isLoading}/></div>)

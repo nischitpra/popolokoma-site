@@ -53,7 +53,7 @@ class TrendSummary extends Component{
     if(data.length==0 || trend.length==0 || vola.length==0){
         return (<Loading isLoading={this.state.isLoading}/>)
     }
-    const height=this.props.chartWidth*value.chartHeightRatio
+    const height=Math.min(350,this.props.chartWidth*value.chartHeightRatio)
     const xAccessor = (d) => { return new Date(parseInt(d[id.binance.id])) }
     // const xExtents = [ xAccessor(last(data)), xAccessor(data[data.length-20]) ]
     const xExtents = [ xAccessor(last(data)), xAccessor(data[0]) ]

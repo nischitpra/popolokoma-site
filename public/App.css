@@ -63,8 +63,8 @@
 .main-body{
   margin-top:8px;
   margin-bottom:8px;
-  /* margin-left: 16px; */
-  /* margin-right: 16px; */
+  margin-left: 16%;
+  margin-right: 16%;
 }
 .icon{
   width: var(--big-spacing);
@@ -283,11 +283,11 @@ Link{
 .border.active{
   border: var(--small-2x-spacing) solid var(--black);
 }
-.flex-container-reverse{
-  display: block;
-}
 .flex-container{
-  display: block;
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 .actual-flex-container{
   display: flex;
@@ -306,8 +306,32 @@ Link{
   margin-right:8px;
 }
 .portfolio-container{
-  margin-left:16px;
-  margin-right:16px;
+  margin-left:8px;
+  margin-right:8px;
+  border-radius: 4px;
+  background: white;
+}
+.portfolio-toolbar{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left:16px;
+  padding-right:16px;
+  padding-top:4px;
+  padding-bottom:4px;
+}
+.portfolio-toolbar-item{
+  display: flex;
+  flex:1;
+  color: var(--primaryColor);
+  background: white;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.portfolio-toolbar-item.active{
+  color: var(--primaryAccentColor);
 }
 .home-container{
   margin-left:8px;
@@ -325,17 +349,17 @@ Link{
 
 /* homenews */
 .home-news-container{
-  display:block;
+  display:flex;
+  flex-wrap: wrap-reverse;
+  flex-direction: row;
 }
 .news-card{
   display: inline-block;
   flex:1;
-  min-width: 200px;
+  min-width: 300px;
   background: white;
   transition: var(--transition);
-  padding: 16px;
-  margin-top:2px;
-  margin-bottom:2px;
+  margin:2px;
   border-radius: 4px;
 }
 .news-img{
@@ -570,8 +594,6 @@ Link{
   padding: 13px;
   cursor: pointer;
 }
-.small-left-right-padding{
-}
 .chart{
   background: white;
 }
@@ -721,10 +743,11 @@ Link{
   background: white;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 .trend-toolbar-item.active{
   flex:1;
-  color: var(--accentColor);
+  color: var(--primaryAccentColor);
   background: white;
 }
 
@@ -743,3 +766,6 @@ Link{
   margin-top: 12px;
   margin-bottom: 12px;
 }
+
+
+

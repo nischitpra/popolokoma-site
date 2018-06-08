@@ -33,7 +33,7 @@ class CoinList extends Component{
         this.changeTab=this.changeTab.bind(this)
     }
     componentDidMount(){
-        this.presenter.init(1000*10)
+        this.presenter.init(1000*60*5)
     }
     componentWillUnmount(){
         clearInterval(this.state.interval)
@@ -87,7 +87,7 @@ class CoinList extends Component{
         ]
         const showEmptyMessage=this.presenter.getFavouritesList().length==0?string.favourites.isEmpty:''
         const exchageFromList=array.ExchangeFromList.map(
-			(item,index)=><span key={index} className={this.state.currentTab===item?'active nav-tool':'nav-tool'} onClick={()=>this.changeTab(item)}>{item}</span>
+			(item,index)=><span key={index} className={this.state.currentTab===item?'active portfolio-toolbar-item':'portfolio-toolbar-item'} onClick={()=>this.changeTab(item)}>{item}</span>
 		)
         var data=this.state.coinList[this.state.currentTab]
         if(data==undefined){ data=[]}
@@ -95,11 +95,11 @@ class CoinList extends Component{
         return(
         <div className='portfolio-container'>
             <div>
-                <div className={'toolbar navbar-container  favourites-toolbar-margin'}>
+                <div className={'portfolio-toolbar'}>
                     {exchageFromList}
                 </div>
             </div>
-            <div className='padding-container margin-top'>
+            <div className=''>
                 {loader}
                 <ReactTable data={data} columns={column} pageSize={data.length>100?100:data.length} className="-striped -highlight" 
                 showPageSizeOptions={false}

@@ -399,7 +399,7 @@ class CandleStickChart extends Component{
             }
 
             var height=value.isMobile?(pipelineHeight.reduce(this.sum)+20):(pipelineHeight.reduce(this.sum)+40)// this 40 is from the margin  10 from upper padding
-            const snapshot = value.isMobile?
+            const snapshot = 
                 <div className='feed-snapshot-main-container'>
                     <div className='title-tag'>{string.cc.snapshot}</div>
                     <div className='feed-snapshot-container'>
@@ -422,7 +422,7 @@ class CandleStickChart extends Component{
                         <div className='feed-snapshot-right'>{parseFloat(this.state.snapshot[id.snapshot.volume]).toFixed(2)}</div>
                     </div>
                 </div>
-                : <div className={'snapshot'}>{string.snapshot(this.state.snapshot[id.snapshot.priceChange],this.state.snapshot[id.snapshot.openPrice],this.state.snapshot[id.snapshot.highPrice],this.state.snapshot[id.snapshot.lowPrice],this.state.snapshot[id.snapshot.volume],this.state.snapshot[id.snapshot.priceChangePercent])}</div>
+                // : <div className={'snapshot'}>{string.snapshot(this.state.snapshot[id.snapshot.priceChange],this.state.snapshot[id.snapshot.openPrice],this.state.snapshot[id.snapshot.highPrice],this.state.snapshot[id.snapshot.lowPrice],this.state.snapshot[id.snapshot.volume],this.state.snapshot[id.snapshot.priceChangePercent])}</div>
             
             return(<div >
                     <div className={'candle-stick-container chart'}>

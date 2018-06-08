@@ -19,7 +19,7 @@ class ChartCard extends Component{
             redirect:null,
             refresh:false,
             snapshot:null,
-            isLoading:false,
+            isLoading:true,
 
         }
         this.presenter= new Presenter(this)
@@ -66,7 +66,6 @@ class ChartCard extends Component{
         }else{
             window.open(url.api.binance.tradePage(id.key.from_to(this.state.from,this.state.to)))
         }
-        console.log('oepntrade')
     }
 
     handleFavourites(){
@@ -98,7 +97,7 @@ class ChartCard extends Component{
         
         return(
             <div className='feed-content' ref={container=>this.trendSummaryContainer=container}>
-                {this.state.isLoading?<Loading/>:''}
+                {this.state.isLoading?<Loading isLoading={this.state.isLoading}/>:''}
                 <div className='title-tag-independent'>{this.state.from}:{this.state.to}</div>
                 <TrendSummary ref={obj=>this.trendSummary=obj} from={this.state.from} to={this.state.to} chartWidth={this.state.trendSummaryWidth} overrideInit={true}/>
                 {this.state.snapshot!=null?

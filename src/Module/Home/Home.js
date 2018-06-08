@@ -19,6 +19,7 @@ class Home extends Component{
     this.setChartWidth=this.setChartWidth.bind(this)
   }
   setChartWidth(){
+    if(this.sentiContainer==null || this.forecastContainer==null || this.sentiContainer==undefined || this.forecastContainer==undefined) return
     var sentiWidth=(this.sentiContainer.clientWidth) // padding 
     var forecastWidth=(this.forecastContainer.clientWidth) //padding
     this.setState({
@@ -40,7 +41,7 @@ class Home extends Component{
 
   render() {
     return (
-      <div className='flex-container home-container'>
+      <div className='home-container'>
           <div ref={forecastContainer=>this.forecastContainer=forecastContainer}>
             {/* <ForecastTrend from={this.state.from} to={this.state.to} type={this.state.type} exchange={this.state.exchange} chartWidth={this.state.forecastWidth}/> */}
           </div>

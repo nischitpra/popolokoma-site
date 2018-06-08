@@ -21,10 +21,11 @@ const macdAppearance = {
 };
 class MACD{
     formulaList=[]
-    chartSize=100
+    chartSize=0
     presenter=new Presenter(this)
-    constructor(){
+    constructor(_chartSize=100){
         this.init()   
+        this.chartSize=_chartSize
     }
     init(){
         const value=this.presenter.getMACDToolbar()
