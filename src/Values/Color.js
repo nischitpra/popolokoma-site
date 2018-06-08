@@ -11,12 +11,19 @@
 // }
 export const Color= {
     transition:'100ms',
-    primaryColorDarkOverlay: '#068881a1',
-    primaryColorDark: '#068881',
-    primaryColor: '#0cb8b0',
-    primaryColorLight: '#14e7dd',
-    accentColor: '#41a3ff',
-    primaryAccentColor: '#255b8d',
+    primaryColorDarkOverlay: '#9E9E9E',
+    primaryColorDark: '#616161',
+    primaryColor: '#212121',
+    primaryColorLight: '#FAFAFA',
+    accentColor: '#EEEEEE',
+    primaryAccentColor: '#616161',
+
+    // primaryColorDarkOverlay: '#068881a1',
+    // primaryColorDark: '#068881',
+    // primaryColor: '#0cb8b0',
+    // primaryColorLight: '#14e7dd',
+    // accentColor: '#41a3ff',
+    // primaryAccentColor: '#255b8d',
 
     lightGray: '#eeeeee',
     green: '#51e064',

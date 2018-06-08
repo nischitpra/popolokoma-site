@@ -11,7 +11,8 @@
   height:150%;
   z-index:-1;
 
-  background: linear-gradient(65deg, #41a3ff, #0cb8b0);
+  /* background: linear-gradient(65deg, var(--accentColor), var(--primaryColor)); */
+  background: linear-gradient(65deg, var(--accentColor), var(--primaryColorLight));
 }
 .App-logo {
   height: var(--medium-5x-spacing);
@@ -359,7 +360,7 @@ Link{
   min-width: 300px;
   background: white;
   transition: var(--transition);
-  margin:2px;
+  margin:4px;
   border-radius: 4px;
 }
 .news-img{

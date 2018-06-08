@@ -19,10 +19,11 @@ class Navbar extends Component{
             paddingBottom:'8px',
             alignItems: 'center',
             textAlign: 'center',
+            color: Color.primaryColorDarkOverlay,
         }
         const active={
             textDecoration:'none', 
-            color: Color.primaryAccentColor,
+            color: Color.accentColor,
             flex:'1',
             paddingLeft:'16px',
             paddingTop:'8px',
