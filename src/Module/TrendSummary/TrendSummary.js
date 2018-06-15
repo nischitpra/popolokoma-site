@@ -3,7 +3,7 @@ import {id,string, value} from '../../Values/Constants'
 import Presenter from './Presenter';
 import Loading from '../Loading/Loading';
 import matchSorter from 'match-sorter'
-import { TrendLine } from "react-stockcharts/lib/interactive"
+import { TrendLine,BTrendLine } from "react-stockcharts/lib/interactive"
 import { format } from "d3-format"
 import { timeFormat } from "d3-time-format"
 import { scaleTime } from "d3-scale"
@@ -14,7 +14,6 @@ import { last, timeIntervalBarWidth } from "react-stockcharts/lib/utils"
 import { OHLCTooltip } from "react-stockcharts/lib/tooltip"
 import { CrossHairCursor, EdgeIndicator, MouseCoordinateX, MouseCoordinateY,} from "react-stockcharts/lib/coordinates"
 import { AreaSeries, CircleMarker, LineSeries } from "react-stockcharts/lib/series";
-
 
 const color =require("../../Values/Color").Color
 
@@ -108,14 +107,14 @@ class TrendSummary extends Component{
                 <Chart id={1} yExtents={d => [this.state.min*0.9975,this.state.max*1.0025]} height={height-25} origin={(w, h) => [0, value.isMobile?25:0]}>
                     <YAxis axisAt={value.isMobile?"left":"right"} orient={value.isMobile?"left":"right"} ticks={4} displayFormat={format(".2f")} />
                     <MouseCoordinateY at={value.isMobile?"left":"right"} orient={value.isMobile?"left":"right"} displayFormat={format(".2f")} />
-                    <TrendLine
+                    <BTrendLine
                         enabled={true}
                         onStart={() => console.log("START")}
                         snap={false}
                         enabled={false}
                         trends={trendList}
                         />
-                    <TrendLine
+                    <BTrendLine
                         enabled={true}
                         onStart={() => console.log("START")}
                         snap={false}
