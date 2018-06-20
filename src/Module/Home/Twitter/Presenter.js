@@ -35,7 +35,13 @@ class Presenter{
             var cluster={}
             var total=0
             var clusterTweets={}
+            var color={}
+            var col=0xf00000
             for(var i in data){
+                if(color[data[i].cluster]==null){
+                    color[data[i].cluster]=`#${col.toString(16)}`
+                    col+=0x00007a
+                }
                 cluster[data[i].cluster]=cluster[data[i].cluster]==null?data[i].frequency:cluster[data[i].cluster]+data[i].frequency
                 total+=data[i].frequency
                 if(clusterTweets[data[i].cluster]==null){
@@ -47,7 +53,9 @@ class Presenter{
                 cluster:Object.values(cluster),
                 total:total,
                 clusterTweets:Object.values(clusterTweets),
+                color:Object.values(color),
             })
+            console.log(Object.values(color))
         }
     }
 

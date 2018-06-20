@@ -15,6 +15,7 @@ class PieChart extends Component{
             height:this.props.Height,
             data:this.props.Data,
             total:this.props.Total,
+            color:this.props.Color,
         }
         this.init=this.init.bind(this)
     }
@@ -35,15 +36,17 @@ class PieChart extends Component{
     updateCanvas() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         const ang=this.state.data
-        var col=0xff0000
         var pTheta=0
-        var theta=pTheta
+        var theta=0
         for(var i=0;i<ang.length;i++){
+            this.ctx.save()
+
             theta+=ang[i]/this.state.total * 2 * Math.PI
-            col+=0x002222
-            const pie=new Pie(this.ctx,{x:this.state.width/2,y:this.state.height/2},pTheta,theta,this.state.width/2,`#${col.toString(16)}`,i)
+            const pie=new Pie(this.ctx,{x:this.state.width/2,y:this.state.height/2},pTheta,theta,this.state.width/2,this.state.color[i],i)
             pie.render(this.state.x,this.state.y)
             pTheta=theta
+
+            this.ctx.restore()
         }
     }
 

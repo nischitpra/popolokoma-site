@@ -11,6 +11,7 @@ class Twitter extends Component{
         this.state={
             cluster:[],
             clusterTweets:[],
+            color:[],
             total:0,
             data:[],
             isLoading:true,
@@ -34,8 +35,8 @@ class Twitter extends Component{
             const list=[]
             for(var idx in this.state.clusterTweets){
                 list.push(
-                    <div className='twitter-cluster-container'>
-                        <div className='twitter-cluster-title' key={`clus_${idx}`}>Cluster - {idx}</div>
+                    <div key={idx} className='twitter-cluster-container'>
+                        <div className='twitter-cluster-title' key={`clus_${idx}`} style={{background:this.state.color[idx], color:this.state.color[idx]}}>Cluster - {idx}</div>
                         {this.state.clusterTweets[idx].map((item,index)=><TweetBlock key={index} data={item}/>)}
                     </div>
                 )
@@ -44,7 +45,7 @@ class Twitter extends Component{
             return (
                 <div className='twitter-container'>
                     <div className='title-tag-independent'>{string.twitter}</div>
-                    <PieChart Width={300} Height={300} Data={this.state.cluster} Total={this.state.total}/>            
+                    <PieChart Width={300} Height={300} Data={this.state.cluster} Total={this.state.total} Color={this.state.color}/>            
                     {list}
                 </div>
             )
