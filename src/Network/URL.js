@@ -19,6 +19,7 @@ export const url={
             allTweet:`${value.base_api}/twitter/h`,
             getFewGBTweets:(count)=>`${value.base_api}/twitter/ggbf?count=${count}`,
             specificTweets:(coinName,from,to)=>`${value.base_api}/twitter/q?coinName=${coinName}&f=${from}`,
+            clusterTweets:`${value.base_api}/twitter/gct`,
         },
         binance:{
             candlestick:(from,to,interval,fromTime,toTime,isNew)=>`${value.base_api}/cc/gcs?f=${from}&t=${to}&type=${interval}&ft=${fromTime}&tt=${toTime}&n=${isNew}`,

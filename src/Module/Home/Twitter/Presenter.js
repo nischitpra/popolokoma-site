@@ -27,6 +27,30 @@ class Presenter{
     getGoodBadTweets(count){
         this.interactor.getGoodBadTweets(count)
     }
+    getClusterTweets(){
+        this.interactor.getClusterTweets()
+    }
+    setClusterTweets(data){
+        if(this.script!=undefined){
+            var cluster={}
+            var total=0
+            var clusterTweets={}
+            for(var i in data){
+                cluster[data[i].cluster]=cluster[data[i].cluster]==null?data[i].frequency:cluster[data[i].cluster]+data[i].frequency
+                total+=data[i].frequency
+                if(clusterTweets[data[i].cluster]==null){
+                    clusterTweets[data[i].cluster]=[]
+                }
+                clusterTweets[data[i].cluster].push(data[i])
+            }
+            this.script.setState({
+                cluster:Object.values(cluster),
+                total:total,
+                clusterTweets:Object.values(clusterTweets),
+            })
+        }
+    }
+
     stopLoading(){
         if(this.script!=undefined)
         this.script.setState({

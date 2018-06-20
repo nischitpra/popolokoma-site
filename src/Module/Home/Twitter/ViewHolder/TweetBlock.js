@@ -17,15 +17,15 @@ class TweetBlock extends Component{
         
 
         return(
-            <div className='tweet-container' onClick={()=>this.redirectAccount(this.props.data.id_str)}>
-                <div className='flex-container'>
-                    {value.isMobile?'':<div className={'left-panel'} style={{flex:0}}><img className={'tweet-image'} src={this.props.data.profile_image_url} /></div>}
-                    <div className={value.isMobile?'':'left-panel'} style={value.isMobile?{}:{marginLeft:6}}>
-                        <div className='tweet-title'>{this.props.data.name} </div>
-                        <div className='tweet-subtext'>{`@${this.props.data.screen_name} ⋅ ${this.format(new Date(this.props.data.created_at))}`}</div>
-                    </div>
+            <div className='tweet-container' >
+                <div className='tweet-time'>
+                    {this.format(new Date(this.props.data.created_at))}
+                    <br/>
+                    RT - {this.props.data.frequency}
                 </div>
-                <div className='tweet-description'>{this.props.data.text}</div>
+                <div className='tweet-text' onClick={()=>this.redirectAccount(this.props.data.id_str)}>
+                    {this.props.data.text}
+                </div>
             </div>
         )
     }

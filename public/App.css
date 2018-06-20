@@ -478,51 +478,39 @@ Link{
   margin-top: 4x;
   margin-bottom: 4px;
 }
-.tweet-container{
+.twitter-cluster-container{
   background: white;
   border-radius: 4px;
   margin-top: 4px;
   margin-bottom: 4px;
   padding:16px;
 }
+.twitter-cluster-title{
+
+}
+.tweet-container{
+  display: flex;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
 .tweet-container:hover{
-  cursor: pointer; 
+  cursor: pointer;
 }
-.tweet-image{
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-}
-.tweet-title{
-  font-size: 0.65em;
-  font-weight: 500;
-  color: black;
-  font-weight: bold;
-}
-.tweet-subtext{
+.tweet-time{
+  flex: 1;
   font-size: 0.5em;
   color: var(--textGray);
   font-style: italic;
-  margin-top: 0.5px;
-  margin-bottom: 0.5px;
+  margin-top: 4px;
 }
-.tweet-description{
+.tweet-text{
+  flex: 9;
   font-size: 0.85em;
-  color: var(--textGray);
-  margin-top: 8px;
   line-height: 1.6;
-}
-.tweet-timestamp{
-  font-size: 0.5em;
   color: var(--textGray);
-  font-style: italic;
-  margin-top: var(--medium-spacing);
-  margin-bottom: var(--medium-spacing);
 }
-.tweet-retweet{
-  margin-right: 8px;
-  font-size: 0.6em;
-  color: --var(textLightGray);
+.tweet-text:hover{
+  color: var(--blue);
 }
 .padding-medium{
   padding: 0px;
