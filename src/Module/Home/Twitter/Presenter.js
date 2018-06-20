@@ -55,7 +55,6 @@ class Presenter{
                 clusterTweets:Object.values(clusterTweets),
                 color:Object.values(color),
             })
-            console.log(Object.values(color))
         }
     }
 
