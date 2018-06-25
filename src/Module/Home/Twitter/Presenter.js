@@ -6,27 +6,6 @@ class Presenter{
         this.interactor=new Interactor(this)
     }
 
-    setTweets(tweets){
-        if(this.script!=undefined)
-        this.script.setState({
-            data:tweets
-        })
-    }
-    getSpecificTweets(from){
-        const favouriteDetails=this.interactor.getFavouritesDetailList()
-        var coinName=''
-        for(var i in favouriteDetails){
-            const item=favouriteDetails[i]
-            if(item[id.coinList.symbol]===from){
-                coinName=item[id.coinList.coinName]
-                break
-            }
-        }
-        this.interactor.getSpecificTweets(coinName,from)
-    }
-    getGoodBadTweets(count){
-        this.interactor.getGoodBadTweets(count)
-    }
     getClusterTweets(){
         this.interactor.getClusterTweets()
     }

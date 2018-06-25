@@ -43,7 +43,7 @@ class Home extends Component{
     return (
       <div className='home-container'>
           <div ref={forecastContainer=>this.forecastContainer=forecastContainer}>
-            {/* <ForecastTrend from={this.state.from} to={this.state.to} type={this.state.type} exchange={this.state.exchange} chartWidth={this.state.forecastWidth}/> */}
+            <ForecastTrend from={this.state.from} to={this.state.to} type={this.state.type} exchange={this.state.exchange} chartWidth={this.state.forecastWidth}/>
           </div>
           <HomeNews type={id.news.headlines} count={9}/>
           <Trend/>

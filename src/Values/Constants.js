@@ -165,6 +165,10 @@ export const string={
         snapshot:'Snapshot',
     },
 
+    more:'more',
+    less:'less',
+
+    
 
     // for snapshot used in coin details to show today summary
     // snapshot:(price,open,high,low,volume)=>`Price:${price} | Open:${open} | High:${high} | Low:${low} | Volume:${volume}`,

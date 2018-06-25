@@ -3,7 +3,8 @@ import Loading from '../../Loading/Loading'
 import Presenter from './Presenter'
 import TweetBlock from './ViewHolder/TweetBlock'
 import {string} from '../../../Values/Constants'
-import PieChart from '../../PieChart/PieChart';
+import PieChart from '../../../Utils/PieChart/PieChart';
+import CollapsingDiv from '../../../Utils/CollapsingDiv';
 
 class Twitter extends Component{
     constructor(props){
@@ -17,14 +18,13 @@ class Twitter extends Component{
             isLoading:true,
             expand:[],
         }
+        this.collapseDiv=[]
         this.presenter=new Presenter(this)
         this.handleExpand=this.handleExpand.bind(this)
     }
     componentDidMount(){
         if((this.props.isSpecific!==undefined || this.props.isSpecific!=null) && this.props.isSpecific){
             this.presenter.getSpecificTweets(this.props.from)
-        }else{
-            // this.presenter.getGoodBadTweets(this.props.count)
         }
         this.presenter.getClusterTweets()
     }
@@ -32,31 +32,32 @@ class Twitter extends Component{
         this.presenter.script=undefined
     }
     handleExpand(index){
-        const expand=this.state.expand
-        expand[index]=!expand[index]
-        this.setState({
-            expand:expand,
-        })
+        this.collapseDiv[index].handleToggle()
     }
+    
     render(){
         if(this.state.cluster.length>0){
             var clus=-1
             const list=[]
             for(var idx in this.state.clusterTweets){
+                const content=(
+                        <div>
+                            <div className='twitter-cluster-title' style={{background:this.state.color[idx]}}>{this.state.cluster[idx]}</div>
+                            {this.state.clusterTweets[idx].map((item,index)=><TweetBlock key={index} data={item} />)}
+                        </div>
+                    )
                 list.push(
-                    <div key={idx} className='twitter-cluster-container'>
-                        {idx}
-                        <div className='twitter-cluster-title' key={`clus_${idx}`} style={{background:this.state.color[idx], color:this.state.color[idx]}} onClick={this.handleExpand.bind(this,idx)}>Cluster - {idx}</div>
-                        <div className={this.state.expand[idx]?'expand':'collapse'}>{this.state.clusterTweets[idx].map((item,index)=><TweetBlock key={index} data={item}/>)}</div>
-                    </div>
+                    <CollapsingDiv key={idx}  Content={content} MinHeight={14} ref={container=>this.collapseDiv.push(container)}/>
                 )
             }
            
             return (
                 <div className='twitter-container'>
                     <div className='title-tag-independent'>{string.twitter}</div>
-                    <PieChart Width={300} Height={300} Data={this.state.cluster} Total={this.state.total} Color={this.state.color} handleClick={this.handleExpand}/>            
-                    {list}
+                    <div className='flex-container'>
+                        <div className='flex-1 center'><PieChart Width={240} Height={240} Data={this.state.cluster} Total={this.state.total} Color={this.state.color} handleClick={this.handleExpand}/></div>
+                        <div className='flex-2-5'>{list}</div>
+                    </div>
                 </div>
             )
         }

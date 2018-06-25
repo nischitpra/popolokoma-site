@@ -1,5 +1,4 @@
 import React,{Component} from 'react'
-import Loading from '../Loading/Loading'
 import Pie from '../PieChart/Pie'
 
 const color =require("../../Values/Color").Color

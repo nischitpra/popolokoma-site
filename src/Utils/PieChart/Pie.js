@@ -27,7 +27,8 @@ class Pie{
 
     render(x,y){
         this.defineShape()
-        this.ctx.fillStyle=this.isHover(x,y)?"#ff0000":this.color
+        // this.ctx.fillStyle=this.isHover(x,y)?"#ff0000":this.color
+        this.ctx.fillStyle=this.color
         this.ctx.fill()
         if(this.isHover(x,y)&&this.isClick){
             this.resetClick(this.index)

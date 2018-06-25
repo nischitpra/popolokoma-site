@@ -484,9 +484,17 @@ Link{
   margin-top: 4px;
   margin-bottom: 4px;
   padding:16px;
+  transition: 2s;
 }
 .twitter-cluster-title{
-
+  color:white;
+  text-align: center;
+  font-style: italic;
+  font-size: 0.5em;
+  padding-top:2px;
+  padding-bottom:2px;
+  padding-left:16px;
+  padding-right:16px;
 }
 .tweet-container{
   display: flex;
@@ -502,6 +510,7 @@ Link{
   color: var(--textGray);
   font-style: italic;
   margin-top: 4px;
+  margin-right: 2px;
 }
 .tweet-text{
   flex: 9;
@@ -760,15 +769,26 @@ Link{
 }
 
 
-
-.collapse{
-  height:50px;
-  overflow: hidden;
-
-  transition: height .25s ease;
+.collapsing-div-container{
+  background: white;
+  border-radius: 4px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding:16px;
+  transition: 2s;
 }
-.expand{
-  height:100%;
-
-  transition: height .25s ease;
+.flex-1{
+  flex: 1;
+}
+.flex-2{
+  flex:2;
+}
+.flex-2-5{
+  flex:2.5;
+}
+.flex-3{
+  flex:3;
+}
+.center{
+  text-align: center;
 }
