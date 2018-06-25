@@ -16,10 +16,11 @@ class Presenter{
         if(this.script!=undefined){
             if(data!=undefined && data.length>0){
                 const list=[]
+                const date=new Date().getTime()
                 for(var i in data){
                     list.push({
-                        start: [data[i][id.time]-1, data[i][id.close]/scaleTo], 
-                        end: [data[i][id.time]+1, data[i][id.close]/scaleTo], 
+                        start: [date-2, data[i][id.close]/scaleTo], 
+                        end: [date, data[i][id.close]/scaleTo], 
                         appearance: { stroke: data[i][id.type]==value.levels.resistance?color.darkRed:color.darkGreen, strokeWidth:1.5, strokeOpacity:0.75 }, 
                         type: "XLINE" 
                     })
