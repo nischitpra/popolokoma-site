@@ -36,6 +36,10 @@ export const value={
         }
     },
     feed:{swip_memory:3},
+    levels:{
+        resistance:'r',
+        support:'s',
+    },
 }
 
 export const string={
@@ -336,6 +340,7 @@ export const id={
     exchange:'exchange',   
     type:'type',           
     id:'id',               
+    time:'time', 
     timestamp:'timestamp', 
     quantity:'quantity',   
     price:'price',

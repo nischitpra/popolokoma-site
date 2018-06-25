@@ -101,7 +101,6 @@ class Interactor{
             if(response.ok){
                 response.json().then(json=>{
                     if(json[id.status]===value.status.ok){
-                        // alert(json[id.message])
                         this.presenter.refreshPage()
                         if(callback!==undefined){
                             callback(email)

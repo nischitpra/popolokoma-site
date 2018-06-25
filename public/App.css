@@ -761,3 +761,14 @@ Link{
 
 
 
+.collapse{
+  height:50px;
+  overflow: hidden;
+
+  transition: height .25s ease;
+}
+.expand{
+  height:100%;
+
+  transition: height .25s ease;
+}

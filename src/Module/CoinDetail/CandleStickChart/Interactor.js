@@ -136,26 +136,5 @@ class Interactor{
         }
         return line
     }
-
-    exportTrendSet(trends,historyKey,datasetKey,callback){
-        this.presenter.startExportLoading()
-        fetch(url.api.develop.exportTrendDataset,{
-			method: 'POST',
-			headers: {
-			  "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:57.0) Gecko/20100101 Firefox/57.0",
-              "Accept": 'application/json',
-              'Content-Type' : 'application/json',
-            },
-            body: JSON.stringify({[id.params.trendData]:trends,[id.params.pairHistoryType]:historyKey,[id.params.datasetType]:datasetKey})
-        }).then(response=>{
-            response.json().then(json=>{
-                this.presenter.stopExportLoading()
-                callback(json[id.params.status],json[id.params.message])
-            })
-        }).catch((error)=>{
-            this.presenter.stopExportLoading()
-            console.log(`error: ${JSON.stringify(error)}`)
-        })
-    }
 }
 export default Interactor

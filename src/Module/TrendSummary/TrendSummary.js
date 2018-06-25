@@ -14,6 +14,7 @@ import { last, timeIntervalBarWidth } from "react-stockcharts/lib/utils"
 import { OHLCTooltip } from "react-stockcharts/lib/tooltip"
 import { CrossHairCursor, EdgeIndicator, MouseCoordinateX, MouseCoordinateY,} from "react-stockcharts/lib/coordinates"
 import { AreaSeries, CircleMarker, LineSeries } from "react-stockcharts/lib/series";
+import Levels from '../Levels/Levels'
 
 const color =require("../../Values/Color").Color
 
@@ -30,6 +31,7 @@ class TrendSummary extends Component{
             min:0,
             max_vola:1,
             min_vola:0,
+            scaleTo:1,
         }
     }
   
@@ -113,6 +115,7 @@ class TrendSummary extends Component{
                         snap={false}
                         enabled={false}
                         trends={trendList}
+                        onComplete={() => console.log("on complete")}
                         />
                     <BTrendLine
                         enabled={true}
@@ -120,7 +123,10 @@ class TrendSummary extends Component{
                         snap={false}
                         enabled={false}
                         trends={volatilityList}
+                        onComplete={() => console.log("on complete")}
                         />
+                    <Levels from={this.props.from} to={this.props.to} scaleTo={this.state.scaleTo}/>
+
                     <LineSeries yAccessor={d => d[id.high]} stroke={color.darkGreen} />
                     <LineSeries yAccessor={d => d[id.low]} stroke={color.darkRed} />
                     <XAxis axisAt={value.isMobile?"top":"bottom"} orient={value.isMobile?"top":"bottom"} ticks={4} />

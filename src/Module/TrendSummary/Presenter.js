@@ -62,6 +62,7 @@ class Presenter{
                 data:data,
                 min:min,
                 max:1,
+                scaleTo:max,
             })
         }
     }

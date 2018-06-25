@@ -12,6 +12,7 @@ import { last, timeIntervalBarWidth } from "react-stockcharts/lib/utils"
 import { OHLCTooltip } from "react-stockcharts/lib/tooltip"
 import { CrossHairCursor, EdgeIndicator, MouseCoordinateX, MouseCoordinateY,} from "react-stockcharts/lib/coordinates"
 
+import Levels from '../../Levels/Levels'
 import SMA from './Indicators/SMA'
 import EMA from './Indicators/EMA'
 import MACD from './Indicators/MACD'
@@ -45,7 +46,6 @@ class CandleStickChart extends Component{
             lineColor: color.green,
             snapshot:{[id.close]:0.0,[id.price]:0.0,[id.open]:0.0,[id.high]:0.0,[id.low]:0.0,[id.volume]:0.0},
             isLoading:true,
-            exportLoading:false,
             loadmoreLock:false,
         }
         this.downloadMoreHistory = this.downloadMoreHistory.bind(this)
@@ -450,6 +450,8 @@ class CandleStickChart extends Component{
                             <Chart id={10} yExtents={d => [parseFloat(d.high), parseFloat(d.low)]}>
                                 <XAxis axisAt={value.isMobile?"top":"bottom"} orient={value.isMobile?"top":"bottom"}/>
                                 <MouseCoordinateX at={value.isMobile?"top":"bottom"} orient={value.isMobile?"top":"bottom"} displayFormat={timeFormat("%_d %b %y, %I:%M %p")} />
+
+                                <Levels from={this.props.from} to={this.props.to} scaleTo={1}/>
                             </Chart>
                             <CrossHairCursor />
                             {drawingSelector}

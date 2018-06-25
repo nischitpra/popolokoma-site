@@ -35,7 +35,8 @@ export const url={
         cc:{
             getFilterTrend:(filterType)=>`${value.base_api}/cc/gft?filt=${filterType}`,
             getTrendSummary:(from,to)=>`${value.base_api}/cc/gs?f=${from}&t=${to}`,
-            feedList:`${value.base_api}/cc/gfl`
+            feedList:`${value.base_api}/cc/gfl`,
+            getLevels:(from,to)=>`${value.base_api}/cc/gtl?f=${from}&t=${to}`,
         },
         develop:{
             exportTrendDataset:`${value.base_api}/cc/exportDataset`,

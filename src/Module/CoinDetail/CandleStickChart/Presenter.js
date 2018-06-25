@@ -175,24 +175,7 @@ class Presenter {
             isLoading:false,
         })
     }
-    exportTrendSet(trends,historyKey,datasetKey){
-        this.interactor.exportTrendSet(trends,historyKey,datasetKey,(status,message)=>{
-            alert(`status: ${status} message: ${JSON.stringify(message)}`)
-        })
-    }
-
-    startExportLoading(){
-        if(this.script!=undefined)
-        this.script.setState({
-            exportLoading:true,
-        })
-    }
-    stopExportLoading(){
-        if(this.script!=undefined)
-        this.script.setState({
-            exportLoading:false,
-        })
-    }
+    
     getHistoryType(){
         if(this.script==undefined) return
         
