@@ -5,6 +5,7 @@ import Twitter from './Twitter/Twitter';
 import SentimentTrend from '../SentimentTrend/SentimentTrend';
 import ForecastTrend from '../ForecastTrend/ForecastTrend';
 import Trend from '../Trend/Trend';
+import FilterCoins from '../FilterCoins/FilterCoins';
 
 class Home extends Component{
     constructor(props){
@@ -43,9 +44,11 @@ class Home extends Component{
     return (
       <div className='home-container'>
           <div ref={forecastContainer=>this.forecastContainer=forecastContainer}>
-            <ForecastTrend from={this.state.from} to={this.state.to} type={this.state.type} exchange={this.state.exchange} chartWidth={this.state.forecastWidth}/>
+            {/* <ForecastTrend from={this.state.from} to={this.state.to} type={this.state.type} exchange={this.state.exchange} chartWidth={this.state.forecastWidth}/> */}
           </div>
           <HomeNews type={id.news.headlines} count={9}/>
+           {/* need to merge filter coins and trend. Trend should be shown for every pair. */}
+          <FilterCoins/>
           <Trend/>
           <div ref={sentiContainer=>this.sentiContainer=sentiContainer}>
             <SentimentTrend chartWidth={this.state.sentiWidth}/>

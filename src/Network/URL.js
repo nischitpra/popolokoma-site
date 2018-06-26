@@ -37,6 +37,7 @@ export const url={
             getTrendSummary:(from,to)=>`${value.base_api}/cc/gs?f=${from}&t=${to}`,
             feedList:`${value.base_api}/cc/gfl`,
             getLevels:(from,to)=>`${value.base_api}/cc/gtl?f=${from}&t=${to}`,
+            getStopLossLevel:`${value.base_api}/cc/gsll`,
         },
         develop:{
             exportTrendDataset:`${value.base_api}/cc/exportDataset`,

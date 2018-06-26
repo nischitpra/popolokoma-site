@@ -292,6 +292,16 @@ export const id={
         historyType:(from,to,type)=>`${from}_${to}_${type}`,
         from_to:(from,to)=>`${from}_${to}`,
     },
+    db:{
+        column:{
+            key:'_key',
+            from:'_from',
+            to:'_to',
+            close:'close',
+            open:'open',
+            high:'high',
+        },
+    },
     status:'status',
     cryptoCompare:{
         clientEvent:'clientEvent',
