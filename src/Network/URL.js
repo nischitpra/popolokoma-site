@@ -1,5 +1,10 @@
 import {value} from '../Values/Constants'
 export const url={
+    own:{
+        base:'http://localhost:3000',
+        candle_chart:(from,to)=>`/favourites&f=${from}&t=${to}`,
+        ws_strategyFilter:'ws://192.168.43.60:9005',
+    },
     api:{
         favourites:(fromList,toList,exchange)=>`${value.base_api}/cc/favourites?from=${fromList}&to=${toList}&exchange=${exchange}`,
         history:(historyType,from,to,exchange,toTime)=>`${value.base_api}/cc/history?historyType=${historyType}&from=${from}&to=${to}&exchange=${exchange}&toTime=${toTime}`,
@@ -20,6 +25,10 @@ export const url={
             getFewGBTweets:(count)=>`${value.base_api}/twitter/ggbf?count=${count}`,
             specificTweets:(coinName,from,to)=>`${value.base_api}/twitter/q?coinName=${coinName}&f=${from}`,
             clusterTweets:`${value.base_api}/twitter/gct`,
+        },
+        exchange:{
+            candles:(from,to,window)=>`https://api.bitfinex.com/v2/candles/trade:${window}:t${from}${to}/hist`,
+            
         },
         binance:{
             candlestick:(from,to,interval,fromTime,toTime,isNew)=>`${value.base_api}/cc/gcs?f=${from}&t=${to}&type=${interval}&ft=${fromTime}&tt=${toTime}&n=${isNew}`,

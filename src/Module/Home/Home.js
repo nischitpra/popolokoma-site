@@ -6,6 +6,7 @@ import SentimentTrend from '../SentimentTrend/SentimentTrend';
 import ForecastTrend from '../ForecastTrend/ForecastTrend';
 import Trend from '../Trend/Trend';
 import FilterCoins from '../FilterCoins/FilterCoins';
+import StrategyFilter from '../StrategyFilter/StrategyFilter';
 
 class Home extends Component{
     constructor(props){
@@ -41,19 +42,27 @@ class Home extends Component{
   }
 
   render() {
+      
+      
     return (
       <div className='home-container'>
-          <div ref={forecastContainer=>this.forecastContainer=forecastContainer}>
-            {/* <ForecastTrend from={this.state.from} to={this.state.to} type={this.state.type} exchange={this.state.exchange} chartWidth={this.state.forecastWidth}/> */}
-          </div>
+        <div className='home-left-panel'>
+          <StrategyFilter/>
+        </div>
+        <div className='home-right-panel'>
           <HomeNews type={id.news.headlines} count={9}/>
+        </div>
+          {/* <div ref={forecastContainer=>this.forecastContainer=forecastContainer}> */}
+            {/* <ForecastTrend from={this.state.from} to={this.state.to} type={this.state.type} exchange={this.state.exchange} chartWidth={this.state.forecastWidth}/> */}
+          {/* </div> */}
+          {/* <HomeNews type={id.news.headlines} count={9}/> */}
            {/* need to merge filter coins and trend. Trend should be shown for every pair. */}
-          <FilterCoins/>
-          <Trend/>
-          <div ref={sentiContainer=>this.sentiContainer=sentiContainer}>
-            <SentimentTrend chartWidth={this.state.sentiWidth}/>
-          </div>
-          <Twitter count={7}/>
+          {/* <FilterCoins/> */}
+          {/* <Trend/> */}
+          {/* <div ref={sentiContainer=>this.sentiContainer=sentiContainer}> */}
+            {/* <SentimentTrend chartWidth={this.state.sentiWidth}/> */}
+          {/* </div> */}
+          {/* <Twitter count={7}/> */}
       </div>
     );
   }

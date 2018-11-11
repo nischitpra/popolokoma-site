@@ -6,7 +6,7 @@ class CollapsingDiv extends Component{
         this.state={
             isCollapse:true,
             height:this.props.MinHeight==undefined?0:this.props.MinHeight,
-            minHeight:this.props.MinHeight==undefined?0:this.props.MinHeight
+            minHeight:this.props.MinHeight==undefined?0:this.props.MinHeight,
         }
         this.handleToggle=this.handleToggle.bind(this)
     }
@@ -15,14 +15,16 @@ class CollapsingDiv extends Component{
     }
     handleToggle(){
         this.setState({
-            height:this.state.isCollapse?(this.container.clientHeight):this.state.minHeight,
+            height:this.state.isCollapse?(this.container.offsetHeight):this.state.minHeight,
             isCollapse:!this.state.isCollapse,
         })
     }
+    
     render(){
         return(
-            <div className='collapsing-div-container' onClick={ ()=>{ this.handleToggle() } }>
-                <div style={{height:this.state.height, overflow:this.state.isCollapse?'auto':'hidden', transition:'1s'}} >
+            <div  className='collapsing-div-container'>
+                <div className='collapsing-div-title' onClick={ ()=>{ this.handleToggle() } }>{this.props.Title}</div>
+                <div style={{height:this.state.height, overflow:this.state.isCollapse?'hidden':'hidden', transition:'0.25s'}} >
                     <div ref={container=>this.container=container}>{this.props.Content}</div>
                 </div>
             </div>

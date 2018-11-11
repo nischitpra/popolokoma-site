@@ -26,7 +26,7 @@ export const Color= {
     // primaryAccentColor: '#255b8d',
 
     lightGray: '#eeeeee',
-    green: '#51e064',
+    green: '#00cc00',
     red: '#d66b6b',
     blue: '#6ba2d6',
     bollingerBandEdge: '#61030b33',
@@ -50,6 +50,8 @@ export const Color= {
     green_translucent:'#51e06488',
     red_translucent:'#d66b6b88',
     yellow_translucent:'#f2c50a88',
+
+    white: '#ffffff',
 
 }
 

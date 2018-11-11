@@ -227,7 +227,8 @@ export const string={
         favourites:'Favourites',
         coinList:'Portfolio',
         feed:'Feed',
-        url:{home:'',favourites:'favourites',coinList:'coinList',feed:'feed'}
+        notify:'Get Notified',
+        url:{home:'',favourites:'favourites',coinList:'coinList',feed:'feed',notify:'notify'}
     },
 
 

@@ -5,10 +5,10 @@ import CoinDetail from './Module/CoinDetail/CoinDetail'
 import CoinList from './Module/CoinList/CoinList'
 import Feed from './Module/Feed/Feed'
 import Navbar from './Module/Navbar/Navbar'
+import GetNotified from './Module/GetNotified/GetNotified'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Presenter from './Presenter'
 import {string} from './Values/Constants'
-import { Link } from 'react-router-dom'
 
 
 class App extends Component {
@@ -34,7 +34,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className='App' style={{height:'100%'}} >
+        <div className='App'>
           <div className='background'/>
           <div className='main-navbar-container' ref={navbar=>this.navbar=navbar}>
             {/* <div className='App-title'><Link to={`/${string.navbar.url.home}`} style={{textDecoration:'none', color:'white'}}>{string.projectName}</Link></div> */}
@@ -46,6 +46,7 @@ class App extends Component {
                 <Route exact path={`/${string.navbar.url.favourites}&f=:coin&t=:tab`} render={(props)=>(<CoinDetail from={props.match.params.coin} to={props.match.params.tab}/>)}/> 
                 <Route exact path='/coinList' render={(props)=>(<CoinList setNavbarTab={this.setNavbarTab}/>)}/>
                 <Route exact path='/feed' render={(props)=>(<Feed setNavbarTab={this.setNavbarTab}/>)}/>
+                <Route exact path='/notify' render={(props)=>(<GetNotified setNavbarTab={this.setNavbarTab}/>)}/>
                 <Route path='*' component={NotFound} />
               </Switch>
           </div>

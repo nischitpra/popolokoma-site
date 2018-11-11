@@ -22,15 +22,15 @@ class HomeNews extends Component{
     }
     render(){
         var newsList=[]
-        if(this.props.type===id.news.headlines){
-            newsList=this.state.newsList.map((item,index)=><NewsCard key={index} details={item}/>)
-        }else if(this.props.type===id.news.everything){
+        // if(this.props.type===id.news.headlines){
+        //     newsList=this.state.newsList.map((item,index)=><NewsCard key={index} details={item}/>)
+        // }else if(this.props.type===id.news.everything){
             newsList=this.state.newsList.map((item,index)=><NewsStripCard key={index} details={item}/>)
-        }
+        // }
         if(newsList.length>0){
             return(
             <div>
-                <div className='title-tag-independent'>{string.headlines}</div>
+                <h4>{string.news}</h4>
                 <div className='home-news-container'>{newsList}</div>
             </div>)
         }
