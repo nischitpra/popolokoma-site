@@ -3,7 +3,8 @@ export const url={
     own:{
         base:'http://localhost:3000',
         candle_chart:(from,to)=>`/favourites&f=${from}&t=${to}`,
-        ws_strategyFilter:'ws://192.168.43.60:9005',
+        // ws_strategyFilter:'ws://192.168.43.60:9005',
+        ws_strategyFilter:'ws://172.31.67.138:9005',
     },
     api:{
         favourites:(fromList,toList,exchange)=>`${value.base_api}/cc/favourites?from=${fromList}&to=${toList}&exchange=${exchange}`,

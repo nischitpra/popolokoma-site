@@ -5,20 +5,12 @@ class Presenter{
         this.script=script
         this.interactor=new Interactor(this)
     }
-    getStrategyData(){
-       this.interactor.getStrategyData()
-    }
     setStrategyData(data){
-        this.script.setState({
-            strategyData:data
-        })
+        this.script.strategyData = data
     }
-    getChartData(from,to,window){
-        this.interactor.getChartData(from,to,window)
-    }
-    setChartData(data){
+    setChartData(data, showWindow){
         var list=[]
-        for(var i=data.length-1;i>=0;i--){
+        for(var i=0;i<data.length;i++){
             list.push({
                 time: data[i][0],
                 open: data[i][1],
@@ -30,11 +22,13 @@ class Presenter{
         }
         this.script.setState({
             chartData:list,
+            showWindow:showWindow
         })
     }
 
-    setSelectedKey(name,from,to,window){
-        this.script.setSelection(name,from,to,window)
+    setSelectedKey( name, from, to, window, pairData ){
+        this.script.setSelection( name, from, to, window, pairData )
+        this.stopLoading()
     }
     startLoading(){
         this.script.setState({

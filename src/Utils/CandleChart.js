@@ -53,9 +53,10 @@ class CandleChart extends Component{
             return new Date() 
         }
             
-        const xExtents = [ xAccessor(last(data)), xAccessor(data[data.length-data.length*0.4]) ]
-        var timeRange= this.props.windowFrame===id.binance.candle_interval._1m?utcMinute:this.props.windowFrame===id.binance.candle_interval._1h?utcHour:utcDay
-                
+        const xExtents = [ xAccessor(last(data)), xAccessor(data[data.length-data.length*0.7]) ]
+        // var timeRange= this.props.windowFrame===id.binance.candle_interval._1m?utcMinute:this.props.windowFrame===id.binance.candle_interval._1h?utcHour:utcDay
+        var timeRange= this.props.windowFrame.includes("m")?utcMinute:this.props.windowFrame.includes("h")?utcHour:utcDay
+
         return(
             <div className={this.props.className} ref={container=>this.chartContaner=container} onClick={this.props.onClick}> 
                 <ChartCanvas 

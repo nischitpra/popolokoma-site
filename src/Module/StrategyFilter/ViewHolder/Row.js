@@ -5,7 +5,7 @@ class Row extends Component{
         super(props)
     }
     click(){
-        this.props.setSelection(this.props.from, this.props.to, this.props.window)
+        this.props.setSelection(this.props.from, this.props.to, this.props.window, this.props.pairData)
     }
     render(){
         return(

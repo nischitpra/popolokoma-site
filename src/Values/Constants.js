@@ -326,6 +326,9 @@ export const id={
         day:2,
     },
 
+    window: 'window',
+    pchange: 'pchange',
+    
     areaChart:0,
     volumeBar:1,
     sma:2,
