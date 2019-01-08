@@ -48,6 +48,8 @@ class Home extends Component{
       <div className='home-container'>
         <div className='home-left-panel'>
           <StrategyFilter/>
+	        <Trend/>
+          <Twitter count={7}/>
         </div>
         <div className='home-right-panel'>
           <HomeNews type={id.news.headlines} count={9}/>
@@ -55,8 +57,8 @@ class Home extends Component{
           {/* <div ref={forecastContainer=>this.forecastContainer=forecastContainer}> */}
             {/* <ForecastTrend from={this.state.from} to={this.state.to} type={this.state.type} exchange={this.state.exchange} chartWidth={this.state.forecastWidth}/> */}
           {/* </div> */}
-          {/* <HomeNews type={id.news.headlines} count={9}/> */}
            {/* need to merge filter coins and trend. Trend should be shown for every pair. */}
+          {/* <HomeNews type={id.news.headlines} count={9}/> */}
           {/* <FilterCoins/> */}
           {/* <Trend/> */}
           {/* <div ref={sentiContainer=>this.sentiContainer=sentiContainer}> */}

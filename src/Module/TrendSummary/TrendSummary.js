@@ -3,7 +3,7 @@ import {id,string, value} from '../../Values/Constants'
 import Presenter from './Presenter';
 import Loading from '../Loading/Loading';
 import matchSorter from 'match-sorter'
-import { TrendLine,BTrendLine } from "react-stockcharts/lib/interactive"
+import { TrendLine, BTrendLine } from "react-stockcharts/lib/interactive"
 import { format } from "d3-format"
 import { timeFormat } from "d3-time-format"
 import { scaleTime } from "d3-scale"
@@ -103,7 +103,6 @@ class TrendSummary extends Component{
                 displayXAccessor={xAccessor}
                 xExtents={xExtents}
                 panEvent={false}
-                // zoomEvent={value.isMobile?false:true}
                 zoomEvent={false}
                 >
                 <Chart id={1} yExtents={d => [this.state.min*0.9975,this.state.max*1.0025]} height={height-25} origin={(w, h) => [0, value.isMobile?25:0]}>

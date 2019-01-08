@@ -36,14 +36,14 @@ class CoinDetail extends Component{
     }
     setChartWidth(){
     //   var sentiWidth=(this.sentiContainer.clientWidth)
-    //   var trendsummaryWidth=(this.trendContainer.clientWidth)
+       var trendsummaryWidth=(this.trendContainer.clientWidth)
       var candleWid=(this.candleContainer.clientWidth)
     //   var forecastWidth=(this.forecastContainer.clientWidth)
       this.setState({
             candle_chartWidth:candleWid,
             // sentiment_chartWidth:sentiWidth,
             // forecast_chartWidth:forecastWidth,
-            // trendsummary_chartWidth:trendsummaryWidth,
+             trendsummary_chartWidth:trendsummaryWidth,
       })
     }
     refreshPage(){
@@ -72,10 +72,13 @@ class CoinDetail extends Component{
                     <CandleStickChart from={this.state.from} to={this.state.to} exchange={this.state.exchange}  
                      handleTrendLineId={this.state.handleTrendLineId} resetLineTool={this.resetLineTool} chartWidth={this.state.candle_chartWidth}/> 
                 </div>
+                <div ref={trendContainer=>this.trendContainer=trendContainer}>
+                    <TrendSummary from={this.state.from} to={this.state.to} chartWidth={this.state.trendsummary_chartWidth}/>
+                </div>
                 {/* <div ref={forecastContainer=>this.forecastContainer=forecastContainer}><ForecastTrend from={this.state.from} to={this.state.to} type={this.state.type} exchange={this.state.exchange} chartWidth={this.state.forecast_chartWidth}/></div> */}
                 {/* <div ref={sentiContainer=>this.sentiContainer=sentiContainer}><SentimentTrend chartWidth={this.state.sentiment_chartWidth}/></div> */}
                 {/* <div ref={trendContainer=>this.trendContainer=trendContainer}><TrendSummary from={this.state.from} to={this.state.to} chartWidth={this.state.trendsummary_chartWidth}/></div> */}
-                <div style={{marginTop:12,marginBottom:4}}><Twitter count={7}/></div>
+                {/* <div style={{marginTop:12,marginBottom:4}}><Twitter count={7}/></div> */}
             </div>
         )
     }

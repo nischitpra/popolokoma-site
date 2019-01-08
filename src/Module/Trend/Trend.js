@@ -56,7 +56,7 @@ class Trend extends Component{
     ]
     return (
         <div className='trend-container' style={{overflowX: "auto"}}>
-            <div className='title-tag'>{string.trendFilter}</div>
+            <h2 style={{textAlign:"center"}}>Market Trend</h2>
             <div className='trend-toolbar'>
                 <span className={this.state.tab===id.trend.all?'trend-toolbar-item active':'trend-toolbar-item'} onClick={()=>this.switchTab(id.trend.all)}>{string.trend.all}</span>
                 <span className={this.state.tab===id.trend.rise?'trend-toolbar-item active':'trend-toolbar-item'} onClick={()=>this.switchTab(id.trend.rise)}>{string.trend.rise}</span>

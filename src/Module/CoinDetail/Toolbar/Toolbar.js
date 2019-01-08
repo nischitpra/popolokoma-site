@@ -141,7 +141,8 @@ class Toolbar extends Component{
         const subscribe=this.state.isSubscribed?<i className="material-icons md-18 unsubscribe" onClick={this.subscribeButtonClick.bind(this)}>notifications</i>:<i className="material-icons md-18 subscribe" onClick={this.subscribeButtonClick.bind(this)}>notifications</i>
         const showSubscriptionForm=<Collapse isOpened={this.state.openSubscribeForm} springConfig={{stiffness: 100, damping: 20}}><SubscriptionForm presenter={this.presenter} from={this.props.from} to={this.props.to} setEmailSubscription={this.setEmailSubscription}/></Collapse>
         
-        const trendLine=value.isMobile?"":<span className={this.state.toolbar.horizontalLine?'expand-x':'collapse-x'} ><LineToolbar presenter={this.presenter} handleTrendLine={this.props.handleTrendLine} handleTrendLineId={this.props.handleTrendLineId}/></span>
+        // const trendLine=value.isMobile?"":<span className={this.state.toolbar.horizontalLine?'expand-x':'collapse-x'} ><LineToolbar presenter={this.presenter} handleTrendLine={this.props.handleTrendLine} handleTrendLineId={this.props.handleTrendLineId}/></span>
+        const trendLine=value.isMobile?"":<span className = "nav-tool"><LineToolbar presenter={this.presenter} handleTrendLine={this.props.handleTrendLine} handleTrendLineId={this.props.handleTrendLineId}/></span>
         
         
         return(
@@ -166,9 +167,20 @@ class Toolbar extends Component{
                             <span className={this.state.toolbar.stochasticOscillator?'nav-tool active':'nav-tool'} onClick={()=>this.toggle(id.stochasticOscillator)}>{string.stochasticOscillator}</span>
                             {trendLine}
                             {value.isMobile?"":<span className={this.state.toolbar.horizontalLine?'nav-tool active':'nav-tool'} onClick={()=>this.toggle(id.horizontalLine)}><i className="material-icons md-18">timeline</i></span>}
-                            <span className={this.getHistoryType()===id.binance.candle_interval._1m?'nav-tool active':'nav-tool'} onClick={()=>this.switchHistory(id.binance.candle_interval._1m)}>{string.minute}</span>
-                            <span className={this.getHistoryType()===id.binance.candle_interval._1h?'nav-tool active':'nav-tool'} onClick={()=>this.switchHistory(id.binance.candle_interval._1h)}>{string.hour}</span>
-                            <span className={this.getHistoryType()===id.binance.candle_interval._1d?'nav-tool active':'nav-tool'} onClick={()=>this.switchHistory(id.binance.candle_interval._1d)}>{string.day}</span>
+                            <br/>
+                            <span className={this.getHistoryType()===id.binance.candle_interval._1m?'nav-tool active':'nav-tool'} onClick={()=>this.switchHistory(id.binance.candle_interval._1m)}>{id.binance.candle_interval._1m}</span>
+                            <span className={this.getHistoryType()===id.binance.candle_interval._3m?'nav-tool active':'nav-tool'} onClick={()=>this.switchHistory(id.binance.candle_interval._3m)}>{id.binance.candle_interval._3m}</span>
+                            <span className={this.getHistoryType()===id.binance.candle_interval._5m?'nav-tool active':'nav-tool'} onClick={()=>this.switchHistory(id.binance.candle_interval._5m)}>{id.binance.candle_interval._5m}</span>
+                            <span className={this.getHistoryType()===id.binance.candle_interval._15m?'nav-tool active':'nav-tool'} onClick={()=>this.switchHistory(id.binance.candle_interval._15m)}>{id.binance.candle_interval._15m}</span>
+                            <span className={this.getHistoryType()===id.binance.candle_interval._30m?'nav-tool active':'nav-tool'} onClick={()=>this.switchHistory(id.binance.candle_interval._30m)}>{id.binance.candle_interval._30m}</span>
+                            <span className={this.getHistoryType()===id.binance.candle_interval._1h?'nav-tool active':'nav-tool'} onClick={()=>this.switchHistory(id.binance.candle_interval._1h)}>{id.binance.candle_interval._1h}</span>
+                            <span className={this.getHistoryType()===id.binance.candle_interval._2h?'nav-tool active':'nav-tool'} onClick={()=>this.switchHistory(id.binance.candle_interval._2h)}>{id.binance.candle_interval._2h}</span>
+                            <span className={this.getHistoryType()===id.binance.candle_interval._4h?'nav-tool active':'nav-tool'} onClick={()=>this.switchHistory(id.binance.candle_interval._4h)}>{id.binance.candle_interval._4h}</span>
+                            <span className={this.getHistoryType()===id.binance.candle_interval._6h?'nav-tool active':'nav-tool'} onClick={()=>this.switchHistory(id.binance.candle_interval._6h)}>{id.binance.candle_interval._6h}</span>
+                            <span className={this.getHistoryType()===id.binance.candle_interval._8h?'nav-tool active':'nav-tool'} onClick={()=>this.switchHistory(id.binance.candle_interval._8h)}>{id.binance.candle_interval._8h}</span>
+                            <span className={this.getHistoryType()===id.binance.candle_interval._12h?'nav-tool active':'nav-tool'} onClick={()=>this.switchHistory(id.binance.candle_interval._12h)}>{id.binance.candle_interval._12h}</span>
+                            <span className={this.getHistoryType()===id.binance.candle_interval._1d?'nav-tool active':'nav-tool'} onClick={()=>this.switchHistory(id.binance.candle_interval._1d)}>{id.binance.candle_interval._1d}</span>
+                            <span className={this.getHistoryType()===id.binance.candle_interval._3d?'nav-tool active':'nav-tool'} onClick={()=>this.switchHistory(id.binance.candle_interval._3d)}>{id.binance.candle_interval._3d}</span>
                         </div>
                     </div>
                 </div>

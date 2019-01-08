@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { timeFormat } from "d3-time-format"
 import { format } from "d3-format"
 import { scaleTime } from "d3-scale"
-import { utcMinute, utcHour, utcDay } from "d3-time"
+import { interval, durationMinute, durationSecond, durationHour, durationDay, utcMinute, utcHour, utcDay } from "d3-time"
 import { ChartCanvas, Chart } from "react-stockcharts"
 import { CandlestickSeries } from "react-stockcharts/lib/series"
 import { XAxis, YAxis } from "react-stockcharts/lib/axes"
@@ -54,8 +54,10 @@ class CandleChart extends Component{
         }
             
         const xExtents = [ xAccessor(last(data)), xAccessor(data[data.length-data.length*0.7]) ]
+        
         // var timeRange= this.props.windowFrame===id.binance.candle_interval._1m?utcMinute:this.props.windowFrame===id.binance.candle_interval._1h?utcHour:utcDay
-        var timeRange= this.props.windowFrame.includes("m")?utcMinute:this.props.windowFrame.includes("h")?utcHour:utcDay
+        var digit = parseInt( this.props.windowFrame.substring( 0, this.props.windowFrame.length - 1 ) )
+        var timeRange = this.props.windowFrame.includes("m")?utcMinute.every( digit ):this.props.windowFrame.includes("h")?utcHour.every( digit ):utcDay.every( digit )
 
         return(
             <div className={this.props.className} ref={container=>this.chartContaner=container} onClick={this.props.onClick}> 

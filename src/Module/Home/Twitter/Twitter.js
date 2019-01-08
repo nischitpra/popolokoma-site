@@ -53,7 +53,7 @@ class Twitter extends Component{
            
             return (
                 <div className='twitter-container'>
-                    <div className='title-tag-independent'>{string.twitter}</div>
+                    <h2 style={{textAlign:"center"}}>Tweet Cluster</h2>
                     <div className='flex-container'>
                         <div className='flex-1 center'><PieChart Width={240} Height={240} Data={this.state.cluster} Total={this.state.total} Color={this.state.color} handleClick={this.handleExpand}/></div>
                         <div className='flex-2-5'>{list}</div>

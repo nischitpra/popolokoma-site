@@ -266,7 +266,7 @@ class CandleStickChart extends Component{
              */
             if(this.presenter.getToolbar().areaChart){
                 yExtent.push(d => [parseFloat(d.close)])
-                var areaChart=(<Chart id={0} yExtents={yExtent} height={value.isMobile?this.props.chartWidth*value.chartHeightRatio:this.props.chartWidth*0.6*value.chartHeightRatio}>
+                var areaChart=(<Chart id={0} yExtents={yExtent} height={value.isMobile?this.props.chartWidth*value.chartHeightRatio:this.props.chartWidth*0.6*value.chartHeightRatio * 0.5}>
                     {value.isMobile?(""):<YAxis axisAt="right" orient="right" ticks={5} displayFormat={format(`.${decimalPlaces}f`)} />}
                     {value.isMobile?(""):<MouseCoordinateY at="right" orient="right" displayFormat={format(`.${decimalPlaces}f`)} />}
                     {value.isMobile?(""):<EdgeIndicator 
@@ -286,11 +286,14 @@ class CandleStickChart extends Component{
                     {pipelineOverlayCandleStick}
                     </Chart>)
                 pipelineRender.push(areaChart)
-                pipelineHeight.push((value.isMobile?this.props.chartWidth*value.chartHeightRatio:this.props.chartWidth*0.6*value.chartHeightRatio)-100)
+                pipelineHeight.push((value.isMobile?this.props.chartWidth*value.chartHeightRatio:this.props.chartWidth*0.6*value.chartHeightRatio * 0.5)-100)
             }else{
                 yExtent.push(d => [d.high, d.low])
-                var timeRange= historyType===id.binance.candle_interval._1m?utcMinute:historyType===id.binance.candle_interval._1h?utcHour:utcDay
-                areaChart=(<Chart id={1} yExtents={yExtent} height={value.isMobile?this.props.chartWidth*value.chartHeightRatio:this.props.chartWidth*0.6*value.chartHeightRatio}>
+                // var timeRange= historyType===id.binance.candle_interval._1m?utcMinute:historyType===id.binance.candle_interval._1h?utcHour:utcDay
+                var digit = parseInt( historyType.substring( 0, historyType.length - 1 ) )
+                var timeRange = historyType.includes("m")?utcMinute.every( digit ):historyType.includes("h")?utcHour.every( digit ):utcDay.every( digit )
+
+                areaChart=(<Chart id={1} yExtents={yExtent} height={value.isMobile?this.props.chartWidth*value.chartHeightRatio:this.props.chartWidth*0.6*value.chartHeightRatio * 0.5}>
                     {value.isMobile?(""):<YAxis axisAt="right" orient="right" ticks={5} displayFormat={format(`.${decimalPlaces}f`)} />}
                     {value.isMobile?(""):<MouseCoordinateY at="right" orient="right" displayFormat={format(`.${decimalPlaces}f`)} />}
                     {value.isMobile?(""):<EdgeIndicator 
@@ -318,7 +321,7 @@ class CandleStickChart extends Component{
                     {pipelineOverlayCandleStick}
                 </Chart>)
                 pipelineRender.push(areaChart)
-                pipelineHeight.push((value.isMobile?this.props.chartWidth*value.chartHeightRatio:this.props.chartWidth*0.6*value.chartHeightRatio)-100)
+                pipelineHeight.push((value.isMobile?this.props.chartWidth*value.chartHeightRatio:this.props.chartWidth*0.6*value.chartHeightRatio * 0.5)-100)
             }
 
             /**
@@ -423,7 +426,7 @@ class CandleStickChart extends Component{
                     </div>
                 </div>
                 // : <div className={'snapshot'}>{string.snapshot(this.state.snapshot[id.snapshot.priceChange],this.state.snapshot[id.snapshot.openPrice],this.state.snapshot[id.snapshot.highPrice],this.state.snapshot[id.snapshot.lowPrice],this.state.snapshot[id.snapshot.volume],this.state.snapshot[id.snapshot.priceChangePercent])}</div>
-            
+            //var autoSupportLines = this.state.enableTrendLine?<Levels from={this.props.from} to={this.props.to} scaleTo={1}/>:""
             return(<div >
                     <div className={'candle-stick-container chart'}>
                         <div className='title-tag'>{string.cc.priceMovement}</div>
@@ -451,7 +454,7 @@ class CandleStickChart extends Component{
                                 <XAxis axisAt={value.isMobile?"top":"bottom"} orient={value.isMobile?"top":"bottom"}/>
                                 <MouseCoordinateX at={value.isMobile?"top":"bottom"} orient={value.isMobile?"top":"bottom"} displayFormat={timeFormat("%_d %b %y, %I:%M %p")} />
 
-                                <Levels from={this.props.from} to={this.props.to} scaleTo={1}/>
+                                {/*<Levels from={this.props.from} to={this.props.to} scaleTo={1}/>*/}
                             </Chart>
                             <CrossHairCursor />
                             {drawingSelector}
